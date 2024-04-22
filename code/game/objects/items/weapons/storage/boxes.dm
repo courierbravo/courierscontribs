@@ -1276,11 +1276,6 @@
 	desc = "A box containing 5 standstill landmines."
 	starts_with = list(/obj/item/landmine/standstill = 5)
 
-/obj/item/storage/box/landmines/door_rigging
-	name = "box of door rigging landmines"
-	desc = "A box containing 5 door rigging landmines."
-	starts_with = list(/obj/item/landmine/frag/door_rigging = 5)
-
 /obj/item/storage/box/landmines/claymore
 	name = "box of claymore landmines"
 	desc = "A box containing 5 claymore landmines, relative detonators, and a spare one to trigger them all."
@@ -1324,4 +1319,8 @@
 	starts_with = list(
 		/obj/item/reagent_containers/food/snacks/grown/konyang_tea/jaekseol = 7
 	)
-
+/obj/item/storage/box/ketchup
+	name = "box of condiment packets"
+	desc = "It has a small ketchup smear on it."
+	illustration = "condiment"
+	starts_with = list(/obj/item/reagent_containers/food/condiment/small/packet/ketchup = 16)
