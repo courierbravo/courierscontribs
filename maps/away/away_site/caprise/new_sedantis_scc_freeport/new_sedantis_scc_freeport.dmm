@@ -4,6 +4,11 @@
 /obj/effect/floor_decal/corner/red{
 	dir = 10
 	},
+/obj/item/rig/hazard/equipped,
+/obj/item/rig/hazard/equipped,
+/obj/item/rig/hazard/equipped,
+/obj/item/rig/hazard/equipped,
+/obj/item/rig/hazard/equipped,
 /turf/simulated/floor/tiled,
 /area/space)
 "ae" = (
@@ -44,6 +49,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
+/obj/effect/floor_decal/corner/red/full,
 /turf/simulated/floor/tiled,
 /area/space)
 "ao" = (
@@ -90,7 +96,6 @@
 /area/space)
 "az" = (
 /obj/structure/closet/crate,
-/obj/random/loot,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
 	},
@@ -104,7 +109,6 @@
 /area/space)
 "aG" = (
 /obj/structure/closet/crate,
-/obj/random/loot,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
 	},
@@ -176,6 +180,28 @@
 /obj/structure/bed/stool/chair/shuttle,
 /turf/simulated/floor/tiled,
 /area/space)
+"aY" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/reagent_containers/food/snacks/pemmicanbar{
+	pixel_y = -4;
+	pixel_x = 7
+	},
+/obj/item/reagent_containers/food/snacks/pemmicanbar{
+	pixel_y = -4;
+	pixel_x = -1
+	},
+/obj/item/reagent_containers/food/snacks/proteinbar{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/snacks/proteinbar{
+	pixel_x = -2;
+	pixel_y = 6
+	},
+/turf/simulated/floor/lino,
+/area/space)
 "aZ" = (
 /obj/structure/table/standard,
 /obj/item/gun/energy/pistol{
@@ -183,6 +209,18 @@
 	},
 /obj/item/melee/telebaton,
 /turf/simulated/floor/tiled,
+/area/space)
+"bg" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/haircomb/random{
+	pixel_y = -8
+	},
+/obj/item/haircomb/random{
+	pixel_y = 5
+	},
+/turf/simulated/floor/lino,
 /area/space)
 "bj" = (
 /obj/effect/floor_decal/corner/red{
@@ -229,6 +267,28 @@
 	},
 /turf/simulated/floor/tiled,
 /area/space)
+"bx" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/storage/box/fancy/med_pouch/burn{
+	pixel_y = -8;
+	pixel_x = -7
+	},
+/obj/item/storage/box/fancy/med_pouch/burn{
+	pixel_y = -8;
+	pixel_x = 8
+	},
+/obj/item/storage/box/fancy/med_pouch/oxyloss{
+	pixel_x = 8;
+	pixel_y = 7
+	},
+/obj/item/storage/box/fancy/med_pouch/oxyloss{
+	pixel_x = -7;
+	pixel_y = 7
+	},
+/turf/simulated/floor/lino,
+/area/space)
 "bC" = (
 /obj/structure/platform/dark{
 	dir = 8;
@@ -244,7 +304,10 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/pen/black,
+/obj/item/pen/black{
+	pixel_y = -2;
+	pixel_x = -7
+	},
 /turf/simulated/floor/tiled,
 /area/space)
 "bF" = (
@@ -284,7 +347,6 @@
 /area/space)
 "bN" = (
 /obj/structure/closet/crate,
-/obj/random/loot,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
@@ -312,6 +374,9 @@
 	},
 /obj/item/clothing/under/rank/pmc/vekatak_phalanx,
 /obj/item/clothing/shoes/jackboots,
+/obj/effect/floor_decal/corner/red{
+	dir = 5
+	},
 /turf/simulated/floor/tiled,
 /area/space)
 "bV" = (
@@ -429,6 +494,18 @@
 	},
 /turf/simulated/floor/tiled/full,
 /area/space)
+"cJ" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/reagent_containers/food/snacks/ricetub{
+	pixel_y = -6
+	},
+/obj/item/reagent_containers/food/snacks/ricetub{
+	pixel_y = 12
+	},
+/turf/simulated/floor/lino,
+/area/space)
 "cL" = (
 /obj/effect/floor_decal/spline/plain/red{
 	dir = 8
@@ -436,8 +513,32 @@
 /turf/simulated/floor/tiled,
 /area/space)
 "cO" = (
-/obj/effect/decal/cleanable/blood/oil,
-/turf/simulated/floor/plating,
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind{
+	pixel_y = -2;
+	pixel_x = -9
+	},
+/obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind{
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind{
+	pixel_y = -2;
+	pixel_x = 9
+	},
+/obj/item/reagent_containers/food/drinks/cans/space_mountain_wind{
+	pixel_y = 17
+	},
+/obj/item/reagent_containers/food/drinks/cans/space_mountain_wind{
+	pixel_y = 17;
+	pixel_x = 10
+	},
+/obj/item/reagent_containers/food/drinks/cans/space_mountain_wind{
+	pixel_y = 17;
+	pixel_x = -10
+	},
+/turf/simulated/floor/lino,
 /area/space)
 "cP" = (
 /obj/machinery/door/blast/shutters{
@@ -526,6 +627,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/space)
+"df" = (
+/obj/effect/floor_decal/corner/purple{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/space)
 "dg" = (
 /obj/effect/floor_decal/spline/plain/white{
 	dir = 4
@@ -568,6 +675,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/space)
+"dA" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/storage/box/fancy/food/pralinebox{
+	pixel_y = -5
+	},
+/obj/item/storage/box/fancy/donut{
+	pixel_y = 19
+	},
+/turf/simulated/floor/lino,
+/area/space)
 "dB" = (
 /obj/structure/bed/padded,
 /turf/simulated/floor/tiled,
@@ -580,6 +699,34 @@
 	dir = 10
 	},
 /turf/simulated/floor/plating,
+/area/space)
+"dD" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/buzz{
+	pixel_y = -6
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/buzz{
+	pixel_y = -6;
+	pixel_x = 10
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/buzz{
+	pixel_y = -6;
+	pixel_x = -10
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/buzz{
+	pixel_y = 17
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/buzz{
+	pixel_y = 17;
+	pixel_x = 10
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/buzz{
+	pixel_y = 17;
+	pixel_x = -10
+	},
+/turf/simulated/floor/lino,
 /area/space)
 "dJ" = (
 /obj/structure/bed/stool/chair/shuttle,
@@ -609,7 +756,6 @@
 	dir = 8
 	},
 /obj/structure/table/standard,
-/obj/item/pen/black,
 /turf/simulated/floor/tiled,
 /area/space)
 "dM" = (
@@ -621,6 +767,26 @@
 /turf/simulated/floor/tiled/red{
 	color = "bc3e42"
 	},
+/area/space)
+"dN" = (
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/food/snacks/cb08,
+/obj/item/reagent_containers/food/snacks/cb08,
+/obj/item/reagent_containers/food/snacks/cb08,
+/obj/item/reagent_containers/food/snacks/cb08,
+/obj/item/reagent_containers/food/snacks/cb07,
+/obj/item/reagent_containers/food/snacks/cb07,
+/obj/item/reagent_containers/food/snacks/cb07,
+/obj/item/reagent_containers/food/snacks/cb07,
+/obj/item/reagent_containers/food/snacks/cb06,
+/obj/item/reagent_containers/food/snacks/cb06,
+/obj/item/reagent_containers/food/snacks/cb06,
+/obj/item/reagent_containers/food/snacks/cb06,
+/obj/item/reagent_containers/food/snacks/cb01,
+/obj/item/reagent_containers/food/snacks/cb01,
+/obj/item/reagent_containers/food/snacks/cb01,
+/obj/item/reagent_containers/food/snacks/cb01,
+/turf/simulated/floor/tiled,
 /area/space)
 "dQ" = (
 /obj/structure/table/stone/marble,
@@ -712,6 +878,10 @@
 /obj/effect/floor_decal/corner/red{
 	dir = 5
 	},
+/obj/item/reagent_containers/food/drinks/coffee{
+	pixel_y = 3;
+	pixel_x = -6
+	},
 /turf/simulated/floor/tiled,
 /area/space)
 "eo" = (
@@ -754,6 +924,56 @@
 /obj/random/smokable,
 /obj/random/smokable,
 /turf/simulated/floor/tiled/full,
+/area/space)
+"eA" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/cthur{
+	pixel_y = 18
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/cherry{
+	pixel_y = 18;
+	pixel_x = -10
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/dyn{
+	pixel_y = 18;
+	pixel_x = 10
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/hozm{
+	pixel_y = -4;
+	pixel_x = -10
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/klax{
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/kois{
+	pixel_x = 10;
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/hozm{
+	pixel_y = -4;
+	pixel_x = -10
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/klax{
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/kois{
+	pixel_x = 10;
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/dyn{
+	pixel_y = 18;
+	pixel_x = 10
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/cthur{
+	pixel_y = 18
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/cherry{
+	pixel_y = 18;
+	pixel_x = -10
+	},
+/turf/simulated/floor/lino,
 /area/space)
 "eD" = (
 /obj/machinery/portable_atmospherics/canister,
@@ -817,6 +1037,19 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/plating,
 /area/space)
+"eX" = (
+/obj/machinery/smartfridge/foodheater/buffet,
+/obj/random/pizzabox,
+/obj/random/pizzabox,
+/obj/random/pizzabox,
+/obj/random/pizzabox,
+/obj/random/pizzabox,
+/obj/random/pizzabox,
+/obj/random/pizzabox,
+/obj/random/pizzabox,
+/obj/structure/window/reinforced,
+/turf/simulated/floor/tiled/full,
+/area/space)
 "fe" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/sink{
@@ -846,6 +1079,46 @@
 	dir = 4
 	},
 /turf/simulated/floor/grass,
+/area/space)
+"fl" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/storage/box/fancy/foysnack{
+	pixel_y = -6;
+	pixel_x = -6
+	},
+/obj/item/storage/box/fancy/crackers{
+	pixel_y = -7;
+	pixel_x = 7
+	},
+/obj/item/reagent_containers/food/snacks/candy{
+	pixel_y = 10;
+	pixel_x = 7
+	},
+/obj/item/reagent_containers/food/snacks/candy{
+	pixel_y = 10;
+	pixel_x = 1
+	},
+/obj/item/reagent_containers/food/snacks/candy{
+	pixel_y = 10;
+	pixel_x = -5
+	},
+/turf/simulated/floor/lino,
+/area/space)
+"fm" = (
+/obj/structure/closet/crate,
+/obj/item/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
+/obj/item/haircomb/random,
+/obj/item/haircomb/random,
+/obj/item/haircomb/random,
+/obj/item/haircomb/random,
+/turf/simulated/floor/tiled,
 /area/space)
 "fs" = (
 /obj/machinery/atmospherics/binary/pump/supply/on{
@@ -880,6 +1153,16 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/full,
+/area/space)
+"fI" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
 /area/space)
 "fO" = (
 /obj/structure/table/wood,
@@ -969,28 +1252,10 @@
 /turf/simulated/floor/tiled/white,
 /area/space)
 "gm" = (
-/obj/structure/table/rack/retail_shelf{
-	name = "shelves"
+/obj/effect/floor_decal/corner/purple{
+	dir = 9
 	},
-/obj/item/reagent_containers/toothpaste{
-	pixel_y = -3
-	},
-/obj/item/reagent_containers/toothpaste{
-	pixel_y = -3
-	},
-/obj/item/reagent_containers/toothpaste{
-	pixel_y = -3
-	},
-/obj/item/reagent_containers/toothpaste{
-	pixel_y = 13
-	},
-/obj/item/reagent_containers/toothpaste{
-	pixel_y = 13
-	},
-/obj/item/reagent_containers/toothpaste{
-	pixel_y = 13
-	},
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled,
 /area/space)
 "go" = (
 /obj/effect/floor_decal/corner/red/full{
@@ -1055,6 +1320,18 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/full,
 /area/space)
+"gH" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/spline/plain/purple{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/space)
 "gI" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -1097,6 +1374,34 @@
 	color = "bc3e42"
 	},
 /area/space)
+"gU" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/reagent_containers/food/drinks/bottle/cola{
+	pixel_y = -2;
+	pixel_x = -9
+	},
+/obj/item/reagent_containers/food/drinks/bottle/cola{
+	pixel_y = -2;
+	pixel_x = 9
+	},
+/obj/item/reagent_containers/food/drinks/bottle/cola{
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/food/drinks/cans/cola{
+	pixel_y = 17;
+	pixel_x = -10
+	},
+/obj/item/reagent_containers/food/drinks/cans/cola{
+	pixel_y = 17
+	},
+/obj/item/reagent_containers/food/drinks/cans/diet_cola{
+	pixel_y = 17;
+	pixel_x = 10
+	},
+/turf/simulated/floor/lino,
+/area/space)
 "gW" = (
 /obj/machinery/alarm/south,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -1105,22 +1410,7 @@
 /turf/simulated/floor/tiled/full,
 /area/space)
 "gY" = (
-/obj/structure/table/standard,
-/obj/item/storage/box/zipties{
-	layer = 2.99;
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/obj/item/storage/box/zipties{
-	layer = 2.99;
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/obj/item/storage/box/handcuffs,
-/obj/item/storage/box/handcuffs,
-/obj/effect/floor_decal/corner/red{
-	dir = 5
-	},
+/obj/structure/closet/secure_closet/engineering_electrical,
 /turf/simulated/floor/tiled,
 /area/space)
 "hb" = (
@@ -1212,6 +1502,12 @@
 /obj/effect/floor_decal/spline/plain/black{
 	dir = 4
 	},
+/obj/item/toy/comic/inspector,
+/obj/item/toy/comic/inspector,
+/obj/item/toy/comic/outlandish_tales,
+/obj/item/toy/comic/outlandish_tales,
+/obj/item/toy/comic/stormman,
+/obj/item/toy/comic/stormman,
 /turf/simulated/floor/lino,
 /area/space)
 "hF" = (
@@ -1255,6 +1551,15 @@
 	},
 /turf/simulated/floor/tiled/dark/full,
 /area/space)
+"hV" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/space)
 "hW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -1282,13 +1587,17 @@
 /turf/simulated/floor/tiled,
 /area/space)
 "ik" = (
-/obj/effect/decal/cleanable/blood/drip/oil,
-/turf/simulated/floor/plating,
+/obj/effect/floor_decal/corner/purple{
+	dir = 5
+	},
+/turf/simulated/floor/tiled,
 /area/space)
 "il" = (
 /obj/effect/floor_decal/corner/red/full,
 /obj/structure/table/reinforced/steel,
-/obj/item/newspaper,
+/obj/item/newspaper{
+	rolled = 1
+	},
 /turf/simulated/floor/tiled,
 /area/space)
 "io" = (
@@ -1721,7 +2030,31 @@
 	pixel_x = 9
 	},
 /obj/item/bodybag/cryobag{
+	pixel_y = 12;
+	pixel_x = 9
+	},
+/obj/item/bodybag/cryobag{
+	pixel_y = 12;
+	pixel_x = 9
+	},
+/obj/item/bodybag/cryobag{
 	pixel_y = 7;
+	pixel_x = 9
+	},
+/obj/item/bodybag/cryobag{
+	pixel_y = 7;
+	pixel_x = 9
+	},
+/obj/item/bodybag/cryobag{
+	pixel_y = 7;
+	pixel_x = 9
+	},
+/obj/item/bodybag/cryobag{
+	pixel_y = 2;
+	pixel_x = 9
+	},
+/obj/item/bodybag/cryobag{
+	pixel_y = 2;
 	pixel_x = 9
 	},
 /obj/item/bodybag/cryobag{
@@ -1766,6 +2099,16 @@
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled/dark/full,
 /area/space)
+"kU" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/random/desktoy,
+/obj/random/desktoy,
+/obj/random/desktoy,
+/obj/random/desktoy,
+/turf/simulated/floor/lino,
+/area/space)
 "kV" = (
 /obj/machinery/atmospherics/portables_connector/scrubber{
 	dir = 1
@@ -1804,6 +2147,31 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled,
+/area/space)
+"lj" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/reagent_containers/food/snacks/tastybread{
+	pixel_y = -4;
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/food/snacks/tastybread{
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/snacks/tastybread{
+	pixel_y = -4;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/food/snacks/meatsnack{
+	pixel_y = 13;
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/food/snacks/meatsnack{
+	pixel_y = 13;
+	pixel_x = -6
+	},
+/turf/simulated/floor/lino,
 /area/space)
 "lm" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -1899,6 +2267,9 @@
 /obj/item/vaurca/box{
 	pixel_y = 9
 	},
+/obj/effect/floor_decal/corner/red{
+	dir = 5
+	},
 /turf/simulated/floor/tiled,
 /area/space)
 "lF" = (
@@ -1924,12 +2295,52 @@
 	},
 /turf/simulated/floor/airless,
 /area/space)
+"lN" = (
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/food/drinks/bottle/hrozamal_soda,
+/obj/item/reagent_containers/food/drinks/bottle/hrozamal_soda,
+/obj/item/reagent_containers/food/drinks/bottle/hrozamal_soda,
+/obj/item/reagent_containers/food/drinks/bottle/hrozamal_soda,
+/obj/item/reagent_containers/food/drinks/cans/hrozamal_soda,
+/obj/item/reagent_containers/food/drinks/cans/hrozamal_soda,
+/obj/item/reagent_containers/food/drinks/cans/hrozamal_soda,
+/obj/item/reagent_containers/food/drinks/cans/hrozamal_soda,
+/obj/item/reagent_containers/food/drinks/bottle/space_up,
+/obj/item/reagent_containers/food/drinks/bottle/space_up,
+/obj/item/reagent_containers/food/drinks/bottle/space_up,
+/obj/item/reagent_containers/food/drinks/bottle/space_up,
+/obj/item/reagent_containers/food/drinks/cans/space_up,
+/obj/item/reagent_containers/food/drinks/cans/space_up,
+/obj/item/reagent_containers/food/drinks/cans/space_up,
+/obj/item/reagent_containers/food/drinks/cans/space_up,
+/obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind,
+/obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind,
+/obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind,
+/obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind,
+/obj/item/reagent_containers/food/drinks/cans/space_mountain_wind,
+/obj/item/reagent_containers/food/drinks/cans/space_mountain_wind,
+/obj/item/reagent_containers/food/drinks/cans/space_mountain_wind,
+/obj/item/reagent_containers/food/drinks/cans/space_mountain_wind,
+/turf/simulated/floor/tiled,
+/area/space)
+"lO" = (
+/obj/effect/floor_decal/corner/dark_blue{
+	dir = 9
+	},
+/obj/effect/floor_decal/industrial/outline/security,
+/obj/structure/closet{
+	name = "contraband"
+	},
+/obj/item/material/kitchen/utensil/knife/boot,
+/obj/item/material/knife/bayonet,
+/obj/item/material/knife/trench,
+/turf/simulated/floor/tiled,
+/area/space)
 "lT" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
 /obj/structure/closet/crate,
-/obj/random/loot,
 /turf/simulated/floor/plating,
 /area/space)
 "lV" = (
@@ -1955,22 +2366,16 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
+	},
 /turf/simulated/floor/tiled,
 /area/space)
 "me" = (
-/obj/machinery/door/airlock{
-	dir = 4;
-	color = "5c4e50";
-	req_access = list(219)
+/obj/effect/floor_decal/corner/purple{
+	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled,
 /area/space)
 "mf" = (
 /obj/machinery/light{
@@ -1979,6 +2384,12 @@
 	dir = 4;
 	name = "adjusted light fixture";
 	pixel_x = 10
+	},
+/turf/simulated/floor/tiled,
+/area/space)
+"mg" = (
+/obj/effect/floor_decal/spline/plain/purple{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/space)
@@ -2053,6 +2464,12 @@
 	},
 /turf/simulated/floor/lino/diamond,
 /area/space)
+"mF" = (
+/obj/effect/floor_decal/corner/purple{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/space)
 "mH" = (
 /obj/item/melee/telebaton{
 	pixel_x = 15
@@ -2068,6 +2485,9 @@
 /obj/structure/sign/flag/zora{
 	pixel_y = 32
 	},
+/obj/effect/floor_decal/corner/red{
+	dir = 5
+	},
 /turf/simulated/floor/tiled,
 /area/space)
 "mK" = (
@@ -2075,7 +2495,6 @@
 	dir = 4
 	},
 /obj/structure/table/standard,
-/obj/item/pen/black,
 /turf/simulated/floor/tiled,
 /area/space)
 "mN" = (
@@ -2140,9 +2559,9 @@
 /obj/item/clothing/shoes/jackboots/toeless,
 /obj/item/storage/belt/military,
 /obj/item/clothing/mask/gas/tactical,
-/obj/item/storage/backpack/cloak/zora,
 /obj/item/storage/backpack/rucksack,
 /obj/effect/floor_decal/industrial/outline/yellow,
+/obj/item/storage/backpack/cloak/zora,
 /turf/simulated/floor/tiled,
 /area/space)
 "ng" = (
@@ -2153,6 +2572,10 @@
 /obj/effect/floor_decal/corner/red{
 	dir = 10
 	},
+/obj/item/newspaper{
+	rolled = 1
+	},
+/obj/item/storage/box/fancy/mrebag/dessert/menu9,
 /turf/simulated/floor/tiled,
 /area/space)
 "nk" = (
@@ -2343,6 +2766,12 @@
 	},
 /obj/item/hullbeacon/red,
 /turf/simulated/floor/asphalt,
+/area/space)
+"nX" = (
+/obj/effect/floor_decal/corner/purple/full{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
 /area/space)
 "nY" = (
 /obj/machinery/vending/minimart{
@@ -2568,6 +2997,28 @@
 	},
 /turf/simulated/floor/tiled/dark/full,
 /area/space)
+"pk" = (
+/obj/structure/table/rack/clothing{
+	dir = 4
+	},
+/obj/item/clothing/suit/storage/hooded/wintercoat/hoodie{
+	pixel_y = -7;
+	pixel_x = -5
+	},
+/obj/item/clothing/suit/storage/hooded/wintercoat/hoodie{
+	pixel_y = -7;
+	pixel_x = 6
+	},
+/obj/item/clothing/head/collectable/petehat{
+	pixel_y = 5;
+	pixel_x = 8
+	},
+/obj/item/clothing/head/marisa_hat{
+	pixel_y = 10;
+	pixel_x = -8
+	},
+/turf/simulated/floor/lino,
+/area/space)
 "po" = (
 /obj/structure/table/rack/retail_shelf{
 	name = "shelves"
@@ -2665,7 +3116,6 @@
 /area/space)
 "pK" = (
 /obj/structure/closet/crate,
-/obj/random/loot,
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
@@ -2709,6 +3159,36 @@
 	},
 /obj/structure/railing/mapped,
 /turf/simulated/floor/tiled/dark,
+/area/space)
+"qf" = (
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/cherry,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/cherry,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/cthur,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/cthur,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/drone,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/drone,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/dyn,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/dyn,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/hozm,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/hozm,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/jelly,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/jelly,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/klax,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/klax,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/kois,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/kois,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/lemonlime,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/lemonlime,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/mixedberry,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/mixedberry,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/phoron,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/phoron,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/venomgrass,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/venomgrass,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/xuizi,
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/xuizi,
+/turf/simulated/floor/tiled,
 /area/space)
 "qh" = (
 /obj/effect/map_effect/window_spawner/full/reinforced/firedoor,
@@ -2979,6 +3459,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/space)
+"sq" = (
+/obj/effect/floor_decal/corner/purple/full{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/space)
 "sr" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -2995,6 +3481,34 @@
 "st" = (
 /obj/effect/floor_decal/corner/red/full,
 /turf/simulated/floor/tiled,
+/area/space)
+"su" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/reagent_containers/food/drinks/bottle/space_up{
+	pixel_y = -2;
+	pixel_x = -9
+	},
+/obj/item/reagent_containers/food/drinks/bottle/space_up{
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/food/drinks/bottle/space_up{
+	pixel_y = -2;
+	pixel_x = 9
+	},
+/obj/item/reagent_containers/food/drinks/cans/space_up{
+	pixel_y = 17
+	},
+/obj/item/reagent_containers/food/drinks/cans/space_up{
+	pixel_y = 17;
+	pixel_x = 10
+	},
+/obj/item/reagent_containers/food/drinks/cans/space_up{
+	pixel_y = 17;
+	pixel_x = -10
+	},
+/turf/simulated/floor/lino,
 /area/space)
 "sF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -3056,6 +3570,34 @@
 "sP" = (
 /turf/simulated/wall/shuttle/space_ship/mercenary,
 /area/space)
+"sS" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/reagent_containers/food/drinks/bottle/hrozamal_soda{
+	pixel_y = -2;
+	pixel_x = -9
+	},
+/obj/item/reagent_containers/food/drinks/bottle/hrozamal_soda{
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/food/drinks/bottle/hrozamal_soda{
+	pixel_y = -2;
+	pixel_x = 9
+	},
+/obj/item/reagent_containers/food/drinks/cans/hrozamal_soda{
+	pixel_y = 17;
+	pixel_x = -10
+	},
+/obj/item/reagent_containers/food/drinks/cans/hrozamal_soda{
+	pixel_y = 17
+	},
+/obj/item/reagent_containers/food/drinks/cans/hrozamal_soda{
+	pixel_y = 17;
+	pixel_x = 10
+	},
+/turf/simulated/floor/lino,
+/area/space)
 "sX" = (
 /obj/structure/table/reinforced/steel,
 /obj/effect/floor_decal/corner/dark_blue{
@@ -3067,6 +3609,9 @@
 "tb" = (
 /obj/structure/rod_railing{
 	dir = 4
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 6
 	},
 /turf/simulated/floor/tiled,
 /area/space)
@@ -3177,6 +3722,19 @@
 	},
 /turf/simulated/floor/tiled,
 /area/space)
+"tN" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/storage/box/fancy/yoke/energy/zoracherry,
+/obj/item/storage/box/fancy/yoke/energy/zoracthur,
+/obj/item/storage/box/fancy/yoke/energy/zorahozm,
+/obj/item/storage/box/fancy/yoke/energy/zoraklax,
+/obj/item/storage/box/fancy/yoke/energy/zorakois,
+/obj/item/storage/box/fancy/yoke/energy/zoraphoron,
+/obj/item/storage/box/fancy/yoke/energy/zoravenom,
+/turf/simulated/floor/lino,
+/area/space)
 "tO" = (
 /obj/structure/bed/stool/chair{
 	dir = 1
@@ -3201,6 +3759,25 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/full,
+/area/space)
+"tV" = (
+/obj/structure/closet/crate,
+/obj/item/storage/box/fancy/med_pouch/burn,
+/obj/item/storage/box/fancy/med_pouch/burn,
+/obj/item/storage/box/fancy/med_pouch/burn,
+/obj/item/storage/box/fancy/med_pouch/burn,
+/obj/item/storage/box/fancy/med_pouch/oxyloss,
+/obj/item/storage/box/fancy/med_pouch/oxyloss,
+/obj/item/storage/box/fancy/med_pouch/oxyloss,
+/obj/item/storage/box/fancy/med_pouch/oxyloss,
+/obj/item/storage/firstaid/light,
+/obj/item/storage/firstaid/light,
+/obj/item/storage/firstaid/light,
+/obj/item/storage/firstaid,
+/obj/item/storage/firstaid,
+/obj/item/storage/firstaid/stab,
+/obj/item/storage/firstaid/stab,
+/turf/simulated/floor/tiled,
 /area/space)
 "ua" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -3308,12 +3885,22 @@
 /obj/effect/map_effect/window_spawner/full/borosilicate/reinforced,
 /turf/simulated/floor/plating,
 /area/space)
+"uF" = (
+/obj/structure/table/stone/marble,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/full,
+/area/space)
 "uG" = (
 /obj/effect/decal/exterior_stairs/center,
 /turf/simulated/floor/asphalt,
 /area/space)
 "uI" = (
 /obj/structure/rod_railing,
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
+	},
 /turf/simulated/floor/tiled,
 /area/space)
 "uO" = (
@@ -3494,6 +4081,18 @@
 /obj/machinery/atmospherics/portables_connector,
 /turf/simulated/floor,
 /area/space)
+"wd" = (
+/obj/effect/floor_decal/corner/dark_blue{
+	dir = 5
+	},
+/obj/effect/floor_decal/industrial/outline/security,
+/obj/structure/closet{
+	name = "contraband"
+	},
+/obj/item/gun/projectile/tanto,
+/obj/item/gun/projectile/automatic/rifle/konyang/pirate_rifle,
+/turf/simulated/floor/tiled,
+/area/space)
 "wf" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -3583,6 +4182,9 @@
 /obj/structure/rod_railing{
 	dir = 8
 	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 9
+	},
 /turf/simulated/floor/tiled,
 /area/space)
 "wp" = (
@@ -3596,6 +4198,50 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled,
+/area/space)
+"wr" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/reagent_containers/food/snacks/chips{
+	pixel_y = -7;
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/food/snacks/chips{
+	pixel_y = -7;
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/food/snacks/chips/chicken{
+	pixel_y = -7
+	},
+/obj/item/reagent_containers/food/snacks/chips/chicken{
+	pixel_y = -7
+	},
+/obj/item/reagent_containers/food/snacks/chips/cucumber{
+	pixel_y = -7;
+	pixel_x = 7
+	},
+/obj/item/reagent_containers/food/snacks/chips/cucumber{
+	pixel_y = -7;
+	pixel_x = 7
+	},
+/obj/item/reagent_containers/food/snacks/chips/dirtberry{
+	pixel_y = 9;
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/food/snacks/chips/dirtberry{
+	pixel_y = 9;
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/food/snacks/chips/phoron{
+	pixel_y = 9;
+	pixel_x = 3
+	},
+/obj/item/reagent_containers/food/snacks/chips/phoron{
+	pixel_y = 9;
+	pixel_x = 3
+	},
+/turf/simulated/floor/lino,
 /area/space)
 "wt" = (
 /obj/structure/closet/crate/bin/urban/compact{
@@ -3651,6 +4297,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
 /obj/structure/lattice/catwalk/indoor/urban,
 /turf/simulated/floor,
+/area/space)
+"wD" = (
+/obj/effect/floor_decal/corner/purple{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
 /area/space)
 "wF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
@@ -3719,6 +4371,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/space)
+"xg" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/red/full{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/space)
 "xh" = (
 /obj/machinery/atmospherics/binary/pump/scrubber/on,
 /turf/simulated/floor/plating,
@@ -3736,6 +4400,22 @@
 	pixel_y = 19
 	},
 /turf/simulated/floor/tiled/white,
+/area/space)
+"xm" = (
+/obj/structure/closet/crate,
+/obj/random/desktoy,
+/obj/random/desktoy,
+/obj/random/desktoy,
+/obj/random/desktoy,
+/obj/item/flag/zora,
+/obj/item/flag/zora,
+/obj/item/flag/zora,
+/obj/item/flag/zora,
+/obj/item/flag/biesel,
+/obj/item/flag/biesel,
+/obj/item/flag/biesel,
+/obj/item/flag/biesel,
+/turf/simulated/floor/tiled,
 /area/space)
 "xo" = (
 /obj/effect/floor_decal/industrial/outline_straight/red,
@@ -3776,6 +4456,35 @@
 /obj/item/roller,
 /turf/simulated/floor/tiled,
 /area/space)
+"xt" = (
+/obj/structure/closet/crate,
+/obj/item/storage/box/fancy/foysnack,
+/obj/item/storage/box/fancy/foysnack,
+/obj/item/storage/box/fancy/chocolate_box,
+/obj/item/storage/box/fancy/chocolate_box,
+/obj/item/storage/box/fancy/cookiesnack,
+/obj/item/storage/box/fancy/cookiesnack,
+/obj/item/storage/box/fancy/food/pralinebox,
+/obj/item/storage/box/fancy/crackers,
+/obj/item/storage/box/fancy/crackers,
+/obj/item/storage/box/fancy/foysnack,
+/obj/item/storage/box/fancy/foysnack,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/candy,
+/turf/simulated/floor/tiled,
+/area/space)
+"xw" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/space)
 "xx" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -3790,10 +4499,6 @@
 /area/space)
 "xD" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock{
-	dir = 4;
-	color = "5c4e50"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
@@ -3863,6 +4568,21 @@
 	},
 /turf/simulated/floor/tiled,
 /area/space)
+"xR" = (
+/obj/machinery/smartfridge/foodheater/buffet,
+/obj/item/reagent_containers/food/snacks/burger/cheese,
+/obj/item/reagent_containers/food/snacks/burger/cheese,
+/obj/item/reagent_containers/food/snacks/burger/cheese,
+/obj/item/reagent_containers/food/snacks/burger/cheese,
+/obj/item/reagent_containers/food/snacks/burger/cheese,
+/obj/item/reagent_containers/food/snacks/burger/cheese,
+/obj/item/reagent_containers/food/snacks/chickenfillet,
+/obj/item/reagent_containers/food/snacks/chickenfillet,
+/obj/item/reagent_containers/food/snacks/chickenfillet,
+/obj/item/reagent_containers/food/snacks/chickenfillet,
+/obj/structure/window/reinforced,
+/turf/simulated/floor/tiled/full,
+/area/space)
 "xT" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -3900,6 +4620,44 @@
 	},
 /obj/structure/bed/stool/chair/plastic,
 /turf/simulated/floor/tiled/dark/full,
+/area/space)
+"yf" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/reagent_containers/toothpaste{
+	pixel_y = -3;
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/toothpaste{
+	pixel_y = 13;
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/toothpaste{
+	pixel_y = 13;
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/toothpaste{
+	pixel_y = 13;
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/toothpaste{
+	pixel_y = -3;
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/toothpaste{
+	pixel_y = -3;
+	pixel_x = -8
+	},
+/obj/item/towel/random{
+	pixel_y = 10;
+	pixel_x = 12
+	},
+/obj/item/towel/random{
+	pixel_y = -6;
+	pixel_x = 12
+	},
+/turf/simulated/floor/lino,
 /area/space)
 "yi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
@@ -3971,10 +4729,6 @@
 /area/space)
 "yI" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock{
-	dir = 1;
-	color = "5c4e50"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/plating,
@@ -4009,6 +4763,9 @@
 "yV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
 	},
 /turf/simulated/floor/tiled,
 /area/space)
@@ -4296,7 +5053,6 @@
 "At" = (
 /obj/structure/closet/crate,
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/random/loot,
 /turf/simulated/floor/plating,
 /area/space)
 "Av" = (
@@ -4410,16 +5166,7 @@
 /turf/simulated/floor/tiled/white,
 /area/space)
 "Bi" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/door/airlock{
-	dir = 4;
-	color = "5c4e50"
-	},
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/plating,
 /area/space)
 "Bj" = (
@@ -4455,6 +5202,21 @@
 	},
 /turf/simulated/floor/asphalt,
 /area/space)
+"Br" = (
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/food/drinks/cans/diet_cola,
+/obj/item/reagent_containers/food/drinks/cans/diet_cola,
+/obj/item/reagent_containers/food/drinks/cans/diet_cola,
+/obj/item/reagent_containers/food/drinks/bottle/cola,
+/obj/item/reagent_containers/food/drinks/bottle/cola,
+/obj/item/reagent_containers/food/drinks/bottle/cola,
+/obj/item/reagent_containers/food/drinks/bottle/cola,
+/obj/item/reagent_containers/food/drinks/cans/cola,
+/obj/item/reagent_containers/food/drinks/cans/cola,
+/obj/item/reagent_containers/food/drinks/cans/cola,
+/obj/item/reagent_containers/food/drinks/cans/cola,
+/turf/simulated/floor/tiled,
+/area/space)
 "Bu" = (
 /obj/effect/floor_decal/industrial/outline_straight/red{
 	dir = 1
@@ -4483,7 +5245,6 @@
 	dir = 10
 	},
 /obj/structure/table/rack,
-/obj/random/loot,
 /turf/simulated/floor/plating,
 /area/space)
 "BF" = (
@@ -4536,6 +5297,9 @@
 	pixel_y = 7
 	},
 /obj/structure/table/fancy/red,
+/obj/effect/floor_decal/corner/red/full{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/space)
 "BN" = (
@@ -4604,6 +5368,21 @@
 	desc = "add a monkey named garnascus. a monkey cube if it has to be subtle -geeves "
 	},
 /turf/simulated/floor,
+/area/space)
+"Ct" = (
+/obj/structure/closet/crate,
+/obj/item/storage/box/fancy/yoke/energy/zoracherry,
+/obj/item/storage/box/fancy/yoke/energy/zoracthur,
+/obj/item/storage/box/fancy/yoke/energy/zorahozm,
+/obj/item/storage/box/fancy/yoke/energy/zoraklax,
+/obj/item/storage/box/fancy/yoke/energy/zorakois,
+/obj/item/storage/box/fancy/yoke/energy/zoraphoron,
+/obj/item/storage/box/fancy/yoke/energy/zoravenom,
+/obj/item/storage/box/fancy/yoke/energy/random,
+/obj/item/storage/box/fancy/yoke/energy/random,
+/obj/item/storage/box/fancy/yoke/energy/random,
+/obj/item/storage/box/fancy/yoke/energy/random,
+/turf/simulated/floor/tiled,
 /area/space)
 "Cv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -4731,6 +5510,17 @@
 	},
 /turf/simulated/floor/plating,
 /area/space)
+"CS" = (
+/obj/effect/floor_decal/corner/dark_blue{
+	dir = 6
+	},
+/obj/effect/floor_decal/industrial/outline/security,
+/obj/structure/closet{
+	name = "contraband"
+	},
+/obj/item/gun/projectile/silenced,
+/turf/simulated/floor/tiled,
+/area/space)
 "CT" = (
 /turf/simulated/floor/tiled/dark/full,
 /area/space)
@@ -4817,6 +5607,13 @@
 	},
 /turf/simulated/floor/tiled/full,
 /area/space)
+"Dr" = (
+/obj/structure/table/stone/marble,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/full,
+/area/space)
 "Du" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/structure/lattice/catwalk/indoor/grate,
@@ -4855,6 +5652,10 @@
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled/dark/full,
 /area/space)
+"DE" = (
+/obj/effect/floor_decal/corner/purple,
+/turf/simulated/floor/tiled,
+/area/space)
 "DG" = (
 /obj/effect/floor_decal/corner_wide/black/diagonal,
 /obj/structure/table/stone/marble{
@@ -4866,6 +5667,31 @@
 /turf/simulated/floor/tiled/red{
 	color = "bc3e42"
 	},
+/area/space)
+"DH" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/storage/firstaid{
+	pixel_y = -6;
+	pixel_x = -7
+	},
+/obj/item/storage/firstaid/light{
+	pixel_y = 13;
+	pixel_x = -11
+	},
+/obj/item/storage/firstaid/light{
+	pixel_y = 13
+	},
+/obj/item/storage/firstaid/light{
+	pixel_y = 13;
+	pixel_x = 11
+	},
+/obj/item/storage/firstaid/stab{
+	pixel_y = -6;
+	pixel_x = 7
+	},
+/turf/simulated/floor/lino,
 /area/space)
 "DI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -4923,18 +5749,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/space)
 "DV" = (
-/obj/item/clothing/accessory/holster/hip,
-/obj/item/clothing/accessory/holster/hip,
-/obj/item/clothing/accessory/holster/armpit,
-/obj/item/clothing/accessory/holster/armpit,
-/obj/item/clothing/accessory/holster/thigh,
-/obj/item/clothing/accessory/holster/thigh,
-/obj/item/clothing/accessory/holster/armpit/brown,
-/obj/item/clothing/accessory/holster/armpit/brown,
-/obj/item/clothing/accessory/holster/hip/brown,
-/obj/item/clothing/accessory/holster/hip/brown,
-/obj/item/clothing/accessory/holster/thigh/brown,
-/obj/item/clothing/accessory/holster/thigh/brown,
 /obj/structure/table/standard,
 /obj/structure/railing/mapped{
 	dir = 4;
@@ -4971,6 +5785,18 @@
 /obj/effect/floor_decal/corner/red{
 	dir = 5
 	},
+/obj/item/clothing/accessory/holster/armpit,
+/obj/item/clothing/accessory/holster/armpit,
+/obj/item/clothing/accessory/holster/armpit,
+/obj/item/clothing/accessory/holster/armpit,
+/obj/item/clothing/accessory/holster/hip,
+/obj/item/clothing/accessory/holster/hip,
+/obj/item/clothing/accessory/holster/hip,
+/obj/item/clothing/accessory/holster/hip,
+/obj/item/clothing/accessory/holster/waist,
+/obj/item/clothing/accessory/holster/waist,
+/obj/item/clothing/accessory/holster/waist,
+/obj/item/clothing/accessory/holster/waist,
 /turf/simulated/floor/tiled,
 /area/space)
 "DW" = (
@@ -5015,9 +5841,21 @@
 /turf/simulated/floor/tiled/full,
 /area/space)
 "Eh" = (
-/obj/structure/table/rack/retail_shelf{
-	name = "shelves"
-	},
+/obj/structure/closet/crate,
+/obj/item/storage/box/fancy/chips,
+/obj/item/storage/box/fancy/chips,
+/obj/item/storage/box/fancy/chips/chicken,
+/obj/item/storage/box/fancy/chips/chicken,
+/obj/item/storage/box/fancy/chips/cucumber,
+/obj/item/storage/box/fancy/chips/cucumber,
+/obj/item/storage/box/fancy/chips/dirtberry,
+/obj/item/storage/box/fancy/chips/dirtberry,
+/obj/item/storage/box/fancy/chips/phoron,
+/obj/item/storage/box/fancy/chips/phoron,
+/obj/item/storage/box/fancy/chips/variety,
+/obj/item/storage/box/fancy/chips/variety,
+/obj/item/storage/box/fancy/chips/variety,
+/obj/item/storage/box/fancy/chips/variety,
 /turf/simulated/floor/tiled,
 /area/space)
 "Ei" = (
@@ -5031,8 +5869,6 @@
 /area/space)
 "El" = (
 /obj/structure/table/rack,
-/obj/random/loot,
-/obj/random/loot,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
 	},
@@ -5133,6 +5969,27 @@
 	name = "adjusted light fixture"
 	},
 /turf/simulated/floor/tiled/full,
+/area/space)
+"Fc" = (
+/obj/structure/table/rack,
+/obj/item/newspaper{
+	rolled = 1;
+	icon_state = "newspaper_rolled";
+	pixel_y = -2;
+	pixel_x = 4
+	},
+/obj/item/newspaper{
+	rolled = 1;
+	icon_state = "newspaper_rolled";
+	pixel_y = 2
+	},
+/obj/item/newspaper{
+	rolled = 1;
+	icon_state = "newspaper_rolled";
+	pixel_y = 6;
+	pixel_x = -4
+	},
+/turf/simulated/floor/lino,
 /area/space)
 "Fd" = (
 /obj/effect/floor_decal/spline/plain/lime{
@@ -5308,6 +6165,10 @@
 	id = "caprise_restaurant_garbage"
 	},
 /turf/simulated/floor/tiled/full,
+/area/space)
+"Gj" = (
+/obj/structure/janitorialcart/full,
+/turf/simulated/floor/tiled,
 /area/space)
 "Gk" = (
 /obj/structure/table/rack/retail_shelf{
@@ -5522,7 +6383,6 @@
 /area/space)
 "Hm" = (
 /obj/structure/table/rack,
-/obj/random/loot,
 /turf/simulated/floor/plating,
 /area/space)
 "Hn" = (
@@ -5533,6 +6393,34 @@
 /area/space)
 "Hr" = (
 /obj/machinery/door/airlock/multi_tile/glass,
+/turf/simulated/floor/tiled,
+/area/space)
+"Hu" = (
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/food/snacks/no_raisin,
+/obj/item/reagent_containers/food/snacks/no_raisin,
+/obj/item/reagent_containers/food/snacks/no_raisin,
+/obj/item/reagent_containers/food/snacks/no_raisin,
+/obj/item/reagent_containers/food/snacks/proteinbar,
+/obj/item/reagent_containers/food/snacks/proteinbar,
+/obj/item/reagent_containers/food/snacks/pemmicanbar,
+/obj/item/reagent_containers/food/snacks/pemmicanbar,
+/obj/item/reagent_containers/food/snacks/ricetub,
+/obj/item/reagent_containers/food/snacks/ricetub,
+/obj/item/reagent_containers/food/snacks/sosjerky,
+/obj/item/reagent_containers/food/snacks/sosjerky,
+/obj/item/reagent_containers/food/snacks/sosjerky,
+/obj/item/reagent_containers/food/snacks/sosjerky,
+/obj/item/reagent_containers/food/snacks/tuna,
+/obj/item/reagent_containers/food/snacks/tuna,
+/obj/item/reagent_containers/food/snacks/tastybread,
+/obj/item/reagent_containers/food/snacks/tastybread,
+/obj/item/reagent_containers/food/snacks/maps,
+/obj/item/reagent_containers/food/snacks/maps,
+/obj/item/reagent_containers/food/snacks/maps,
+/obj/item/reagent_containers/food/snacks/maps,
+/obj/item/reagent_containers/food/snacks/meatsnack,
+/obj/item/reagent_containers/food/snacks/meatsnack,
 /turf/simulated/floor/tiled,
 /area/space)
 "Hv" = (
@@ -5556,6 +6444,12 @@
 	dir = 10
 	},
 /turf/unsimulated/floor/plating,
+/area/space)
+"HG" = (
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
 /area/space)
 "HH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
@@ -5611,8 +6505,10 @@
 /turf/simulated/floor/tiled,
 /area/space)
 "Ic" = (
-/obj/effect/decal/cleanable/blood/drip/oil,
-/obj/structure/trash_pile,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/obj/structure/closet/crate,
 /turf/simulated/floor/plating,
 /area/space)
 "Id" = (
@@ -5698,6 +6594,9 @@
 /obj/item/melee/energy/vaurca_zweihander,
 /obj/item/melee/energy/vaurca,
 /obj/item/gun/energy/vaurca/typec,
+/obj/effect/floor_decal/corner/red/full{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/space)
 "IA" = (
@@ -5779,7 +6678,10 @@
 	dir = 8
 	},
 /obj/structure/table/standard,
-/obj/item/pen/black,
+/obj/item/pen/black{
+	pixel_x = 6;
+	pixel_y = 1
+	},
 /turf/simulated/floor/tiled,
 /area/space)
 "IP" = (
@@ -6077,6 +6979,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
+/obj/effect/floor_decal/corner/red{
+	dir = 10
+	},
 /turf/simulated/floor/tiled,
 /area/space)
 "Ke" = (
@@ -6342,6 +7247,34 @@
 	},
 /turf/simulated/floor/grass,
 /area/space)
+"LQ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/toothbrush,
+/obj/item/reagent_containers/toothbrush,
+/obj/item/reagent_containers/toothbrush,
+/obj/item/reagent_containers/toothbrush,
+/obj/item/reagent_containers/toothbrush/green,
+/obj/item/reagent_containers/toothbrush/green,
+/obj/item/reagent_containers/toothbrush/green,
+/obj/item/reagent_containers/toothbrush/green,
+/obj/item/reagent_containers/toothbrush/red,
+/obj/item/reagent_containers/toothbrush/red,
+/obj/item/reagent_containers/toothbrush/red,
+/obj/item/reagent_containers/toothbrush/red,
+/obj/item/reagent_containers/toothpaste,
+/obj/item/reagent_containers/toothpaste,
+/obj/item/reagent_containers/toothpaste,
+/obj/item/reagent_containers/toothpaste,
+/obj/item/reagent_containers/toothpaste,
+/obj/item/reagent_containers/toothpaste,
+/turf/simulated/floor/tiled,
+/area/space)
 "LT" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 5
@@ -6363,6 +7296,56 @@
 	dir = 6
 	},
 /turf/space,
+/area/space)
+"LU" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/lemonlime{
+	pixel_y = -4;
+	pixel_x = 10
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/mixedberry{
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/phoron{
+	pixel_y = -4;
+	pixel_x = -10
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/venomgrass{
+	pixel_y = 18
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/xuizi{
+	pixel_y = 18;
+	pixel_x = -10
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/cherry{
+	pixel_y = 18;
+	pixel_x = 10
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/xuizi{
+	pixel_y = 18;
+	pixel_x = -10
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/venomgrass{
+	pixel_y = 18
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/cherry{
+	pixel_y = 18;
+	pixel_x = 10
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/phoron{
+	pixel_y = -4;
+	pixel_x = -10
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/mixedberry{
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/drinks/cans/zorasoda/lemonlime{
+	pixel_y = -4;
+	pixel_x = 10
+	},
+/turf/simulated/floor/lino,
 /area/space)
 "LZ" = (
 /obj/effect/floor_decal/industrial/arrow{
@@ -6395,6 +7378,12 @@
 /area/space)
 "Mh" = (
 /obj/structure/table/rack,
+/obj/item/toy/comic/azmarian/issue_1,
+/obj/item/toy/comic/azmarian/issue_3,
+/obj/item/toy/comic/azmarian/issue_5,
+/obj/item/toy/comic/azmarian/issue_7,
+/obj/item/toy/comic/azmarian/issue_2,
+/obj/item/toy/comic/azmarian/issue_8,
 /turf/simulated/floor/lino,
 /area/space)
 "Mk" = (
@@ -6644,6 +7633,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/space)
+"Nx" = (
+/obj/structure/closet/secure_closet/engineering_welding,
+/turf/simulated/floor/tiled,
+/area/space)
 "NA" = (
 /obj/effect/floor_decal/corner/red/diagonal,
 /turf/simulated/floor/tiled,
@@ -6886,7 +7879,6 @@
 /area/space)
 "OQ" = (
 /obj/structure/closet/crate,
-/obj/random/loot,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
 	},
@@ -6935,6 +7927,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/space)
+"Pa" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/purple/full,
+/turf/simulated/floor/tiled,
+/area/space)
 "Pb" = (
 /obj/structure/platform_stairs/full/south_north_cap{
 	dir = 1
@@ -6952,39 +7954,35 @@
 /obj/structure/table/standard,
 /obj/item/clothing/accessory/storage/pouches/black{
 	layer = 2.99;
-	pixel_x = -6;
+	pixel_x = 10;
 	pixel_y = 8
 	},
 /obj/item/clothing/accessory/storage/black_vest{
-	pixel_x = -7
-	},
-/obj/item/clothing/accessory/storage/pouches/brown{
-	layer = 2.99;
-	pixel_x = 7;
-	pixel_y = 8
-	},
-/obj/item/clothing/accessory/storage/brown_vest{
-	pixel_x = 7
-	},
-/obj/item/clothing/accessory/storage/pouches/brown{
-	layer = 2.99;
-	pixel_x = 7;
-	pixel_y = 8
-	},
-/obj/item/clothing/accessory/storage/brown_vest{
-	pixel_x = 7
+	pixel_x = 10
 	},
 /obj/item/clothing/accessory/storage/pouches/black{
 	layer = 2.99;
-	pixel_x = -6;
+	pixel_x = 10;
 	pixel_y = 8
 	},
 /obj/item/clothing/accessory/storage/black_vest{
-	pixel_x = -7
+	pixel_x = 10
 	},
 /obj/effect/floor_decal/corner/red{
 	dir = 5
 	},
+/obj/item/storage/box/zipties{
+	layer = 2.99;
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/obj/item/storage/box/zipties{
+	layer = 2.99;
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/obj/item/storage/box/handcuffs,
+/obj/item/storage/box/handcuffs,
 /turf/simulated/floor/tiled,
 /area/space)
 "Pk" = (
@@ -7007,6 +8005,52 @@
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/structure/reagent_dispensers/watertank,
 /turf/simulated/floor/tiled/full,
+/area/space)
+"PC" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/reagent_containers/food/snacks/cb08{
+	pixel_y = -12;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/food/snacks/cb08{
+	pixel_y = -12;
+	pixel_x = 7
+	},
+/obj/item/reagent_containers/food/snacks/cb07{
+	pixel_y = -4;
+	pixel_x = 7
+	},
+/obj/item/reagent_containers/food/snacks/cb07{
+	pixel_y = -4;
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/food/snacks/cb06{
+	pixel_y = 2;
+	pixel_x = 7
+	},
+/obj/item/reagent_containers/food/snacks/cb06{
+	pixel_y = 2;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/food/snacks/cb01{
+	pixel_y = 13;
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/food/snacks/cb01{
+	pixel_y = 9;
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/food/snacks/cb01{
+	pixel_y = 9;
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/food/snacks/cb01{
+	pixel_y = 13;
+	pixel_x = -7
+	},
+/turf/simulated/floor/lino,
 /area/space)
 "PE" = (
 /obj/machinery/acting/changer,
@@ -7402,6 +8446,18 @@
 /obj/structure/lattice/catwalk/indoor/grate,
 /turf/simulated/floor/plating,
 /area/space)
+"RZ" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/storage/box/fancy/chocolate_box{
+	pixel_y = -4
+	},
+/obj/item/storage/box/fancy/cookiesnack{
+	pixel_y = 14
+	},
+/turf/simulated/floor/lino,
+/area/space)
 "Sb" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/closet/crate/bin/urban/compact{
@@ -7491,9 +8547,9 @@
 /obj/item/clothing/mask/gas/tactical,
 /obj/item/melee/telebaton,
 /obj/item/gun/energy/pistol,
-/obj/item/storage/backpack/cloak/zora,
 /obj/item/storage/backpack/rucksack,
 /obj/effect/floor_decal/industrial/outline/yellow,
+/obj/item/storage/backpack/cloak/zora,
 /turf/simulated/floor/tiled,
 /area/space)
 "Sx" = (
@@ -7732,6 +8788,10 @@
 /obj/effect/floor_decal/corner/red{
 	dir = 10
 	},
+/obj/item/pen/black{
+	pixel_y = 3;
+	pixel_x = 6
+	},
 /turf/simulated/floor/tiled,
 /area/space)
 "TK" = (
@@ -7782,6 +8842,9 @@
 /obj/structure/table/standard,
 /obj/effect/floor_decal/corner/red{
 	dir = 5
+	},
+/obj/item/pen/black{
+	pixel_y = 3
 	},
 /turf/simulated/floor/tiled,
 /area/space)
@@ -7981,7 +9044,6 @@
 /area/space)
 "Vc" = (
 /obj/structure/closet,
-/obj/random/loot,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
 	},
@@ -8031,6 +9093,10 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
+/area/space)
+"Vo" = (
+/obj/structure/closet/secure_closet/custodial/offship,
+/turf/simulated/floor/tiled,
 /area/space)
 "Vp" = (
 /obj/effect/floor_decal/spline/plain/corner/lime{
@@ -8117,6 +9183,18 @@
 /obj/item/screwdriver,
 /turf/simulated/floor/tiled,
 /area/space)
+"VH" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/flag/biesel{
+	pixel_y = -3
+	},
+/obj/item/flag/zora{
+	pixel_y = 12
+	},
+/turf/simulated/floor/lino,
+/area/space)
 "VJ" = (
 /obj/structure/railing/mapped{
 	dir = 4;
@@ -8147,7 +9225,15 @@
 /turf/simulated/floor/tiled/full,
 /area/space)
 "VT" = (
-/obj/structure/trash_pile,
+/obj/effect/floor_decal/corner/purple/full{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/space)
+"VX" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/plating,
 /area/space)
 "VY" = (
@@ -8156,6 +9242,28 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark/full,
+/area/space)
+"Wb" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/reagent_containers/food/snacks/no_raisin{
+	pixel_y = -7;
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/food/snacks/no_raisin{
+	pixel_y = -7;
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/food/snacks/sosjerky{
+	pixel_y = 8;
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/food/snacks/sosjerky{
+	pixel_y = 8;
+	pixel_x = -5
+	},
+/turf/simulated/floor/lino,
 /area/space)
 "Wc" = (
 /obj/structure/table/rack/retail_shelf{
@@ -8242,6 +9350,14 @@
 /obj/structure/table/rack/retail_shelf{
 	name = "shelves"
 	},
+/obj/item/storage/box/fancy/chips/variety{
+	pixel_y = 0;
+	pixel_x = -8
+	},
+/obj/item/storage/box/fancy/chips/variety{
+	pixel_y = 0;
+	pixel_x = 8
+	},
 /turf/simulated/floor/lino,
 /area/space)
 "WG" = (
@@ -8321,6 +9437,18 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
+	},
+/turf/simulated/floor/lino,
+/area/space)
+"Xa" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/storage/box/survival{
+	pixel_y = -1
+	},
+/obj/item/storage/box/survival{
+	pixel_y = 17
 	},
 /turf/simulated/floor/lino,
 /area/space)
@@ -8406,10 +9534,6 @@
 /turf/simulated/floor/tiled/full,
 /area/space)
 "Xr" = (
-/obj/machinery/door/airlock{
-	dir = 4;
-	color = "5c4e50"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -8476,6 +9600,18 @@
 /area/space)
 "XG" = (
 /turf/simulated/floor/carpet/rubber,
+/area/space)
+"XK" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
 /area/space)
 "XL" = (
 /obj/structure/closet/secure_closet/guncabinet{
@@ -8758,6 +9894,28 @@
 /obj/effect/floor_decal/industrial/outline/security,
 /turf/simulated/floor/tiled,
 /area/space)
+"Zk" = (
+/obj/structure/table/rack/retail_shelf{
+	name = "shelves"
+	},
+/obj/item/reagent_containers/food/snacks/maps{
+	pixel_y = -7;
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/food/snacks/maps{
+	pixel_y = 9;
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/food/snacks/tuna{
+	pixel_y = -5;
+	pixel_x = -9
+	},
+/obj/item/reagent_containers/food/snacks/tuna{
+	pixel_y = 7;
+	pixel_x = -9
+	},
+/turf/simulated/floor/lino,
+/area/space)
 "Zm" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8
@@ -8855,6 +10013,11 @@
 	dir = 4
 	},
 /turf/simulated/floor/lino,
+/area/space)
+"ZC" = (
+/obj/structure/closet/crate,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/plating,
 /area/space)
 "ZH" = (
 /obj/structure/tank_wall/carbon_dioxide{
@@ -14900,16 +16063,16 @@ Tg
 Tg
 Tg
 Tg
-Tg
+At
 Tg
 nA
 yH
 Tg
 Tg
 Tg
-Tg
-Tg
-Tg
+Vc
+bN
+Ic
 Tg
 Tg
 Tg
@@ -14920,36 +16083,36 @@ Tg
 Tg
 Tg
 Tg
+At
 Tg
 Tg
 Tg
 Tg
 Tg
 Tg
+Vc
+bN
+Ic
 Tg
 Tg
 Tg
 Tg
 Tg
 Tg
+Vc
+bN
+Ic
+Tg
+Tg
+Tg
+At
 Tg
 Tg
 Tg
 Tg
-Tg
-Tg
-Tg
-Tg
-Tg
-Tg
-Tg
-Tg
-Tg
-Tg
-Tg
-Tg
-Tg
-Tg
+Vc
+bN
+Ic
 Tg
 Tg
 Tg
@@ -15087,6 +16250,7 @@ Kf
 Kf
 Kf
 Kf
+Tg
 Kf
 Kf
 Kf
@@ -15113,8 +16277,7 @@ Kf
 Kf
 Kf
 Kf
-Kf
-Kf
+Tg
 Kf
 Kf
 Kf
@@ -15217,7 +16380,7 @@ Kf
 Kf
 Kf
 Cf
-Tg
+At
 Kf
 Kf
 Kf
@@ -15249,6 +16412,7 @@ No
 No
 No
 No
+Bi
 No
 No
 No
@@ -15275,14 +16439,13 @@ No
 No
 No
 No
-No
-No
+Bi
 No
 No
 No
 No
 Kf
-Tg
+At
 Cf
 Kf
 Kf
@@ -16189,7 +17352,7 @@ Kf
 Kf
 Kf
 Cf
-cO
+Tg
 yH
 yH
 yH
@@ -16351,7 +17514,7 @@ Kf
 Kf
 Kf
 Cf
-Ic
+Tg
 yH
 YO
 Oj
@@ -16664,12 +17827,12 @@ Kf
 Kf
 Kf
 TO
-ik
+Tg
 Tg
 Hm
 Hm
 Tg
-cO
+Tg
 Vc
 bN
 bN
@@ -16902,7 +18065,7 @@ CT
 CT
 No
 Kf
-Tg
+az
 Cf
 Kf
 Kf
@@ -16988,7 +18151,7 @@ Kf
 Kf
 Kf
 TO
-VT
+Tg
 yH
 ao
 Jy
@@ -17064,7 +18227,7 @@ CT
 CT
 No
 Kf
-Tg
+ZC
 Cf
 Kf
 Kf
@@ -17226,7 +18389,7 @@ CT
 CT
 No
 Kf
-Tg
+aG
 Cf
 Kf
 Kf
@@ -17312,7 +18475,7 @@ Kf
 Kf
 Kf
 TO
-cO
+Tg
 yH
 Nn
 Jy
@@ -17470,7 +18633,7 @@ Kf
 Kf
 Kf
 Kf
-VT
+Tg
 sH
 zM
 zj
@@ -17632,9 +18795,9 @@ Kf
 Kf
 Kf
 Kf
-cO
+Tg
 TX
-ik
+Tg
 OQ
 pK
 yH
@@ -17710,8 +18873,8 @@ Wp
 Bo
 CT
 CT
-No
-Kf
+Bi
+Tg
 Tg
 Cf
 Kf
@@ -18280,7 +19443,7 @@ Kf
 Kf
 Kf
 Kf
-ik
+Tg
 TX
 Kf
 Kf
@@ -18928,7 +20091,7 @@ Kf
 Kf
 Kf
 Kf
-ik
+Tg
 TX
 yH
 oO
@@ -19252,7 +20415,7 @@ Kf
 Kf
 Kf
 Kf
-cO
+Tg
 TX
 yH
 oO
@@ -19656,7 +20819,7 @@ CT
 CT
 No
 Kf
-Tg
+At
 Cf
 Kf
 Kf
@@ -20224,7 +21387,7 @@ Kf
 Kf
 Kf
 Kf
-ik
+Tg
 TX
 yH
 XN
@@ -20549,7 +21712,7 @@ zt
 zt
 No
 No
-me
+Xr
 yH
 yH
 yH
@@ -21116,11 +22279,11 @@ No
 Kf
 Tg
 Tg
+At
 Tg
-Tg
-Tg
-Tg
-Tg
+Vc
+bN
+Ic
 Tg
 Tg
 Tg
@@ -21447,7 +22610,7 @@ No
 No
 No
 Kf
-Tg
+az
 Cf
 Kf
 Kf
@@ -21506,7 +22669,7 @@ zt
 pC
 ss
 ss
-ss
+lO
 zb
 zt
 zt
@@ -21531,7 +22694,7 @@ No
 Oj
 Oj
 No
-Mh
+Fc
 pr
 pr
 pr
@@ -21609,7 +22772,7 @@ CT
 CT
 No
 Kf
-Tg
+ZC
 Cf
 Kf
 Kf
@@ -21665,7 +22828,7 @@ Kf
 Kf
 Kf
 zt
-Zh
+wd
 Oj
 Oj
 Oj
@@ -21699,9 +22862,9 @@ pr
 pr
 GB
 lX
-WF
-WF
+kp
 pr
+pk
 pr
 vT
 kX
@@ -21771,7 +22934,7 @@ CT
 CT
 No
 Kf
-Tg
+aG
 Cf
 Kf
 Kf
@@ -21861,9 +23024,9 @@ UE
 UE
 ob
 jc
-WF
-WF
+yf
 pr
+VH
 pr
 vT
 kX
@@ -22007,9 +23170,9 @@ QD
 aF
 No
 No
-Bi
+ya
 No
-Nk
+LQ
 JX
 JX
 ej
@@ -22023,9 +23186,9 @@ DZ
 DZ
 CN
 jc
-WF
-WF
+bg
 pr
+kU
 pr
 vT
 kX
@@ -22152,7 +23315,7 @@ Kf
 Kf
 zt
 Jb
-HW
+CS
 HW
 HW
 iz
@@ -22171,7 +23334,7 @@ No
 Tg
 TX
 No
-Oj
+fm
 Oj
 Oj
 tT
@@ -22333,10 +23496,10 @@ No
 Tg
 TX
 No
-Eh
+Ct
 Oj
 Oj
-Eh
+lN
 No
 cf
 Oj
@@ -22417,8 +23580,8 @@ Wp
 Bo
 CT
 CT
-No
-Kf
+Bi
+Tg
 Tg
 Cf
 Kf
@@ -22495,10 +23658,10 @@ zt
 Tg
 ya
 No
-Eh
+qf
 Oj
 Oj
-Eh
+Br
 No
 Ec
 TG
@@ -22657,10 +23820,10 @@ zt
 Tg
 CQ
 No
-Eh
+xm
 Oj
 Oj
-Eh
+dN
 No
 QP
 jH
@@ -22668,7 +23831,7 @@ No
 yd
 Na
 Na
-DZ
+uF
 Na
 mD
 Na
@@ -22816,13 +23979,13 @@ wA
 ut
 bj
 zt
-Tg
+az
 CQ
 No
 Eh
 Oj
 Oj
-Eh
+Hu
 No
 cf
 Oj
@@ -22830,7 +23993,7 @@ MK
 Na
 Na
 Na
-DZ
+eX
 MM
 XT
 oF
@@ -22978,13 +24141,13 @@ yW
 zS
 bj
 zt
-Tg
+aG
 CQ
 No
-Eh
+tV
 Oj
 Oj
-Eh
+xt
 No
 cf
 Oj
@@ -22992,12 +24155,12 @@ No
 yd
 Na
 Na
-DZ
+xR
 CN
 jc
-WF
-WF
+RZ
 pr
+Xa
 pr
 vT
 kX
@@ -23067,7 +24230,7 @@ CT
 CT
 No
 Kf
-Tg
+At
 Cf
 Kf
 Kf
@@ -23154,12 +24317,12 @@ No
 No
 DZ
 DZ
-DZ
+Dr
 CN
 jc
-WF
-WF
+dA
 pr
+DH
 pr
 vT
 kX
@@ -23319,9 +24482,9 @@ oF
 oF
 xp
 jc
-WF
-WF
+fl
 pr
+bx
 pr
 vT
 kX
@@ -23802,13 +24965,13 @@ No
 Na
 Na
 CN
-WF
-kp
+sS
 pr
-WF
-WF
+LU
 pr
-WF
+PC
+pr
+wr
 vT
 kX
 QD
@@ -23877,7 +25040,7 @@ CT
 CT
 No
 Kf
-Tg
+az
 Cf
 Kf
 Kf
@@ -23964,11 +25127,11 @@ yH
 nY
 Na
 CN
-WF
-gm
+su
 pr
-WF
-WF
+eA
+pr
+lj
 pr
 WF
 vT
@@ -24039,7 +25202,7 @@ CT
 CT
 No
 Kf
-Tg
+ZC
 Cf
 Kf
 Kf
@@ -24126,13 +25289,13 @@ yH
 nY
 Na
 CN
-WF
-WF
+cO
 pr
-WF
-WF
+dD
 pr
-WF
+Zk
+pr
+aY
 vT
 kX
 QD
@@ -24201,7 +25364,7 @@ CT
 CT
 No
 Kf
-Tg
+aG
 Cf
 Kf
 Kf
@@ -24288,13 +25451,13 @@ yH
 Rj
 Na
 CN
-WF
-WF
+gU
 pr
-WF
-WF
+tN
 pr
-WF
+Wb
+pr
+cJ
 vT
 kX
 QD
@@ -24779,7 +25942,7 @@ Oj
 Oj
 wA
 No
-Oj
+Gj
 Oj
 No
 wY
@@ -24847,8 +26010,8 @@ Zs
 Zs
 CT
 CT
-No
-Kf
+Bi
+Tg
 Tg
 Cf
 Kf
@@ -24941,7 +26104,7 @@ Oj
 np
 hW
 No
-Oj
+Vo
 wA
 No
 No
@@ -25082,7 +26245,7 @@ Oj
 Oj
 Eu
 zt
-Tg
+az
 Tg
 Tg
 CQ
@@ -25106,11 +26269,11 @@ No
 np
 hW
 No
-Oj
+Nx
 Oj
 rR
-Oj
-Oj
+Vo
+Gj
 No
 Tg
 Tg
@@ -25244,7 +26407,7 @@ gD
 Oj
 xP
 zt
-Tg
+ZC
 Tg
 Tg
 CQ
@@ -25268,7 +26431,7 @@ No
 No
 jr
 No
-Oj
+gY
 Oj
 DK
 Rh
@@ -25335,7 +26498,7 @@ Kf
 Kf
 Kf
 Kf
-Tg
+At
 Cf
 Kf
 Kf
@@ -25406,7 +26569,7 @@ zq
 Oj
 Zu
 zt
-Tg
+aG
 Tg
 Tg
 CQ
@@ -25877,13 +27040,13 @@ Kf
 Kf
 zt
 Iv
-Oj
-Oj
-Oj
-Oj
-Oj
+de
+de
+de
+de
+st
 zt
-Oj
+EW
 an
 zt
 EW
@@ -25931,7 +27094,7 @@ Kf
 Kf
 No
 TO
-Tg
+At
 No
 io
 QD
@@ -25974,7 +27137,7 @@ CT
 CT
 No
 Kf
-Tg
+At
 TO
 Kf
 Kf
@@ -26045,8 +27208,8 @@ XU
 Oj
 wA
 zt
-Oj
-ec
+Zc
+jp
 cQ
 ka
 JX
@@ -26207,8 +27370,8 @@ XU
 Oj
 Kd
 iD
-JX
-ih
+tm
+qa
 wl
 JB
 Oj
@@ -26369,10 +27532,10 @@ fO
 Oj
 tT
 zt
-Oj
-Cv
+ci
+xg
 zt
-gY
+Zc
 Oj
 Ax
 XG
@@ -26525,11 +27688,11 @@ Kf
 Kf
 zt
 BM
-Oj
-Oj
-Oj
-Oj
-Oj
+ZY
+ZY
+ZY
+ZY
+OT
 zt
 fU
 qi
@@ -26693,8 +27856,8 @@ vT
 vT
 zt
 zt
-Oj
-Cv
+mg
+gH
 zt
 wi
 Oj
@@ -26834,29 +27997,29 @@ Kf
 Kf
 Kf
 zt
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Cv
+nX
+gm
+gm
+gm
+gm
+gm
+gm
+gm
+gm
+gm
+gm
+gm
+gm
+gm
+gm
+gm
+gm
+gm
+gm
+gm
+gm
+gm
+Pa
 zt
 DV
 Oj
@@ -26869,7 +28032,7 @@ zt
 Kf
 Kf
 Kf
-Tg
+az
 Ot
 Kf
 Kf
@@ -26996,8 +28159,8 @@ Kf
 Kf
 Kf
 zt
-Oj
-Oj
+ik
+DE
 tb
 tb
 tb
@@ -27017,8 +28180,8 @@ tb
 tb
 tb
 tb
-Oj
-Cv
+df
+XK
 zt
 nc
 Oj
@@ -27031,7 +28194,7 @@ zt
 Kf
 Kf
 Kf
-Tg
+ZC
 dC
 sj
 sj
@@ -27049,7 +28212,7 @@ sj
 sj
 sj
 sj
-sj
+VX
 DY
 Oj
 IJ
@@ -27158,7 +28321,7 @@ Kf
 Kf
 Kf
 zt
-Oj
+ik
 uI
 wh
 ir
@@ -27179,8 +28342,8 @@ ir
 ir
 ir
 bX
-Oj
-Cv
+ik
+XK
 zt
 NO
 Oj
@@ -27193,7 +28356,7 @@ zt
 Kf
 Kf
 Kf
-Tg
+aG
 Tg
 Tg
 Tg
@@ -27320,7 +28483,7 @@ Kf
 Kf
 Kf
 zt
-Oj
+ik
 uI
 pf
 Wp
@@ -27341,8 +28504,8 @@ Wp
 Wp
 Wp
 eN
-Oj
-Cv
+ik
+XK
 zt
 Ki
 Oj
@@ -27482,7 +28645,7 @@ Kf
 Kf
 Kf
 zt
-Oj
+ik
 uI
 pf
 Wp
@@ -27503,8 +28666,8 @@ Wp
 Wp
 Wp
 eN
-Oj
-Cv
+ik
+XK
 zt
 St
 Oj
@@ -27644,7 +28807,7 @@ Kf
 Kf
 Kf
 zt
-Oj
+ik
 uI
 pf
 Wp
@@ -27666,7 +28829,7 @@ Wp
 Wp
 eN
 np
-px
+fI
 zt
 AM
 Oj
@@ -27756,7 +28919,7 @@ CT
 CT
 No
 Kf
-Tg
+az
 TO
 Kf
 Kf
@@ -27806,7 +28969,7 @@ Kf
 Kf
 Kf
 zt
-Oj
+ik
 uI
 pf
 Wp
@@ -27827,8 +28990,8 @@ Wp
 Wp
 Wp
 eN
-Oj
-Cv
+ik
+XK
 zt
 St
 Oj
@@ -27918,7 +29081,7 @@ CT
 CT
 No
 Kf
-Tg
+ZC
 TO
 Kf
 Kf
@@ -27968,7 +29131,7 @@ Kf
 Kf
 Kf
 zt
-Oj
+ik
 uI
 pf
 Wp
@@ -27990,7 +29153,7 @@ Wp
 Wp
 eN
 Rg
-qF
+xw
 zt
 AM
 Oj
@@ -28080,7 +29243,7 @@ CT
 CT
 No
 Kf
-Tg
+aG
 TO
 Kf
 Kf
@@ -28130,7 +29293,7 @@ Kf
 Kf
 Kf
 zt
-Oj
+ik
 uI
 pf
 Wp
@@ -28151,8 +29314,8 @@ Gy
 Wp
 Wp
 Pb
-Oj
-Cv
+ik
+XK
 zt
 St
 Oj
@@ -28292,7 +29455,7 @@ Kf
 Kf
 Kf
 zt
-Oj
+ik
 uI
 pf
 Wp
@@ -28313,8 +29476,8 @@ yN
 Wp
 Wp
 BI
-Oj
-Cv
+ik
+XK
 zt
 II
 ZY
@@ -28454,7 +29617,7 @@ Kf
 Kf
 Kf
 zt
-Oj
+ik
 uI
 pf
 Wp
@@ -28475,8 +29638,8 @@ yN
 Wp
 Wp
 BI
-Oj
-Cv
+ik
+XK
 zt
 zt
 zt
@@ -28616,7 +29779,7 @@ Kf
 Kf
 Kf
 zt
-Oj
+ik
 uI
 pf
 Wp
@@ -28637,8 +29800,8 @@ GR
 Wp
 Wp
 Ux
-Oj
-Cv
+ik
+XK
 zt
 Kf
 Kf
@@ -28726,8 +29889,8 @@ Wp
 Bo
 CT
 CT
-No
-Kf
+Bi
+Tg
 Tg
 TO
 Kf
@@ -28778,7 +29941,7 @@ Kf
 Kf
 Kf
 zt
-Oj
+ik
 uI
 pf
 Wp
@@ -28940,7 +30103,7 @@ Kf
 Kf
 Kf
 zt
-Oj
+ik
 uI
 pf
 Wp
@@ -28961,7 +30124,7 @@ Wp
 Wp
 Wp
 eN
-Oj
+ik
 yV
 zt
 Kf
@@ -29102,7 +30265,7 @@ Kf
 Kf
 Kf
 zt
-Oj
+ik
 uI
 pf
 Wp
@@ -29124,7 +30287,7 @@ Wp
 Wp
 eN
 np
-zS
+hV
 zt
 Kf
 Kf
@@ -29171,7 +30334,7 @@ Kf
 Kf
 Kf
 TO
-Tg
+At
 No
 io
 QD
@@ -29264,7 +30427,7 @@ Kf
 Kf
 Kf
 zt
-Oj
+ik
 uI
 pf
 Wp
@@ -29285,8 +30448,8 @@ Wp
 Wp
 Wp
 eN
-Oj
-Oj
+ik
+HG
 zt
 Kf
 Kf
@@ -29426,7 +30589,7 @@ Kf
 Kf
 Kf
 zt
-Oj
+ik
 uI
 pf
 Wp
@@ -29447,8 +30610,8 @@ Wp
 Wp
 Wp
 eN
-Oj
-Oj
+ik
+HG
 zt
 Kf
 Kf
@@ -29588,7 +30751,7 @@ Kf
 Kf
 Kf
 zt
-Oj
+ik
 uI
 GT
 KW
@@ -29609,8 +30772,8 @@ KW
 KW
 KW
 nF
-Oj
-Oj
+ik
+HG
 zt
 Kf
 Kf
@@ -29750,8 +30913,8 @@ Kf
 Kf
 Kf
 zt
-Oj
-Oj
+ik
+wD
 wo
 wo
 wo
@@ -29771,8 +30934,8 @@ wo
 wo
 wo
 wo
-Oj
-Oj
+mF
+HG
 zt
 Kf
 Kf
@@ -29822,6 +30985,7 @@ TO
 Tg
 No
 No
+Bi
 No
 No
 No
@@ -29851,8 +31015,7 @@ No
 No
 No
 No
-No
-No
+Bi
 No
 No
 No
@@ -29862,7 +31025,7 @@ No
 No
 No
 Kf
-Tg
+At
 TO
 Kf
 Kf
@@ -29912,29 +31075,29 @@ Kf
 Kf
 Kf
 zt
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
-Oj
+VT
+me
+me
+me
+me
+me
+me
+me
+me
+me
+me
+me
+me
+me
+me
+me
+me
+me
+me
+me
+me
+me
+sq
 zt
 Kf
 Kf
@@ -29984,6 +31147,7 @@ TO
 Tg
 Kf
 Kf
+Tg
 Kf
 Kf
 Kf
@@ -30013,8 +31177,7 @@ Kf
 Kf
 Kf
 Kf
-Kf
-Kf
+Tg
 Kf
 Kf
 Kf
@@ -30151,6 +31314,7 @@ Tg
 Tg
 Tg
 Tg
+At
 Tg
 Tg
 Tg
@@ -30172,8 +31336,7 @@ Tg
 Tg
 Tg
 Tg
-Tg
-Tg
+At
 Tg
 Tg
 Tg
