@@ -166,6 +166,9 @@
 /turf/simulated/wall/shuttle/space_ship/mercenary
 	color = "#5b5b5b"
 
+/turf/simulated/wall/shuttle/hephaestus_freghter
+	color = "#263e23"
+
 //--Unique Shuttles--//
 
 /turf/simulated/wall/shuttle/unique
