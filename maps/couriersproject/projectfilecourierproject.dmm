@@ -497,17 +497,8 @@
 /turf/simulated/floor/plating,
 /area/space)
 "lU" = (
-/obj/structure/reagent_dispensers/coolanttank,
-/obj/structure/window/borosilicate{
-	dir = 8
-	},
-/obj/structure/window/borosilicate{
-	dir = 4
-	},
-/obj/structure/window/borosilicate{
-	dir = 1
-	},
-/turf/simulated/floor/reinforced,
+/obj/structure/rod_railing,
+/turf/simulated/floor/exoplanet/water/shallow/konyang,
 /area/space)
 "mf" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
@@ -821,15 +812,7 @@
 /turf/simulated/floor/tiled,
 /area/space)
 "wM" = (
-/obj/structure/reagent_dispensers/coolanttank,
-/obj/structure/window/borosilicate{
-	dir = 4
-	},
-/obj/structure/window/borosilicate{
-	dir = 8
-	},
-/obj/structure/window/borosilicate,
-/turf/simulated/floor/reinforced,
+/turf/simulated/floor/exoplanet/water/shallow/konyang,
 /area/space)
 "wO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
@@ -8753,7 +8736,7 @@ BH
 BH
 BH
 BH
-BH
+ch
 BH
 uL
 vG
@@ -8954,7 +8937,7 @@ ch
 ch
 ch
 ch
-ch
+BH
 ch
 ch
 uL
@@ -9156,7 +9139,7 @@ ch
 ch
 ch
 ch
-ch
+BH
 ch
 ch
 uL
@@ -9350,15 +9333,15 @@ la
 ch
 Qz
 ch
+Bo
+Bo
+Bo
+Bo
+Bo
+Bo
+Bo
 ch
-ch
-Bo
-Bo
-Bo
-Bo
-Bo
-Bo
-Bo
+BH
 ch
 ch
 uL
@@ -9552,8 +9535,6 @@ la
 ch
 Qz
 ch
-ch
-ch
 Bo
 JP
 XQ
@@ -9561,6 +9542,8 @@ JP
 XQ
 JP
 Bo
+ch
+BH
 ch
 ch
 BH
@@ -9754,8 +9737,6 @@ la
 ch
 Qz
 ch
-ch
-ch
 Bo
 mr
 cA
@@ -9763,6 +9744,8 @@ Qd
 vw
 JP
 Bo
+ch
+BH
 ch
 ch
 BH
@@ -9956,15 +9939,15 @@ uL
 ch
 Qz
 ch
-ch
-ch
 Bo
-JP
-lU
-nG
+mr
 wM
+nG
+lU
 JP
 Bo
+ch
+BH
 ch
 ch
 ch
@@ -10158,8 +10141,6 @@ la
 ch
 Qz
 ch
-ch
-ch
 Bo
 mr
 cA
@@ -10167,6 +10148,8 @@ CN
 vw
 JP
 Bo
+ch
+BH
 ch
 ch
 BH
@@ -10360,8 +10343,6 @@ la
 ch
 Qz
 ch
-ch
-ch
 Bo
 JP
 Cp
@@ -10369,6 +10350,8 @@ JP
 Cp
 JP
 Bo
+ch
+BH
 ch
 ch
 BH
@@ -10562,15 +10545,15 @@ la
 ch
 Qz
 ch
+Bo
+Bo
+Bo
+Bo
+Bo
+Bo
+Bo
 ch
-ch
-Bo
-Bo
-Bo
-Bo
-Bo
-Bo
-Bo
+BH
 ch
 ch
 uL
@@ -10772,7 +10755,7 @@ ch
 ch
 ch
 ch
-ch
+BH
 ch
 ch
 uL
@@ -10974,7 +10957,7 @@ ch
 ch
 ch
 ch
-ch
+BH
 ch
 ch
 uL
@@ -11177,7 +11160,7 @@ BH
 BH
 BH
 BH
-BH
+ch
 BH
 uL
 vG
