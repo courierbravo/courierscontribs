@@ -2332,10 +2332,13 @@
 /turf/simulated/floor/carpet/rubber,
 /area/space)
 "Ti" = (
-/obj/machinery/computer/ship/targeting/terminal{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
 	},
-/turf/simulated/floor/carpet/rubber,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
 /area/space)
 "Tt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -8513,7 +8516,7 @@ oV
 nx
 vB
 pE
-Ne
+pE
 jP
 jP
 HO
@@ -9532,7 +9535,7 @@ Xl
 ue
 bj
 gC
-Ti
+SI
 ba
 Vx
 Vx
@@ -10795,7 +10798,7 @@ ba
 Fk
 Yy
 pE
-He
+Ti
 Ne
 Ne
 Ne
@@ -10922,8 +10925,8 @@ ba
 Fk
 Yy
 pE
-Ne
-Ne
+Ti
+Vn
 Ne
 Ne
 Ne
@@ -11049,8 +11052,8 @@ ba
 Fk
 Yy
 pE
-Ne
-Ne
+He
+rj
 Ne
 Ne
 Ne
@@ -11177,7 +11180,7 @@ Fk
 Yy
 pE
 Ne
-Ne
+QQ
 Ne
 Ne
 Ne
