@@ -51,6 +51,11 @@
 	spawn_grille = 1;
 	color = "263e23"
 	},
+/obj/machinery/door/blast/regular/open{
+	dir = 4;
+	id = "heph_lockdown";
+	name = "blast door"
+	},
 /turf/simulated/floor,
 /area/space)
 "bj" = (
@@ -217,6 +222,26 @@
 /obj/structure/platform/dark,
 /turf/simulated/floor/carpet/rubber,
 /area/space)
+"eN" = (
+/obj/structure/bed{
+	name = "bottom bunk"
+	},
+/obj/structure/bed{
+	pixel_y = 16;
+	name = "top bunk"
+	},
+/obj/item/bedsheet/orange{
+	pixel_y = 16
+	},
+/obj/item/bedsheet/orange,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/spline/plain/black{
+	dir = 9
+	},
+/turf/simulated/floor/wood,
+/area/space)
 "eR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -352,6 +377,7 @@
 /area/space)
 "gS" = (
 /obj/structure/table/steel,
+/obj/item/gun/energy/mousegun/xenofauna,
 /turf/simulated/floor/carpet/rubber,
 /area/space)
 "gX" = (
@@ -380,7 +406,8 @@
 /obj/effect/floor_decal/spline/plain/orange{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark,
+/obj/structure/lattice/catwalk/indoor/grate/dark,
+/turf/simulated/floor,
 /area/space)
 "hq" = (
 /obj/machinery/atmospherics/portables_connector{
@@ -463,7 +490,8 @@
 /obj/machinery/computer/ship/sensors/terminal{
 	dir = 1
 	},
-/turf/simulated/floor/carpet/rubber,
+/obj/structure/lattice/catwalk/indoor/grate/dark,
+/turf/simulated/floor,
 /area/space)
 "iV" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -540,7 +568,18 @@
 /obj/structure/rod_railing{
 	dir = 10
 	},
-/turf/simulated/floor/carpet/orange,
+/obj/structure/lattice/catwalk/indoor/grate/dark,
+/turf/simulated/floor,
+/area/space)
+"kT" = (
+/obj/item/clothing/suit/storage/toggle/corp/heph,
+/obj/item/clothing/head/beret/corporate/heph,
+/obj/item/clothing/accessory/pin/corporate/heph,
+/obj/item/clothing/accessory/storage/black_vest,
+/obj/item/clothing/accessory/holster/hip/brown,
+/obj/item/clothing/under/rank/captain/hephaestus,
+/obj/structure/closet/cabinet,
+/turf/simulated/floor/wood,
 /area/space)
 "lk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -715,7 +754,8 @@
 /obj/machinery/computer/ship/helm/terminal{
 	dir = 1
 	},
-/turf/simulated/floor/carpet/rubber,
+/obj/structure/lattice/catwalk/indoor/grate/dark,
+/turf/simulated/floor,
 /area/space)
 "nV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
@@ -757,7 +797,8 @@
 	dir = 1
 	},
 /obj/structure/rod_railing,
-/turf/simulated/floor/carpet/orange,
+/obj/structure/lattice/catwalk/indoor/grate/dark,
+/turf/simulated/floor,
 /area/space)
 "oV" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -797,6 +838,10 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
+/area/space)
+"pC" = (
+/obj/effect/floor_decal/spline/plain/black,
+/turf/simulated/floor/wood,
 /area/space)
 "pE" = (
 /turf/simulated/wall,
@@ -999,12 +1044,24 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/black,
 /turf/simulated/floor,
 /area/space)
+"tu" = (
+/obj/effect/floor_decal/spline/plain/orange{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/space)
 "ty" = (
 /obj/machinery/atmospherics/binary/passive_gate/aux{
 	dir = 4;
 	use_power = 1
 	},
 /turf/simulated/floor,
+/area/space)
+"tz" = (
+/obj/effect/floor_decal/spline/plain/black{
+	dir = 9
+	},
+/turf/simulated/floor/wood,
 /area/space)
 "tJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -1158,6 +1215,21 @@
 	},
 /turf/simulated/floor,
 /area/space)
+"wr" = (
+/obj/effect/floor_decal/spline/plain/orange{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/obj/item/folder/yellow{
+	pixel_y = 3;
+	pixel_x = 4
+	},
+/obj/item/pen/fountain/black{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/turf/simulated/floor/wood,
+/area/space)
 "wE" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 9
@@ -1265,6 +1337,15 @@
 	},
 /turf/simulated/floor,
 /area/space)
+"yn" = (
+/obj/effect/floor_decal/spline/plain/black{
+	dir = 5
+	},
+/obj/structure/bed/stool/chair/wood{
+	dir = 2
+	},
+/turf/simulated/floor/wood,
+/area/space)
 "yp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	dir = 9
@@ -1304,6 +1385,26 @@
 	dir = 8
 	},
 /turf/simulated/floor/carpet/rubber,
+/area/space)
+"yH" = (
+/obj/structure/table/rack/retail_shelf,
+/obj/item/storage/pill_bottle/dice{
+	pixel_x = 7;
+	pixel_y = 16
+	},
+/obj/item/toy/comic{
+	pixel_y = -3;
+	pixel_x = -4
+	},
+/obj/item/deck/cards{
+	pixel_x = 8;
+	pixel_y = -8
+	},
+/obj/item/deck/cards{
+	pixel_y = 13;
+	pixel_x = -8
+	},
+/turf/simulated/floor/tiled,
 /area/space)
 "yJ" = (
 /obj/structure/cable{
@@ -1408,6 +1509,12 @@
 	},
 /turf/simulated/floor,
 /area/space)
+"Aq" = (
+/obj/effect/floor_decal/spline/plain/corner/black{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/space)
 "Ay" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -1489,6 +1596,12 @@
 /area/space)
 "BM" = (
 /turf/simulated/floor/exoplanet/water/shallow/konyang,
+/area/space)
+"Cb" = (
+/obj/structure/bed,
+/obj/item/bedsheet/orange,
+/obj/machinery/light,
+/turf/simulated/floor/wood,
 /area/space)
 "Cc" = (
 /turf/simulated/wall/r_wall,
@@ -1687,6 +1800,22 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/space)
+"Gi" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/brandy{
+	pixel_y = 19;
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/newglass/shot{
+	pixel_y = 7;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/newglass/shot{
+	pixel_y = 11;
+	pixel_x = 4
+	},
+/turf/simulated/floor/wood,
+/area/space)
 "Gp" = (
 /obj/structure/rod_railing,
 /turf/simulated/floor/exoplanet/water/shallow/konyang,
@@ -1713,13 +1842,16 @@
 /turf/simulated/floor,
 /area/space)
 "Gw" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/effect/map_effect/window_spawner/full/shuttle{
+	spawn_firedoor = 1;
+	spawn_grille = 1;
+	color = "263e23"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
+/obj/machinery/door/blast/regular/open{
+	id = "heph_lockdown";
+	name = "blast door"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor,
 /area/space)
 "GA" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -1781,10 +1913,10 @@
 /turf/simulated/floor/exoplanet/water/shallow/konyang,
 /area/space)
 "He" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
 /turf/simulated/floor/tiled,
@@ -1803,6 +1935,10 @@
 	},
 /obj/effect/floor_decal/spline/plain/orange{
 	dir = 1
+	},
+/obj/structure/sign/flag/heph{
+	pixel_y = 32;
+	stand_icon = null
 	},
 /turf/simulated/floor/tiled/dark,
 /area/space)
@@ -1908,9 +2044,18 @@
 /turf/simulated/floor,
 /area/space)
 "Jd" = (
-/obj/item/gun/energy/mousegun/xenofauna,
-/obj/machinery/recharger,
 /obj/structure/table/steel,
+/obj/machinery/button/remote/blast_door{
+	name = "Ship Lockdown";
+	id = "heph_lockdown";
+	pixel_y = 2;
+	dir = 9;
+	pixel_x = 7
+	},
+/obj/machinery/recharger{
+	pixel_x = -6;
+	pixel_y = 3
+	},
 /turf/simulated/floor/carpet/rubber,
 /area/space)
 "Jl" = (
@@ -1982,6 +2127,20 @@
 	},
 /turf/simulated/floor/reinforced/carbon_dioxide,
 /area/space)
+"Ks" = (
+/obj/effect/floor_decal/spline/plain/black{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/obj/item/flora/pottedplant_small/woodyshrub{
+	pixel_y = 5;
+	pixel_x = 11
+	},
+/obj/item/deck/cards{
+	pixel_x = -5
+	},
+/turf/simulated/floor/wood,
+/area/space)
 "Kw" = (
 /obj/structure/table/stone/marble,
 /obj/machinery/chemical_dispenser/coffeemaster/full{
@@ -1990,11 +2149,21 @@
 /obj/effect/floor_decal/spline/plain/orange{
 	dir = 1
 	},
+/obj/structure/sign/flag/heph{
+	pixel_y = 32;
+	stand_icon = null
+	},
 /turf/simulated/floor/tiled/dark,
 /area/space)
 "KH" = (
 /obj/structure/bed/stool/chair/office/bridge/pilot,
 /turf/simulated/floor/carpet/rubber,
+/area/space)
+"KN" = (
+/obj/effect/floor_decal/spline/plain/black{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
 /area/space)
 "Lo" = (
 /obj/machinery/atmospherics/portables_connector{
@@ -2016,6 +2185,15 @@
 /obj/structure/shipping_container,
 /turf/simulated/floor,
 /area/space)
+"LK" = (
+/obj/effect/floor_decal/spline/plain/black{
+	dir = 6
+	},
+/obj/structure/bed/stool/chair/wood{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/space)
 "LS" = (
 /obj/structure/lattice/catwalk/indoor,
 /obj/structure/lattice/catwalk/indoor,
@@ -2035,6 +2213,12 @@
 /area/space)
 "Ne" = (
 /turf/simulated/floor/tiled,
+/area/space)
+"Nk" = (
+/obj/effect/floor_decal/spline/plain/black{
+	dir = 10
+	},
+/turf/simulated/floor/wood,
 /area/space)
 "Nn" = (
 /obj/structure/lattice/catwalk/indoor/grate,
@@ -2168,6 +2352,9 @@
 	},
 /turf/simulated/floor,
 /area/space)
+"Qw" = (
+/turf/simulated/floor/wood,
+/area/space)
 "Qx" = (
 /obj/structure/lattice/catwalk/indoor/grate,
 /obj/structure/cable{
@@ -2296,7 +2483,8 @@
 /obj/machinery/computer/ship/navigation/terminal{
 	dir = 1
 	},
-/turf/simulated/floor/carpet/rubber,
+/obj/structure/lattice/catwalk/indoor/grate/dark,
+/turf/simulated/floor,
 /area/space)
 "SQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
@@ -2373,11 +2561,21 @@
 /obj/structure/rod_railing{
 	dir = 6
 	},
-/turf/simulated/floor/carpet/orange,
+/obj/structure/lattice/catwalk/indoor/grate/dark,
+/turf/simulated/floor,
 /area/space)
 "TX" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor,
+/area/space)
+"Ua" = (
+/obj/effect/floor_decal/spline/plain/orange{
+	dir = 4
+	},
+/obj/structure/bed/stool/chair/wood{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
 /area/space)
 "Uq" = (
 /obj/structure/closet{
@@ -2593,6 +2791,22 @@
 	},
 /obj/structure/lattice/catwalk/indoor/grate,
 /turf/simulated/floor,
+/area/space)
+"Yf" = (
+/obj/item/clothing/under/rank/security/heph,
+/obj/item/clothing/head/beret/corporate/heph,
+/obj/item/clothing/under/rank/security/heph,
+/obj/item/clothing/accessory/storage/black_vest,
+/obj/item/clothing/accessory/storage/black_vest,
+/obj/item/clothing/accessory/storage/pouches/black,
+/obj/item/clothing/accessory/storage/pouches/black,
+/obj/item/clothing/accessory/holster/hip/brown,
+/obj/item/clothing/accessory/holster/hip/brown,
+/obj/structure/closet/cabinet,
+/obj/effect/floor_decal/spline/plain/black{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
 /area/space)
 "Yh" = (
 /obj/effect/floor_decal/corner/orange{
@@ -8131,9 +8345,9 @@ ba
 Fk
 Yy
 jP
-jP
-jP
-jP
+Gw
+Gw
+Gw
 jP
 HO
 HO
@@ -8258,9 +8472,9 @@ ba
 Fk
 Yy
 jP
-Ne
-Ne
-Ne
+kT
+Qw
+Cb
 jP
 jP
 HO
@@ -8385,9 +8599,9 @@ jP
 Jy
 vB
 pE
-Ne
-Ne
-Ne
+Gi
+Qw
+Qw
 pE
 jP
 jP
@@ -8512,9 +8726,9 @@ jP
 VQ
 rN
 pE
-oV
-nx
-vB
+wr
+Ua
+tu
 pE
 pE
 jP
@@ -8639,12 +8853,12 @@ ba
 Fk
 Yy
 pE
-Ne
-Gw
-Ne
+oV
+nx
+vB
 pE
-Ne
-Ne
+eN
+Nk
 jP
 HO
 HO
@@ -8770,8 +8984,8 @@ pE
 Qm
 pE
 pE
-Ne
-Ne
+Yf
+pC
 ba
 HO
 HO
@@ -8893,12 +9107,12 @@ ba
 Fk
 Yy
 pE
-Ne
+yH
 lk
 Vn
-Ne
-Ne
-Ne
+tz
+Aq
+pC
 ba
 HO
 HO
@@ -9023,9 +9237,9 @@ pE
 qJ
 lZ
 rj
-Ne
-Ne
-Ne
+KN
+Qw
+pC
 ba
 HO
 HO
@@ -9150,9 +9364,9 @@ Ls
 gz
 Ne
 QQ
-Ne
-Ne
-Ne
+yn
+Ks
+LK
 jP
 HO
 HO
@@ -9281,8 +9495,8 @@ pE
 pE
 pE
 jP
-ba
-ba
+Gw
+Gw
 HO
 HO
 HO
@@ -9455,21 +9669,7 @@ jP
 jP
 jP
 jP
-jP
-jP
-jP
-yl
-OZ
-SQ
-jP
-jP
-jP
-jP
-jP
-jP
-jP
-jP
-jP
+Gw
 jP
 jP
 yl
@@ -9477,27 +9677,13 @@ OZ
 SQ
 jP
 jP
+Gw
 jP
 jP
 jP
 jP
 jP
-jP
-jP
-jP
-jP
-yl
-OZ
-SQ
-jP
-jP
-jP
-jP
-jP
-jP
-jP
-jP
-jP
+Gw
 jP
 jP
 yl
@@ -9505,13 +9691,13 @@ OZ
 SQ
 jP
 jP
+Gw
 jP
 jP
 jP
 jP
 jP
-jP
-jP
+Gw
 jP
 jP
 yl
@@ -9519,7 +9705,35 @@ OZ
 SQ
 jP
 jP
+Gw
 jP
+jP
+jP
+jP
+jP
+Gw
+jP
+jP
+yl
+OZ
+SQ
+jP
+jP
+Gw
+jP
+jP
+jP
+jP
+jP
+Gw
+jP
+jP
+yl
+OZ
+SQ
+jP
+jP
+Gw
 jP
 jP
 jP
@@ -10217,21 +10431,7 @@ jP
 jP
 jP
 jP
-jP
-jP
-jP
-xK
-OZ
-sk
-jP
-jP
-jP
-jP
-jP
-jP
-jP
-jP
-jP
+Gw
 jP
 jP
 xK
@@ -10239,27 +10439,13 @@ OZ
 sk
 jP
 jP
+Gw
 jP
 jP
 jP
 jP
 jP
-jP
-jP
-jP
-jP
-xK
-OZ
-sk
-jP
-jP
-jP
-jP
-jP
-jP
-jP
-jP
-jP
+Gw
 jP
 jP
 xK
@@ -10267,13 +10453,13 @@ OZ
 sk
 jP
 jP
+Gw
 jP
 jP
 jP
 jP
 jP
-jP
-jP
+Gw
 jP
 jP
 xK
@@ -10281,7 +10467,35 @@ OZ
 sk
 jP
 jP
+Gw
 jP
+jP
+jP
+jP
+jP
+Gw
+jP
+jP
+xK
+OZ
+sk
+jP
+jP
+Gw
+jP
+jP
+jP
+jP
+jP
+Gw
+jP
+jP
+xK
+OZ
+sk
+jP
+jP
+Gw
 jP
 jP
 jP
@@ -10551,8 +10765,8 @@ pE
 pE
 pE
 jP
-ba
-ba
+Gw
+Gw
 HO
 HO
 HO
@@ -11307,9 +11521,9 @@ VQ
 rN
 pE
 Ne
-Ne
-Ne
-Ne
+pE
+pE
+pE
 Ne
 jP
 jP
@@ -11436,7 +11650,7 @@ pE
 Ne
 Ne
 Ne
-Ne
+pE
 jP
 jP
 HO
