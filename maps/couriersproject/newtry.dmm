@@ -71,6 +71,14 @@
 	},
 /turf/simulated/floor/reinforced/carbon_dioxide,
 /area/space)
+"bw" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_y = 0;
+	pixel_x = 14
+	},
+/turf/simulated/floor/tiled,
+/area/space)
 "bD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -439,6 +447,17 @@
 /obj/machinery/portable_atmospherics/canister/air/airlock,
 /turf/simulated/floor,
 /area/space)
+"hH" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9;
+	pixel_y = 0
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/structure/table/wood,
+/turf/simulated/floor/tiled,
+/area/space)
 "hR" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/tank_wall/carbon_dioxide{
@@ -693,6 +712,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	dir = 4
 	},
+/turf/simulated/floor/tiled,
+/area/space)
+"nd" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/space)
 "nh" = (
@@ -956,6 +980,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
+/turf/simulated/floor/tiled,
+/area/space)
+"rs" = (
+/obj/machinery/appliance/cooker/stove,
 /turf/simulated/floor/tiled,
 /area/space)
 "rv" = (
@@ -1230,6 +1258,10 @@
 	},
 /turf/simulated/floor/wood,
 /area/space)
+"wx" = (
+/obj/structure/closet/secure_closet/freezer/meat,
+/turf/simulated/floor/tiled,
+/area/space)
 "wE" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 9
@@ -1270,6 +1302,13 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
+/area/space)
+"wY" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/structure/table/wood,
+/turf/simulated/floor/tiled/full,
 /area/space)
 "xg" = (
 /obj/structure/lattice/catwalk/indoor,
@@ -1646,6 +1685,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor,
+/area/space)
+"Dy" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/turf/simulated/floor/tiled/full,
 /area/space)
 "DC" = (
 /obj/structure/table/stone/marble,
@@ -2113,6 +2159,10 @@
 	dir = 8
 	},
 /turf/simulated/floor,
+/area/space)
+"Ka" = (
+/obj/machinery/appliance/cooker/stove,
+/turf/space,
 /area/space)
 "Kg" = (
 /obj/machinery/atmospherics/portables_connector/supply,
@@ -11014,7 +11064,7 @@ Yy
 pE
 Ti
 Ne
-Ne
+Dy
 Ne
 Ne
 Ne
@@ -11139,9 +11189,9 @@ ba
 Fk
 Yy
 pE
-Ti
-Vn
-Ne
+He
+nd
+hH
 Ne
 Ne
 Ne
@@ -11266,11 +11316,11 @@ ba
 Fk
 Yy
 pE
-He
-rj
 Ne
 Ne
+wY
 Ne
+rs
 Ne
 ba
 HO
@@ -11394,11 +11444,11 @@ Fk
 Yy
 pE
 Ne
-QQ
 Ne
 Ne
 Ne
 Ne
+bw
 jP
 HO
 HO
@@ -11524,7 +11574,7 @@ Ne
 pE
 pE
 pE
-Ne
+wx
 jP
 jP
 HO
@@ -12029,7 +12079,7 @@ Fk
 Yy
 ba
 HO
-HO
+Ka
 HO
 HO
 HO
@@ -12156,7 +12206,7 @@ Fk
 Yy
 ba
 HO
-HO
+Ka
 HO
 HO
 HO
