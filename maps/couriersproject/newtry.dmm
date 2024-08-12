@@ -262,6 +262,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor,
 /area/space)
+"dH" = (
+/obj/effect/floor_decal/spline/plain/orange{
+	dir = 8
+	},
+/obj/machinery/alarm/west,
+/turf/simulated/floor/tiled,
+/area/space)
 "dN" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -1249,6 +1256,7 @@
 /area/space)
 "oV" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/machinery/alarm/north,
 /turf/simulated/floor/tiled/full,
 /area/space)
 "pk" = (
@@ -1535,6 +1543,10 @@
 	},
 /turf/simulated/floor,
 /area/space)
+"sp" = (
+/obj/machinery/alarm/south,
+/turf/simulated/floor/tiled/dark,
+/area/space)
 "sq" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1579,6 +1591,7 @@
 /obj/effect/floor_decal/spline/plain/orange{
 	dir = 1
 	},
+/obj/machinery/alarm/north,
 /turf/simulated/floor/tiled,
 /area/space)
 "sQ" = (
@@ -1668,6 +1681,13 @@
 	},
 /obj/structure/lattice/catwalk/indoor/grate,
 /turf/simulated/floor,
+/area/space)
+"un" = (
+/obj/effect/floor_decal/corner/orange{
+	dir = 6
+	},
+/obj/machinery/alarm/east,
+/turf/simulated/floor/tiled,
 /area/space)
 "uB" = (
 /obj/machinery/door/airlock/external/gadpathur{
@@ -2636,6 +2656,22 @@
 	},
 /turf/simulated/floor/tiled,
 /area/space)
+"Fn" = (
+/obj/effect/floor_decal/corner/orange{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	dir = 4
+	},
+/obj/machinery/alarm/north,
+/turf/simulated/floor/tiled,
+/area/space)
 "Fo" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -3203,6 +3239,13 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/space)
+"KE" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/machinery/alarm/east,
+/turf/simulated/floor/tiled/full,
+/area/space)
 "KH" = (
 /obj/structure/bed/stool/chair/office/bridge/pilot,
 /turf/simulated/floor/carpet/rubber,
@@ -3446,6 +3489,14 @@
 	},
 /turf/simulated/floor,
 /area/space)
+"Pe" = (
+/obj/structure/lattice/catwalk/indoor/grate,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/alarm/west,
+/turf/simulated/floor,
+/area/space)
 "Px" = (
 /obj/effect/floor_decal/corner/orange{
 	dir = 8
@@ -3626,6 +3677,14 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled,
+/area/space)
+"RF" = (
+/obj/structure/lattice/catwalk/indoor/grate,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/alarm/east,
+/turf/simulated/floor,
 /area/space)
 "RI" = (
 /obj/structure/cable{
@@ -3852,6 +3911,10 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/wood,
+/area/space)
+"Ub" = (
+/obj/machinery/alarm/north,
+/turf/simulated/floor/tiled/full,
 /area/space)
 "Uh" = (
 /obj/machinery/power/smes/buildable/third_party_shuttle,
@@ -4122,6 +4185,10 @@
 /obj/machinery/atmospherics/unary/outlet_injector,
 /turf/simulated/floor/reinforced/carbon_dioxide,
 /area/space)
+"XR" = (
+/obj/machinery/alarm/north,
+/turf/simulated/floor/tiled,
+/area/space)
 "XZ" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -4228,6 +4295,13 @@
 /obj/machinery/vending/tool,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark/full,
+/area/space)
+"YW" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/alarm/south,
+/turf/simulated/floor,
 /area/space)
 "YX" = (
 /obj/machinery/atmospherics/binary/pump{
@@ -9236,7 +9310,7 @@ jP
 WU
 WU
 jP
-Fk
+Fn
 Yy
 jP
 HO
@@ -9282,7 +9356,7 @@ kI
 Cc
 zf
 ul
-pE
+Ac
 Kg
 cs
 jP
@@ -9536,7 +9610,7 @@ wK
 dG
 dG
 nm
-pE
+Ac
 SZ
 Jl
 Nx
@@ -9657,7 +9731,7 @@ pE
 Qx
 yA
 yA
-yA
+RF
 RW
 qt
 Zt
@@ -9782,13 +9856,13 @@ jP
 vK
 pE
 pE
-pE
-pE
+Ac
+Ac
 pE
 cO
 pE
 Ac
-pE
+Ac
 pE
 pE
 QS
@@ -10043,14 +10117,14 @@ fT
 Hw
 Hw
 Hw
-Hw
+sp
 pE
 IX
 dN
 ER
 HV
 TX
-JY
+YW
 jP
 ky
 Vx
@@ -10765,7 +10839,7 @@ np
 aH
 gz
 Gg
-QQ
+KE
 yn
 Ks
 LK
@@ -11701,7 +11775,7 @@ Hw
 Hw
 Hw
 ql
-Hw
+sp
 pE
 yB
 AT
@@ -11713,21 +11787,7 @@ SU
 iZ
 wF
 Va
-AT
-AT
-Va
-OI
-QX
-yB
-Va
-AT
-AT
-Va
-SU
-iZ
-wF
-Va
-AT
+un
 AT
 Va
 OI
@@ -11741,21 +11801,7 @@ SU
 iZ
 wF
 Va
-AT
-AT
-Va
-OI
-QX
-yB
-Va
-AT
-AT
-Va
-SU
-iZ
-wF
-Va
-AT
+un
 AT
 Va
 OI
@@ -11769,13 +11815,41 @@ SU
 iZ
 wF
 Va
+un
 AT
+Va
+OI
+QX
+yB
+Va
+AT
+AT
+Va
+SU
+iZ
+wF
+Va
+un
+AT
+Va
+OI
+QX
+yB
+Va
+AT
+AT
+Va
+SU
+iZ
+wF
+Va
+un
 AT
 Va
 AT
 OI
 pE
-Ne
+XR
 xP
 Ne
 pE
@@ -12291,7 +12365,7 @@ IP
 gk
 cp
 Td
-Td
+dH
 bw
 jP
 jP
@@ -12590,7 +12664,7 @@ Hw
 vq
 Hw
 uL
-Hw
+sp
 jP
 ky
 Vx
@@ -13213,7 +13287,7 @@ pE
 XL
 yA
 yA
-yA
+Pe
 ol
 fO
 UW
@@ -13727,7 +13801,7 @@ mu
 lG
 ZQ
 Cc
-JB
+Ub
 JB
 JB
 JB
@@ -13808,7 +13882,7 @@ jP
 WU
 WU
 jP
-Fk
+Fn
 Yy
 jP
 HO
