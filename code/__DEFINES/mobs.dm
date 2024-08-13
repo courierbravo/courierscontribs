@@ -274,11 +274,13 @@
 #define HSP_MSGRANGE 	"message range"
 
 // Defines mob sizes, used by lockers and to determine what is considered a small sized mob, etc.
-#define MOB_LARGE  		16
-#define MOB_MEDIUM 		9
-#define MOB_SMALL 		6
-#define MOB_TINY 		4
-#define MOB_MINISCULE	1
+#define MOB_MASSIVE  	32 // Megafauna range of size. Anything from a small car to a t-rex.
+#define MOB_VERY_LARGE  24 // Much bigger than a bear, think bulwark to breeder vaurca
+#define MOB_LARGE  		16 // Bigger than a human, just barely too big to fit in a locker. Anywhere between big robot to a bear
+#define MOB_MEDIUM 		9 // Human sized or roughly human sized
+#define MOB_SMALL 		6 // About dog sized, bigger than a breadbox
+#define MOB_TINY 		4 // About breadbox sized
+#define MOB_MINISCULE	1 // Smaller than a breadbox, rats lizards and other similar sized things
 
 #define BASE_MAX_NUTRITION	600
 #define HUNGER_FACTOR		0.04 // Factor of how fast mob nutrition decreases over time.
