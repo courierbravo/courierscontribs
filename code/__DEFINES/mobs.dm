@@ -288,7 +288,6 @@
 #define MOB_PS_LARGE 		11 // Unathi, Vaurca, and some IPC's all fit in here. Bigger than humans, but not by too much.
 #define MOB_PS_MEDIUM 		9 // Human sized or roughly human sized. Tajara. Offworlder humans also fall into this group
 #define MOB_PS_SMALL 		8 // Skrell and the smaller or lighter Tajara
-#define MOB_PS_TINY 		7 // Nothing areally fits in here as of now that I'm aware of. Could be useful down the line
 
 
 #define BASE_MAX_NUTRITION	600
