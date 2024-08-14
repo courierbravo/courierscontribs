@@ -273,14 +273,23 @@
 #define HSP_MSGMODE 	"message mode"
 #define HSP_MSGRANGE 	"message range"
 
-// Defines mob sizes, used by lockers and to determine what is considered a small sized mob, etc.
+// Defines simple mob sizes, used by lockers and to determine what is considered a small sized mob, etc.
 #define MOB_MASSIVE  	32 // Megafauna range of size. Anything from a small car to a t-rex.
-#define MOB_VERY_LARGE  24 // Much bigger than a bear, think bulwark to breeder vaurca
+#define MOB_VERY_LARGE  24 // Much bigger than a bear. Anything from a horse to a cow.
 #define MOB_LARGE  		16 // Bigger than a human, just barely too big to fit in a locker. Anywhere between big robot to a bear
 #define MOB_MEDIUM 		9 // Human sized or roughly human sized
 #define MOB_SMALL 		6 // About dog sized, bigger than a breadbox
 #define MOB_TINY 		4 // About breadbox sized
 #define MOB_MINISCULE	1 // Smaller than a breadbox, rats lizards and other similar sized things
+
+// Defines player species mob sizes, used by lockers and to determine what is considered a small sized mob, etc.
+#define MOB_PS_MASSIVE  	21 // Industrials, Bulwarks and Breeders, basically
+#define MOB_PS_VERY_LARGE   15 // IPC's and Gestalts generally go here
+#define MOB_PS_LARGE  		11 // Unathi, Vaurca, and some IPC's all fit in here. Bigger than humans, but not by too much.
+#define MOB_PS_MEDIUM 		9 // Human sized or roughly human sized. Tajara. Offworlder humans also fall into this group
+#define MOB_PS_SMALL 		8 // Skrell and the smaller or lighter Tajara
+#define MOB_PS_TINY 		7 // Nothing really fits in here as of now that I'm aware of. Could be useful down the line
+
 
 #define BASE_MAX_NUTRITION	600
 #define HUNGER_FACTOR		0.04 // Factor of how fast mob nutrition decreases over time.
