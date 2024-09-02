@@ -3,17 +3,19 @@
 	description = "Coalition science ship."
 
 	prefix = "ships/coc/coc_surveyor/"
-	suffix = "coc_surveyor.dmm"
+	suffixes = list("coc_surveyor.dmm")
 
 	sectors = list(SECTOR_BADLANDS, ALL_COALITION_SECTORS, ALL_VOID_SECTORS)
 	spawn_weight_sector_dependent = list(ALL_BADLAND_SECTORS = 0.3)
 	sectors_blacklist = list(SECTOR_HANEUNIM, SECTOR_BURZSIA)
-	spawn_weight = 1
+	spawn_weight = 1000
 	ship_cost = 1
 	id = "coc_surveyor"
 	shuttles_to_initialise = list(/datum/shuttle/autodock/overmap/coc_survey_shuttle)
 
+	template_flags = TEMPLATE_FLAG_SPAWN_GUARANTEED
 	unit_test_groups = list(1)
+
 
 /singleton/submap_archetype/coc_surveyor
 	map = "COC Survey Ship"
@@ -22,14 +24,14 @@
 /obj/effect/overmap/visitable/ship/coc_surveyor
 	name = "COC Survey Ship"
 	class = "CCV"
-	desc = "The Galga-class Surveyor is a very recent design, created as apart of a joint venture between Xanu and Himeo, in an effort to better map out the Weeping Stars. Created to be largely self sufficient, its on board refinery allows it to create products for market between ventures into the uncharted areas of the Spur. While the ship is armed, its thin hull, powerful thrusters, and large fuel tanks encourage retreat."
+	desc = "The Galga-class Surveyor is the newest design-by-committee exploratory ship, created in a joint venture between Xanu and Himeo. Initally, its design was tailored for the effort to better map out the Weeping Stars. However, thanks to a clever series of design choices and a highly efficent warp drive, its become an exploratory and survey workhorse. Intended to be largely self sufficient, its onboard refinery allows it to produce metal stock and retail ready minerals for market. The Galga class is armed with a 90mm flak battery straight from the factory. However, its heavy price tag, powerful thrusters, and large fuel tanks discourage the average captain from getting into a scrap."
 	icon_state = "tramp"
 	moving_state = "tramp_moving"
 	colors = list("#8492fd", "#4d61fc")
-	designer = "Coalition of Colonies, Xanu Prime"
+	designer = "Coalition of Colonies, Xanu Prime and Himeo"
 	volume = "60 meters length, 58 meters beam/width, 12 meters vertical height"
 	drive = "Low-Speed Warp Acceleration FTL Drive"
-	weapons = "Dual extruding port fore and starboard fore-mounted medium caliber armament, aft obscured flight craft bay"
+	weapons = "Single extruding starboard fore-mounted medium caliber armament, aft obscured shuttle dock."
 	sizeclass = "Galga-class Surveyor"
 	shiptype = "Exploration, mineral and artifact recovery"
 	max_speed = 1/(2 SECONDS)
@@ -49,44 +51,15 @@
 	)
 
 /obj/effect/overmap/visitable/ship/coc_surveyor/New()
-	designation = "[pick("Truffle Pig", "Sapphire", "Unto The Unknown", "Unto The Somewhat Known", "Carbon Hound", "Minerals For Days", "The Not-So-Final Frontier", "Phoron Hunter")]"
+	designation = "[pick("Truffle Pig", "Sapphire", "Unto The Unknown", "Unto The Somewhat Known", "Carbon Hound", "Minerals For Days", "The Not-So-Final Frontier", "Phoron Hunter", "Bloodhound")]"
 	..()
 
-/obj/effect/shuttle_landmark/coc_survey_ship
-	base_turf = /turf/space/dynamic
-	base_area = /area/space
-
-/obj/effect/shuttle_landmark/coc_survey_ship/nav1
-	name = "Port"
-	landmark_tag = "nav_surveyor_1"
-
-/obj/effect/shuttle_landmark/coc_survey_ship/nav2
-	name = "Starboard"
-	landmark_tag = "nav_surveyor_2"
-
-/obj/effect/shuttle_landmark/coc_survey_ship/nav3
-	name = "Aft"
-	landmark_tag = "nav_surveyor_3"
-
-/obj/effect/shuttle_landmark/coc_survey_ship/nav4
-	name = "Fore"
-	landmark_tag = "nav_surveyor_4"
-
-/obj/effect/shuttle_landmark/coc_survey_ship/port_dock
-	name = "Port Docking Bay"
-	landmark_tag = "nav_surveyor_portdock"
-	docking_controller = "airlock_coc_surveyor_port"
-
-/obj/effect/shuttle_landmark/coc_survey_ship/starboard_dock
-	name = "Starboard Docking Bay"
-	landmark_tag = "nav_surveyor_starboarddock"
-	docking_controller = "airlock_coc_surveyor_starboard"
 
 /obj/effect/overmap/visitable/ship/landable/coc_survey_shuttle
 	name = "COC Survey Shuttle"
-	desc = "The Minnow-class is a civilian transport shuttle, often used in the Coalition of Colonies."
+	desc = "The Minnow Superduty class is an upgraded and upsized civilian transport shuttle, home grown in the Coalition of Colonies. Boasting a large capacity for storage, a first aid suite, and exosuit charging station. These shuttles are the newest in a long line of industrial workhorses."
 	class = "CCV"
-	designation = "Workhorse"
+	designation = "Minnow Superduty"
 	icon_state = "shuttle"
 	moving_state = "shuttle_moving"
 	shuttle = "COC Survey Shuttle"
@@ -104,7 +77,7 @@
 /datum/shuttle/autodock/overmap/coc_survey_shuttle
 	name = "COC Survey Shuttle"
 	move_time = 20
-	shuttle_area = list(/area/shuttle/coc_survey_shuttle)
+	shuttle_area = list(/area/shuttle/coc_survey_shuttle_main)
 	current_location = "nav_hangar_survey"
 	landmark_transition = "nav_transit_survey_shuttle"
 	range = 1
@@ -113,15 +86,3 @@
 	dock_target = "surveyor_shuttle"
 	defer_initialisation = TRUE
 
-/obj/effect/shuttle_landmark/coc_survey_shuttle/hangar
-	name = "COC Survey Ship - Hangar"
-	landmark_tag = "nav_hangar_survey"
-	base_area = /area/coc_survey_ship/hangar
-	base_turf = /turf/simulated/floor/plating
-	docking_controller = "surveyor_shuttle_dock"
-	movable_flags = MOVABLE_FLAG_EFFECTMOVE
-
-/obj/effect/shuttle_landmark/coc_survey_shuttle/transit
-	name = "In transit"
-	landmark_tag = "nav_transit_survey_shuttle"
-	base_turf = /turf/space/transit/north
