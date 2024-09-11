@@ -6,8 +6,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
-/obj/machinery/light,
+/obj/machinery/light/broken,
 /turf/simulated/floor,
+/area/space)
+"ak" = (
+/obj/effect/decal/cleanable/blood/oil/streak,
+/turf/simulated/floor/tiled/dark,
 /area/space)
 "ar" = (
 /turf/simulated/floor/wood,
@@ -62,6 +66,10 @@
 /obj/machinery/portable_atmospherics/canister/air/airlock,
 /turf/simulated/floor,
 /area/space)
+"bc" = (
+/obj/effect/decal/cleanable/blood/drip/oil,
+/turf/simulated/floor/tiled/dark,
+/area/space)
 "be" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black,
 /obj/structure/lattice/catwalk/indoor/grate,
@@ -82,6 +90,14 @@
 "bk" = (
 /obj/structure/lattice/catwalk/indoor,
 /turf/simulated/floor/exoplanet/dirt_konyang,
+/area/space)
+"bn" = (
+/obj/effect/floor_decal/corner/orange/diagonal,
+/obj/machinery/recharge_station,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
 /area/space)
 "bD" = (
 /obj/structure/table/wood,
@@ -594,6 +610,9 @@
 /obj/effect/floor_decal/spline/plain/orange{
 	dir = 9
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/space)
 "fw" = (
@@ -716,6 +735,10 @@
 	name = "Port Thruster Compartment"
 	},
 /turf/simulated/floor,
+/area/space)
+"gH" = (
+/obj/effect/decal/cleanable/blood/oil/streak,
+/turf/simulated/floor/tiled,
 /area/space)
 "gK" = (
 /obj/structure/table/stone/marble,
@@ -928,6 +951,7 @@
 "iN" = (
 /obj/effect/floor_decal/corner/orange/diagonal,
 /obj/machinery/recharge_station,
+/obj/effect/decal/cleanable/blood/oil,
 /turf/simulated/floor/tiled,
 /area/space)
 "iT" = (
@@ -1117,6 +1141,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
+/obj/effect/decal/cleanable/blood/drip/oil,
 /turf/simulated/floor/tiled/dark,
 /area/space)
 "kS" = (
@@ -1173,6 +1198,7 @@
 /obj/effect/floor_decal/spline/plain/orange{
 	dir = 1
 	},
+/obj/effect/decal/cleanable/blood/oil,
 /turf/simulated/floor/tiled,
 /area/space)
 "lC" = (
@@ -1327,7 +1353,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/machinery/light{
+/obj/machinery/light/broken{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark/full,
@@ -1489,7 +1515,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 6
 	},
-/obj/machinery/light{
+/obj/machinery/light/broken{
 	dir = 8
 	},
 /turf/simulated/floor,
@@ -1706,6 +1732,7 @@
 /area/space)
 "rC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
+/obj/effect/decal/cleanable/blood/drip/oil,
 /turf/simulated/floor/tiled/dark,
 /area/space)
 "rF" = (
@@ -1885,7 +1912,7 @@
 "tP" = (
 /obj/machinery/suit_cycler/offship/hephaestus,
 /obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/machinery/light{
+/obj/machinery/light/broken{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
@@ -2261,7 +2288,7 @@
 "xA" = (
 /obj/machinery/atmospherics/portables_connector/scrubber,
 /obj/machinery/portable_atmospherics/canister/empty,
-/obj/machinery/light{
+/obj/machinery/light/broken{
 	dir = 1
 	},
 /turf/simulated/floor,
@@ -2371,6 +2398,12 @@
 	},
 /obj/effect/decal/cleanable/floor_damage/random_wood_broken,
 /turf/simulated/floor/wood,
+/area/space)
+"yM" = (
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/full,
 /area/space)
 "zg" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -2695,6 +2728,10 @@
 /obj/structure/lattice/catwalk/indoor/grate,
 /turf/simulated/floor,
 /area/space)
+"BE" = (
+/obj/machinery/light/broken,
+/turf/simulated/floor/tiled/full,
+/area/space)
 "BH" = (
 /obj/effect/decal/cleanable/floor_damage/random_tiled_broken,
 /turf/simulated/floor/tiled/dark,
@@ -2888,7 +2925,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
-/obj/machinery/light{
+/obj/machinery/light/broken{
 	dir = 8
 	},
 /turf/simulated/floor,
@@ -2896,6 +2933,11 @@
 "DE" = (
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/carpet/orange,
+/area/space)
+"DI" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/decal/cleanable/blood/oil/streak,
+/turf/simulated/floor/tiled,
 /area/space)
 "DJ" = (
 /obj/effect/floor_decal/industrial/outline_door/red,
@@ -2947,6 +2989,9 @@
 /obj/effect/floor_decal/spline/plain/orange{
 	dir = 5
 	},
+/obj/machinery/light/broken{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/space)
 "Ey" = (
@@ -2972,7 +3017,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/machinery/light{
+/obj/machinery/light/broken{
 	dir = 4
 	},
 /turf/simulated/floor,
@@ -3148,9 +3193,12 @@
 /turf/simulated/floor/tiled,
 /area/space)
 "Gn" = (
-/obj/machinery/autolathe,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/constructable_frame/temp_deco{
+	icon_state = "box_2"
+	},
+/obj/effect/decal/cleanable/blood/oil,
 /turf/simulated/floor,
 /area/space)
 "Gs" = (
@@ -3239,6 +3287,13 @@
 /obj/structure/lattice/catwalk/indoor/grate/dark,
 /turf/simulated/floor,
 /area/space)
+"Hk" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/blood/drip/oil,
+/turf/simulated/floor,
+/area/space)
 "Ho" = (
 /turf/simulated/floor/exoplanet/water/shallow,
 /area/space)
@@ -3274,7 +3329,7 @@
 /area/space)
 "HS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
-/obj/machinery/light{
+/obj/machinery/light/broken{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
@@ -3308,6 +3363,7 @@
 /area/space)
 "Ik" = (
 /obj/machinery/alarm/south,
+/obj/effect/decal/cleanable/blood/oil,
 /turf/simulated/floor/tiled/dark,
 /area/space)
 "IB" = (
@@ -3365,6 +3421,13 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled,
+/area/space)
+"Je" = (
+/obj/machinery/atmospherics/pipe/simple/visible/black{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/drip/oil,
+/turf/simulated/floor,
 /area/space)
 "Jj" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
@@ -3765,6 +3828,9 @@
 "Pc" = (
 /obj/machinery/vending/robotics,
 /obj/effect/floor_decal/corner/orange/diagonal,
+/obj/machinery/light/broken{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/space)
 "Pg" = (
@@ -3925,7 +3991,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 10
 	},
-/obj/machinery/light{
+/obj/machinery/light/broken{
 	dir = 4
 	},
 /turf/simulated/floor,
@@ -4129,6 +4195,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/space)
+"SL" = (
+/obj/effect/decal/cleanable/blood/drip/oil,
+/turf/simulated/floor,
+/area/space)
 "SX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
 /turf/simulated/floor,
@@ -4181,6 +4251,10 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/ridged,
+/area/space)
+"Th" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/tiled/dark,
 /area/space)
 "Tk" = (
 /obj/machinery/door/airlock/silver{
@@ -4286,6 +4360,11 @@
 /obj/effect/floor_decal/industrial/hatch_door/red,
 /obj/effect/decal/cleanable/floor_damage/random_tiled_broken,
 /turf/simulated/floor/tiled/full,
+/area/space)
+"UK" = (
+/obj/effect/decal/cleanable/floor_damage/random_tiled_broken,
+/obj/effect/decal/cleanable/blood/drip/oil,
+/turf/simulated/floor/tiled/dark,
 /area/space)
 "UR" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
@@ -19971,7 +20050,7 @@ iH
 Po
 yk
 Jq
-UX
+SL
 Wp
 co
 ax
@@ -20220,7 +20299,7 @@ Gi
 xw
 Wp
 Jq
-Ey
+Je
 xJ
 tr
 gD
@@ -20736,7 +20815,7 @@ Wp
 Jq
 Bi
 An
-UX
+SL
 wY
 OT
 cc
@@ -21254,7 +21333,7 @@ ns
 uB
 EE
 wZ
-wZ
+Hk
 Pm
 Wp
 xA
@@ -22020,7 +22099,7 @@ ug
 Wp
 ss
 xZ
-xZ
+bc
 HA
 Kv
 xZ
@@ -24412,19 +24491,19 @@ jT
 jT
 jT
 jT
+IB
+IB
 jT
+IB
+ax
+wi
+Ne
+qv
+ax
+IB
 jT
-jT
-jT
-jT
-jT
-jT
-jT
-jT
-jT
-jT
-jT
-XJ
+IB
+IB
 jT
 jT
 jT
@@ -24669,19 +24748,19 @@ jT
 jT
 jT
 jT
-IB
-IB
 jT
-IB
+bk
+bk
+bk
 ax
-wi
-Ne
-qv
+kl
+kl
+kl
 ax
+bk
 IB
-jT
-IB
-IB
+bk
+bk
 IB
 IB
 jT
@@ -24927,18 +25006,18 @@ jT
 jT
 jT
 jT
-bk
-bk
-bk
-ax
-kl
-kl
-kl
-ax
-bk
+jT
 IB
-bk
-bk
+jT
+jT
+jT
+IB
+jT
+jT
+IB
+jT
+jT
+jT
 jT
 IB
 XJ
@@ -25628,7 +25707,7 @@ eV
 Qj
 xZ
 Pj
-xZ
+Th
 ta
 BH
 Wp
@@ -26140,11 +26219,11 @@ Ao
 Ao
 eV
 vD
-xZ
+bc
 Fb
-xZ
+ak
 KH
-BH
+UK
 UX
 jT
 jT
@@ -29458,7 +29537,7 @@ Gi
 vX
 Wp
 iZ
-ah
+gH
 ah
 Bh
 nB
@@ -29715,8 +29794,8 @@ ax
 ug
 Wp
 lu
-ah
-ah
+DI
+gH
 EV
 Ed
 Kf
@@ -29978,7 +30057,7 @@ BT
 Ed
 iN
 iN
-iN
+bn
 DR
 YF
 ow
@@ -30237,7 +30316,7 @@ Wp
 gM
 Wp
 DR
-Pl
+yM
 My
 hm
 wt
@@ -31271,7 +31350,7 @@ AO
 UX
 AO
 My
-pD
+BE
 ax
 jT
 yg
