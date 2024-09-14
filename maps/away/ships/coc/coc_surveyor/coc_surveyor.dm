@@ -3,9 +3,10 @@
 	description = "Coalition science ship."
 
 	prefix = "ships/coc/coc_surveyor/"
-	suffixes = list("coc_surveyor.dmm")
+	suffix = "coc_surveyor.dmm"
 
 	sectors = list(SECTOR_BADLANDS, ALL_COALITION_SECTORS, ALL_VOID_SECTORS)
+	template_flags = TEMPLATE_FLAG_SPAWN_GUARANTEED
 	spawn_weight_sector_dependent = list(ALL_BADLAND_SECTORS = 0.3)
 	sectors_blacklist = list(SECTOR_HANEUNIM, SECTOR_BURZSIA)
 	spawn_weight = 1000
@@ -13,7 +14,6 @@
 	id = "coc_surveyor"
 	shuttles_to_initialise = list(/datum/shuttle/autodock/overmap/coc_survey_shuttle)
 
-	template_flags = TEMPLATE_FLAG_SPAWN_GUARANTEED
 	unit_test_groups = list(1)
 
 
@@ -24,7 +24,12 @@
 /obj/effect/overmap/visitable/ship/coc_surveyor
 	name = "COC Survey Ship"
 	class = "CCV"
-	desc = "The Galga-class Surveyor is the newest design-by-committee exploratory ship, created in a joint venture between Xanu and Himeo. Initally, its design was tailored for the effort to better map out the Weeping Stars. However, thanks to a clever series of design choices and a highly efficent warp drive, its become an exploratory and survey workhorse. Intended to be largely self sufficient, its onboard refinery allows it to produce metal stock and retail ready minerals for market. The Galga class is armed with a 90mm flak battery straight from the factory. However, its heavy price tag, powerful thrusters, and large fuel tanks discourage the average captain from getting into a scrap."
+	desc = "The Galga-class Surveyor is a relatively new design-by-committee exploratory ship, created in a joint venture between Xanu and Himeo. \
+	Initally, its design was tailored for the effort to better map out the Weeping Stars. However, \
+	thanks to a clever series of design choices and a highly efficient warp drive, its become an exploratory and surveying workhorse. \
+	Intended to be largely self sufficient, its onboard refinery allows it to produce metal stock and processed minerals ready for market. \
+	The Galga class is armed with a 90mm flak battery from the factory. However, its heavy price tag, powerful thrusters, \
+	and large fuel tanks discourage the average captain from getting into a scrap."
 	icon_state = "tramp"
 	moving_state = "tramp_moving"
 	colors = list("#8492fd", "#4d61fc")
@@ -33,7 +38,7 @@
 	drive = "Low-Speed Warp Acceleration FTL Drive"
 	weapons = "Single extruding starboard fore-mounted medium caliber armament, aft obscured shuttle dock."
 	sizeclass = "Galga-class Surveyor"
-	shiptype = "Exploration, mineral and artifact recovery"
+	shiptype = "Survey, mineral and artifact recovery"
 	max_speed = 1/(2 SECONDS)
 	burn_delay = 1 SECONDS
 	vessel_mass = 5000
@@ -57,7 +62,8 @@
 
 /obj/effect/overmap/visitable/ship/landable/coc_survey_shuttle
 	name = "COC Survey Shuttle"
-	desc = "The Minnow Superduty class is an upgraded and upsized civilian transport shuttle, home grown in the Coalition of Colonies. Boasting a large capacity for storage, a first aid suite, and exosuit charging station. These shuttles are the newest in a long line of industrial workhorses."
+	desc = "The Minnow Superduty class is an upgraded and up-sized civilian transport shuttle, home grown in the Coalition of Colonies. \
+	Boasting a large capacity for storage, a first aid suite, and exosuit charging station. These shuttles are the newest model in a long line of industrial workhorses."
 	class = "CCV"
 	designation = "Minnow Superduty"
 	icon_state = "shuttle"
@@ -78,11 +84,10 @@
 	name = "COC Survey Shuttle"
 	move_time = 20
 	shuttle_area = list(/area/shuttle/coc_survey_shuttle_main)
-	current_location = "nav_hangar_survey"
+	current_location = "nav_coc_survey_ship_dock_aft"
 	landmark_transition = "nav_transit_survey_shuttle"
 	range = 1
 	fuel_consumption = 2
-	logging_home_tag = "nav_hangar_survey"
-	dock_target = "surveyor_shuttle"
+	logging_home_tag = "nav_coc_survey_ship_dock_aft"
 	defer_initialisation = TRUE
 

@@ -2,23 +2,29 @@
 
 /obj/effect/shuttle_landmark/coc_survey_shuttle/shuttle_dock
 	name = "CoC Surveyor Shuttle Dock"
-	landmark_tag = "coc_surveyor_shuttle"
-	docking_controller = "coc_surveyor_shuttle"
-	base_area = /area/shuttle/coc_survey_shuttle
+	landmark_tag = "nav_coc_survey_ship_dock_aft"
+	docking_controller = "airlock_coc_survey_ship_aft"
+	base_area = /area/shuttle/coc_survey_shuttle_main
 	base_turf = /turf/space/dynamic
 	movable_flags = MOVABLE_FLAG_EFFECTMOVE
 
 /obj/effect/map_effect/marker/airlock/shuttle/coc_survey_ship/shuttle_dock
-	name = "Shuttle Dock"
-	landmark_tag = "coc_surveyor_shuttle"
-	master_tag = "airlock_coc_survey_shuttle_dock"
+	name = "COC Survey Shuttle"
+	shuttle_tag = "COC Survey Shuttle"
+	master_tag = "airlock_scc_scout_shuttle"
+	cycle_to_external_air = TRUE
+
+/obj/effect/map_effect/marker/airlock/docking/coc_survey_ship/dock/aft
+	name = "Dock, Aft"
+	landmark_tag = "nav_coc_survey_ship_dock_aft"
+	master_tag = "airlock_coc_survey_ship_aft"
 
 /obj/effect/shuttle_landmark/coc_survey_shuttle/transit
 	name = "In transit"
 	landmark_tag = "nav_transit_survey_shuttle"
 	base_turf = /turf/space/transit/north
 
-// --------------------- docks + things I don't wanna redo so I'm just moving them from the main dm to here so its cleaner. Don't worry about it <3
+// --------------------- docks + airlock + landmarks
 
 /obj/effect/shuttle_landmark/coc_survey_ship
 	base_turf = /turf/space/dynamic
@@ -60,7 +66,6 @@
 	landmark_tag = "nav_coc_survey_ship_dock_starboard"
 	master_tag = "airlock_coc_survey_ship_starboard"
 
-/obj/effect/map_effect/marker/airlock/docking/coc_survey_ship/dock/aft
-	name = "Dock, Aft"
-	landmark_tag = "nav_coc_survey_ship_dock_aft"
-	master_tag = "airlock_coc_survey_ship_aft"
+/obj/effect/map_effect/marker/airlock/coc_survey_ship
+	name = "Fore-Port Airlock"
+	master_tag = "airlock_coc_survey_ship"
