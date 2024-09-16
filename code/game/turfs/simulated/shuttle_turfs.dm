@@ -40,22 +40,22 @@
 	)
 
 /turf/simulated/wall/shuttle/dark/cardinal/merc
-	color = "#8b7d86"
+	color = COLOR_SHIP_MERC_LIGHT
 
 /turf/simulated/wall/shuttle/dark/cardinal/khaki
-	color = "#ac8b78"
+	color = COLOR_SHIP_KHAKI
 
 /turf/simulated/wall/shuttle/dark/cardinal/purple
-	color = "#7846b1"
+	color = COLOR_SHIP_PURPLE
 
 /turf/simulated/wall/shuttle/dark/cardinal/red
-	color = "#c24f4f"
+	color = COLOR_SHIP_RED
 
 /turf/simulated/wall/shuttle/dark/cardinal/blue
-	color = "#6176a1"
+	color = COLOR_SHIP_PASTEL_BLUE
 
 /turf/simulated/wall/shuttle/dark/cardinal/coalition
-	color = COLOR_COALITION
+	color = COLOR_SHIP_COALITION
 
 /turf/simulated/wall/shuttle/dark/cardinal/gold
 	color = COLOR_GOLD
@@ -118,19 +118,19 @@
 	outside_part = FALSE
 
 /turf/simulated/wall/shuttle/raider
-	color = "#6C7364"
+	color = COLOR_SHIP_RAIDER
 
 /turf/simulated/wall/shuttle/hapt
-	color = "#2E2B2B"
+	color = COLOR_SHIP_HAPT
 
 /turf/simulated/wall/shuttle/hapt/blue
-	color = "#3c526f"
+	color = COLOR_SHIP_HAPT_BLUE
 
 /turf/simulated/wall/shuttle/legion
-	color = "#5F78A0"
+	color = COLOR_SHIP_LEGION
 
 /turf/simulated/wall/shuttle/palepurple
-	color = COLOR_PALE_PURPLE_GRAY
+	color = COLOR_SHIP_PALE_PURPLE_GRAY
 	canSmoothWith = list(
 		/turf/simulated/wall/shuttle/palepurple,
 		/obj/structure/window/shuttle/palepurple,
@@ -141,7 +141,7 @@
 
 
 /turf/simulated/wall/shuttle/skrell
-	color = COLOR_PURPLE
+	color = COLOR_SHIP_PURPLE
 	canSmoothWith = list(
 		/turf/simulated/wall/shuttle/skrell,
 		/obj/structure/window/shuttle,
@@ -154,17 +154,17 @@
 	. = ..(mapload,"skrell")
 
 /turf/simulated/wall/shuttle/scc
-	color = "#AAAFC7"
+	color = COLOR_SHIP_SCC_HULL
 
 //Corporate shuttle and ship walls//
 /turf/simulated/wall/shuttle/idris
-	color = "#4B7A73"
+	color = COLOR_SHIP_IDRIS
 
 /turf/simulated/wall/shuttle/space_ship
-	color = "#BDB6AE"
+	color = COLOR_SHIP_SILVER
 
 /turf/simulated/wall/shuttle/space_ship/mercenary
-	color = "#5b5b5b"
+	color = COLOR_SHIP_MERC_DARK
 
 //--Unique Shuttles--//
 
