@@ -129,6 +129,9 @@
 /turf/simulated/wall/shuttle/legion
 	color = COLOR_SHIP_LEGION
 
+/turf/simulated/wall/shuttle/hephaestus
+	color = "#263e23"
+
 /turf/simulated/wall/shuttle/palepurple
 	color = COLOR_SHIP_PALE_PURPLE_GRAY
 	canSmoothWith = list(
