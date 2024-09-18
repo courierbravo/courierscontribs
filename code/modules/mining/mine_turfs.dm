@@ -663,6 +663,45 @@ var/list/mineral_can_smooth_with = list(
 	name = "metallic_hydrogen mineral wall"
 	preset_mineral_name = ORE_HYDROGEN
 
+/turf/simulated/mineral/preset/exoplanet
+	mined_turf = /turf/simulated/floor/exoplanet/mineral
+
+/turf/simulated/mineral/preset/exoplanet/coal
+	name = "coal mineral wall"
+	preset_mineral_name = ORE_COAL
+
+/turf/simulated/mineral/preset/exoplanet/gold
+	name = "gold mineral wall"
+	preset_mineral_name = ORE_GOLD
+
+/turf/simulated/mineral/preset/exoplanet/diamond
+	name = "diamond mineral wall"
+	preset_mineral_name = ORE_DIAMOND
+
+/turf/simulated/mineral/preset/exoplanet/iron
+	name = "iron mineral wall"
+	preset_mineral_name = ORE_IRON
+
+/turf/simulated/mineral/preset/exoplanet/platinum
+	name = "platinum mineral wall"
+	preset_mineral_name = ORE_PLATINUM
+
+/turf/simulated/mineral/preset/exoplanet/bauxite
+	name = "bauxite mineral wall"
+	preset_mineral_name = ORE_BAUXITE
+
+/turf/simulated/mineral/preset/exoplanet/galena
+	name = "galena mineral wall"
+	preset_mineral_name = ORE_GALENA
+
+/turf/simulated/mineral/preset/exoplanet/uranium
+	name = "uranium mineral wall"
+	preset_mineral_name = ORE_URANIUM
+
+/turf/simulated/mineral/preset/exoplanet/metallic_hydrogen
+	name = "metallic_hydrogen mineral wall"
+	preset_mineral_name = ORE_HYDROGEN
+
 // Some extra types for the surface to keep things pretty.
 /turf/simulated/mineral/surface
 	mined_turf = /turf/unsimulated/floor/asteroid/ash
