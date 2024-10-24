@@ -222,17 +222,6 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/material/kitchen/utensil/knife/pocketbutterknife/update_force()
-	if(deployed)
-		force = 6
-		sharp = TRUE
-		edge = TRUE
-
-	else
-		force = 3
-		sharp = FALSE
-		edge = FALSE
-
 /**
  * Switches the knife's deployment status, changes the force value, and makes it blunt/sharp.
  *
@@ -253,6 +242,18 @@
 
 	add_fingerprint(user)
 	update_icon()
+
+/obj/item/material/kitchen/utensil/knife/pocketbutterknife/update_force()
+
+	if(deployed)
+		force = 6
+		sharp = TRUE
+		edge = TRUE
+
+	else
+		force = 3
+		sharp = FALSE
+		edge = FALSE
 
 /obj/item/material/kitchen/utensil/knife/pocketbutterknife/AltClick(mob/user)
 	if(!use_check_and_message(user))
