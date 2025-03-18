@@ -262,3 +262,26 @@
 	is_wieldable = TRUE
 	modifystate = "hegemonyrifle"
 	firemodes = list()
+
+obj/item/gun/energy/rifle/riot
+	name = "riot energy rifle"
+	desc = "The NT RC-10 Energy Rifle is a police issue disruptor and laser rifle merged into one platform. A laser emitter and an advanced disruptor married together on the back of the \
+	LR-6's power pack. Designed specifically to fill the riot control niche of weapons, iterating on single mode weapons platforms before it."
+	desc_extended = "First drafts for the RC-10 came in the wake of the hivebot invasion of Konyang in 2466. Even with emergency funding granting 60 to 80 hour weeks designing \
+	and testing the weapon, the final design wouldn't emerge until the first week of March, right at the end of the crisis. Despite its inability to come to market in time, \
+	demand for the weapon is high from both private security firms and police procurement boards alike.
+	icon = 'icons/obj/guns/erifle.dmi'
+	icon_state = "eriflestun"
+	item_state = "eriflestun"
+	max_shots = 18
+	fire_delay = 6
+	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
+	projectile_type = /obj/projectile/energy/disruptorstun/enhanced
+	secondary_projectile_type = /obj/projectile/beam
+	can_switch_modes = 1
+	turret_sprite_set = "laser"
+	turret_is_lethal = 0
+	firemodes = list(
+		list(mode_name="stun", projectile_type=/obj/projectile/energy/disruptorstun/enhanced, modifystate="eriflestun", fire_sound = 'sound/weapons/gunshot/bolter.ogg'),
+		list(mode_name="lethal", projectile_type=/obj/projectile/beam/midlaser, modifystate="eriflekill", fire_sound = 'sound/weapons/laser1.ogg')
+	)
