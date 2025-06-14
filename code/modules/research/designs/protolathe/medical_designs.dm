@@ -1,6 +1,19 @@
 /datum/design/item/medical
 	materials = list(DEFAULT_WALL_MATERIAL = 30, MATERIAL_GLASS = 20)
-	p_category = "Biotech Device Designs"
+	p_category = "Medical and Biotech Device Designs"
+
+/datum/design/item/medical/rollerbed
+	name = "Roller Bed"
+	desc = "A collapsible patient transfer roller bed."
+	materials = list(DEFAULT_WALL_MATERIAL = 1000)
+	build_path = /obj/item/roller
+
+/datum/design/item/general/hoverbed
+	name = "Hover Bed"
+	desc = "The roller bed, but it hovers."
+	materials = list(DEFAULT_WALL_MATERIAL = 1000)
+	req_tech = list(TECH_BLUESPACE = 2, TECH_MATERIAL = 4)
+	build_path = /obj/item/roller/hover
 
 /datum/design/item/medical/health_analyzer
 	name = "Health Analyzer"
