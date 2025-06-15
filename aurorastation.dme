@@ -3532,6 +3532,7 @@
 #include "code\modules\research\designs\circuit\shield_designs.dm"
 #include "code\modules\research\designs\circuit\ship_circuits.dm"
 #include "code\modules\research\designs\circuit\tcom_designs.dm"
+#include "code\modules\research\designs\mechfab\crates.dm"
 #include "code\modules\research\designs\mechfab\hardsuit\modules.dm"
 #include "code\modules\research\designs\mechfab\hardsuit\rigs.dm"
 #include "code\modules\research\designs\mechfab\mechs\designs_exosuit_equipment.dm"

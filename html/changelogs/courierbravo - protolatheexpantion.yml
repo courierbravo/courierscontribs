@@ -57,3 +57,4 @@ delete-after: True
 changes:
   - refactor: "Refactored the protolathe hud glasses section into a more general eyewear section."
   - rscadd: "Added many new items to the protolathe menu. Including but not limited to medical items, deployable items, eyewear,"
+  - rscadd: "Added new items and categories to the mech fabricator for crates and voidsuits."

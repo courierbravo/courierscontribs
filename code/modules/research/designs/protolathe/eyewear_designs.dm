@@ -1,5 +1,5 @@
 /datum/design/item/eyewear
-	materials = list(DEFAULT_WALL_MATERIAL = 50, MATERIAL_GLASS = 50)
+	materials = list(DEFAULT_WALL_MATERIAL = 500, MATERIAL_GLASS = 500)
 	req_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 2)
 	p_category = "Eyewear Designs"
 
@@ -29,6 +29,8 @@
 
 /datum/design/item/eyewear/nightvision
 	name = "Night Vision Goggles"
+	desc = "A set of night vision goggles. These are difficult to assemble, and take some time to manufacture."
 	req_tech = list(TECH_COMBAT = 7, TECH_ENGINEERING =7)
-	materials = list(DEFAULT_WALL_MATERIAL = 1500, MATERIAL_GLASS = 1500, MATERIAL_URANIUM = 2000)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000, MATERIAL_GLASS = 10000, MATERIAL_URANIUM = 6000)
 	build_path = /obj/item/clothing/glasses/night
+	time = 120 SECONDS

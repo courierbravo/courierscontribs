@@ -12,7 +12,7 @@
 	name = "Hover Bed"
 	desc = "The roller bed, but it hovers."
 	materials = list(DEFAULT_WALL_MATERIAL = 1000)
-	req_tech = list(TECH_BLUESPACE = 2, TECH_MATERIAL = 4)
+	req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 4)
 	build_path = /obj/item/roller/hover
 
 /datum/design/item/medical/health_analyzer
