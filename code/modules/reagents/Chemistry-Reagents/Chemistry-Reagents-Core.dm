@@ -12,6 +12,8 @@
 
 	fallback_specific_heat = 3.617
 
+	value = 2
+
 /singleton/reagent/blood/initialize_data(newdata, datum/reagents/holder)
 	. = ..()
 	if(.)
@@ -123,6 +125,8 @@
 
 	germ_adjust = 0.05 // i mean, i guess you could try...
 
+	value = 0
+
 /singleton/reagent/water/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed, var/datum/reagents/holder)
 	if(!istype(M))
 		return
@@ -137,7 +141,7 @@
 
 	var/hotspot = (locate(/obj/fire) in T)
 	if(hotspot && !istype(T, /turf/space))
-		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
+		var/datum/gas_mixture/lowertemp = T.remove_air(T.air.total_moles)
 		lowertemp.temperature = max(lowertemp.temperature-2000, lowertemp.temperature / 2, T0C)
 		lowertemp.react()
 		T.assume_air(lowertemp)
@@ -205,6 +209,8 @@
 	glass_desc = "Unless you are an industrial tool, this is probably not safe for consumption."
 
 	fallback_specific_heat = 0.605
+
+	value = 6.8
 
 /singleton/reagent/fuel/touch_turf(var/turf/T, var/amount, var/datum/reagents/holder)
 	new /obj/effect/decal/cleanable/liquid_fuel(T, amount)

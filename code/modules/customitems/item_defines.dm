@@ -27,8 +27,8 @@ All custom items with worn sprites must follow the contained sprite system: http
 
 	return
 
-/obj/item/implanter/fluff/attack(mob/M as mob, mob/user as mob, var/target_zone)
-	if (!M.ckey || M.ckey != allowed_ckey)
+/obj/item/implanter/fluff/attack(mob/living/target_mob, mob/living/user, target_zone)
+	if (!target_mob.ckey || target_mob.ckey != allowed_ckey)
 		return
 
 	..()
@@ -415,31 +415,31 @@ All custom items with worn sprites must follow the contained sprite system: http
 		has_spear = FALSE
 		update_icon()
 
-/obj/item/fluff/tokash_spear/attackby(var/obj/item/W, var/mob/user)
-	if(!has_spear && istype(W, /obj/item/fluff/tokash_spearhead))
-		to_chat(user, SPAN_NOTICE("You place \the [W] on the [src]."))
-		user.drop_from_inventory(W,src)
-		qdel(W)
+/obj/item/fluff/tokash_spear/attackby(obj/item/attacking_item, mob/user, params)
+	if(!has_spear && istype(attacking_item, /obj/item/fluff/tokash_spearhead))
+		to_chat(user, SPAN_NOTICE("You place \the [attacking_item] on the [src]."))
+		user.drop_from_inventory(attacking_item,src)
+		qdel(attacking_item)
 		has_spear = TRUE
 		update_icon()
 	else
 		..()
 
-/obj/item/fluff/tokash_spear/MouseDrop(mob/user)
-	if((user == usr && (!(usr.restrained()) && (!(usr.stat) && (usr.contents.Find(src) || in_range(src, usr))))))
-		if(!istype(usr, /mob/living/carbon/slime) && !istype(usr, /mob/living/simple_animal))
-			if(!usr.get_active_hand()) // If active hand is empty.
-				var/mob/living/carbon/human/H = user
+/obj/item/fluff/tokash_spear/mouse_drop_dragged(atom/over, mob/user, src_location, over_location, params)
+	if((over == user && (!(user.restrained()) && (!(user.stat) && (user.contents.Find(src) || in_range(src, user))))))
+		if(!istype(user, /mob/living/carbon/slime) && !istype(user, /mob/living/simple_animal))
+			if(!user.get_active_hand()) // If active hand is empty.
+				var/mob/living/carbon/human/H = over
 				var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 
 				if(H.hand)
 					temp = H.organs_by_name[BP_L_HAND]
 				if(temp && !temp.is_usable())
-					to_chat(user, SPAN_NOTICE("You try to move your [temp.name], but cannot!"))
+					to_chat(H, SPAN_NOTICE("You try to move your [temp.name], but cannot!"))
 					return
 
-				to_chat(user, SPAN_NOTICE("You pick up \the [src]."))
-				user.put_in_hands(src)
+				to_chat(H, SPAN_NOTICE("You pick up \the [src]."))
+				H.put_in_hands(src)
 	return
 
 /obj/item/fluff/tokash_spearhead
@@ -533,12 +533,12 @@ All custom items with worn sprites must follow the contained sprite system: http
 	icon_state = "thea_teabox"
 	foldable = null
 	can_hold = list(/obj/item/reagent_containers/glass/beaker/teapot/fluff/thea_teapot, /obj/item/reagent_containers/food/drinks/fluff/thea_teacup)
+	make_exact_fit = TRUE
 
 /obj/item/storage/box/fluff/thea_teabox/fill()
 	new /obj/item/reagent_containers/glass/beaker/teapot/fluff/thea_teapot(src)
 	for(var/i in 1 to 4)
 		new /obj/item/reagent_containers/food/drinks/fluff/thea_teacup(src)
-	make_exact_fit()
 
 /obj/item/fluff/fraseq_journal //Fraseq's Journal of Mysteries - Quorrdash Fraseq - kingoftheping
 	name = "leather journal"
@@ -821,20 +821,21 @@ All custom items with worn sprites must follow the contained sprite system: http
 	var/obj/item/device/megaphone/fluff/akinyi_mic/mic
 	var/collapsed = TRUE
 
-/obj/item/fluff/akinyi_stand/attackby(obj/item/O, mob/user)
-	if(istype(O, /obj/item/device/megaphone/fluff/akinyi_mic))
+/obj/item/fluff/akinyi_stand/attackby(obj/item/attacking_item, mob/user, params)
+	if(istype(attacking_item, /obj/item/device/megaphone/fluff/akinyi_mic))
 		if(!mic && !collapsed)
-			user.unEquip(O)
-			O.forceMove(src)
-			mic = O
-			to_chat(user, SPAN_NOTICE("You place \the [O] on \the [src]."))
+			user.unEquip(attacking_item)
+			attacking_item.forceMove(src)
+			mic = attacking_item
+			to_chat(user, SPAN_NOTICE("You place \the [attacking_item] on \the [src]."))
 			update_icon()
 
-/obj/item/fluff/akinyi_stand/MouseDrop(mob/user as mob)
-	if((user == usr && (!use_check(user))) && (user.contents.Find(src) || in_range(src, user)))
-		if(ishuman(user))
-			forceMove(get_turf(user))
-			user.put_in_hands(src)
+/obj/item/fluff/akinyi_stand/mouse_drop_dragged(atom/over, mob/user, src_location, over_location, params)
+	if((over == user && (!use_check(over))) && (over.contents.Find(src) || in_range(src, over)))
+		if(ishuman(over))
+			var/mob/living/carbon/human/H = over
+			forceMove(get_turf(H))
+			H.put_in_hands(src)
 			update_icon()
 
 /obj/item/fluff/akinyi_stand/attack_hand(mob/user)
@@ -994,15 +995,15 @@ All custom items with worn sprites must follow the contained sprite system: http
 		return
 	return ..()
 
-/obj/item/fluff/holoconsole/attackby(obj/item/I, mob/user)
-	switch(I.type)
+/obj/item/fluff/holoconsole/attackby(obj/item/attacking_item, mob/user, params)
+	switch(attacking_item.type)
 		if(/obj/item/fluff/holoconsole_controller)
 			if(left_controller)
 				to_chat(user, SPAN_WARNING("\The [src] already has its left controller connected!"))
 				return
-			user.visible_message("<b>[user]</b> slots \the [I] back into to \the [src].", SPAN_NOTICE("You slot \the [I] back into \the [src]."))
-			user.drop_from_inventory(I, src)
-			left_controller = I
+			user.visible_message("<b>[user]</b> slots \the [attacking_item] back into to \the [src].", SPAN_NOTICE("You slot \the [attacking_item] back into \the [src]."))
+			user.drop_from_inventory(attacking_item, src)
+			left_controller = attacking_item
 			left_controller.parent_console = null
 			verbs += /obj/item/fluff/holoconsole/proc/remove_left
 			update_icon()
@@ -1011,9 +1012,9 @@ All custom items with worn sprites must follow the contained sprite system: http
 			if(right_controller)
 				to_chat(user, SPAN_WARNING("\The [src] already has its right controller connected!"))
 				return
-			user.visible_message("<b>[user]</b> slots \the [I] back into to \the [src].", SPAN_NOTICE("You slot \the [I] back into \the [src]."))
-			user.drop_from_inventory(I, src)
-			right_controller = I
+			user.visible_message("<b>[user]</b> slots \the [attacking_item] back into to \the [src].", SPAN_NOTICE("You slot \the [attacking_item] back into \the [src]."))
+			user.drop_from_inventory(attacking_item, src)
+			right_controller = attacking_item
 			right_controller.parent_console = null
 			verbs += /obj/item/fluff/holoconsole/proc/remove_right
 			update_icon()
@@ -1123,13 +1124,13 @@ All custom items with worn sprites must follow the contained sprite system: http
 		return
 	return ..()
 
-/obj/item/fluff/holocase/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/fluff/holoconsole))
+/obj/item/fluff/holocase/attackby(obj/item/attacking_item, mob/user, params)
+	if(istype(attacking_item, /obj/item/fluff/holoconsole))
 		if(contained_console)
 			to_chat(user, SPAN_WARNING("\The [src] already contains a holoconsole!"))
 			return
-		user.drop_from_inventory(I, src)
-		contained_console = I
+		user.drop_from_inventory(attacking_item, src)
+		contained_console = attacking_item
 		user.visible_message("<b>[usr]</b> puts \the [contained_console] into \the [src], zipping it back up.", SPAN_NOTICE("You put \the [contained_console] into \the [src], zipping it back up."))
 		update_icon()
 		return
@@ -1300,15 +1301,15 @@ All custom items with worn sprites must follow the contained sprite system: http
 	item_state = "sezcoat"
 	contained_sprite = TRUE
 
-/obj/item/clothing/accessory/poncho/fluff/sezrak_cape //Red Han'san Cape - Sezrak Han'san - captaingecko
-	name = "red Han'san cape"
-	desc = "This is a cape loosely based on the style of Dominian nobility, the latest fashion across Dominian space, although it doesn't feature any of the colors belonging to the Great Houses, \
-	and doesn't bear the symbolism of the ones worn by Tribunalist priests. The left shoulder-side bears the standards of the Han'san clan-house with a small, discreet symbol of gilded colors, \
-	instead of the usual Green used for this house."
-	icon = 'icons/obj/custom_items/sezrak_coat.dmi'
-	icon_override = 'icons/obj/custom_items/sezrak_coat.dmi'
-	icon_state = "sez_cape"
-	item_state = "sez_cape"
+/obj/item/clothing/accessory/poncho/fluff/sezrak_scaleshield //Red Han'san Scaleshield - Sezrak Han'san - captaingecko
+	name = "red Han'san scaleshield"
+	desc = "A thick, warm piece of reinforced canvas and fabric made by Dominian Unathi to keep themselves warm in Moroz's frigid climate. This one bears a pattern commonly \
+	seen in Hunter’s District, also known as Widowtown, although not with the typical colors. It bears pieces reinforced canvas here and there, more to protect against the elements than actual bumps, \
+	and embroided on a white stripe is the standard of the Han'san clan."
+	icon = 'icons/obj/custom_items/sezrak_scaleshield.dmi'
+	icon_override = 'icons/obj/custom_items/sezrak_scaleshield.dmi'
+	icon_state = "sez_scaleshield"
+	item_state = "sez_scaleshield"
 	contained_sprite = TRUE
 
 /obj/item/journal/fluff/mrakiizar_book //Worn Journal - Azradov Mrakiizar - kingoftheping
@@ -1490,7 +1491,7 @@ All custom items with worn sprites must follow the contained sprite system: http
 
 /obj/item/clothing/accessory/poncho/tajarancloak/fluff/dekel_smock/verb/change_hood()
 	set name = "Toggle Hood"
-	set category = "Object"
+	set category = "Object.Equipped"
 	set src in usr
 
 	if(use_check_and_message(usr))
@@ -1547,25 +1548,25 @@ All custom items with worn sprites must follow the contained sprite system: http
 		icon_state = initial(icon_state)
 		STOP_PROCESSING(SSprocessing, src)
 
-/obj/item/fluff/nasira_burner/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/fluff/nasira_burner/attackby(obj/item/attacking_item, mob/user, params)
 	..()
-	if(W.isFlameSource())
+	if(attacking_item.isFlameSource())
 		var/text = matchmsg
-		if(istype(W, /obj/item/flame/match))
+		if(istype(attacking_item, /obj/item/flame/match))
 			text = matchmsg
-		else if(istype(W, /obj/item/flame/lighter/zippo))
+		else if(istype(attacking_item, /obj/item/flame/lighter/zippo))
 			text = zippomsg
-		else if(istype(W, /obj/item/flame/lighter))
+		else if(istype(attacking_item, /obj/item/flame/lighter))
 			text = lightermsg
-		else if(W.iswelder())
+		else if(attacking_item.iswelder())
 			text = weldermsg
-		else if(istype(W, /obj/item/device/assembly/igniter))
+		else if(istype(attacking_item, /obj/item/device/assembly/igniter))
 			text = ignitermsg
 		else
 			text = genericmsg
 		text = replacetext(text, "USER", "\the [user]")
 		text = replacetext(text, "NAME", "\the [name]")
-		text = replacetext(text, "FLAME", "\the [W.name]")
+		text = replacetext(text, "FLAME", "\the [attacking_item.name]")
 		light(text)
 
 /obj/item/fluff/nasira_burner/process()
@@ -1971,3 +1972,61 @@ All custom items with worn sprites must follow the contained sprite system: http
 	flag_path = "devorask_flag"
 	flag_size = TRUE
 	flag_item = /obj/item/flag/fluff/devorask_flag/l
+
+/obj/item/organ/external/arm/fluff/gracia_autakh // gracia's aut'akh left arm - Gracia Hiza - cometblaze
+	robotize_type = PROSTHETIC_AUTAKH
+	skin_color = FALSE
+	override_robotize_force_icon = 'icons/mob/human_races/fluff/gracia_arm.dmi'
+	override_robotize_painted = FALSE
+	robotize_children = FALSE
+
+/obj/item/organ/external/arm/fluff/gracia_autakh/Initialize(mapload)
+	. = ..()
+	// adding the hand to the child here means only the arm has to be added to the DB
+	// since the hand will be attached automatically
+	LAZYADD(children, new /obj/item/organ/external/hand/fluff/gracia_autakh(src))
+
+/obj/item/organ/external/hand/fluff/gracia_autakh // gracia's aut'akh left hand - Gracia Hiza - cometblaze
+	robotize_type = PROSTHETIC_AUTAKH
+	skin_color = FALSE
+	override_robotize_force_icon = 'icons/mob/human_races/fluff/gracia_arm.dmi'
+	override_robotize_painted = FALSE
+	robotize_children = FALSE
+
+/obj/item/clothing/suit/storage/toggle/fluff/tokash_mantle //Consular Mantle - Suvek Tokash - Evandorf
+	name = "consular's mantle"
+	desc = "A long, ornate, and somewhat extravagant cloak-like mantle. Fashioned with Hegemony colors, it serves as a symbol of the wearer's station and allegiance. Scenes of Unathi history and legend etched into the golden crest surmount the trailing, blood-red fabric. "
+	icon = 'icons/obj/custom_items/tokash_mantle.dmi'
+	icon_override = 'icons/obj/custom_items/tokash_mantle.dmi'
+	icon_state = "tokash_mantle"
+	item_state = "tokash_mantle"
+	contained_sprite = TRUE
+
+/obj/item/clothing/accessory/poncho/fluff/kira_carrier //mictlan plate carrier adjustments - Kira Vazquez - Dessysalta
+	name = "mictlan plate carrier adjustments"
+	desc = "Various pieces of custom-made accessories and adjustments to better suit a plate carrier for its wearer. It has various notes scrawled along it in permanent marker, mostly \
+	in Tradeband and Spanish, such as the verse of Ephesians 6:13 and, 'Wishing you well!' The SCC's logo has been woven around the left arm flap, and Mictlan's flag \
+	around the right. The back reads K. VAZQUEZ in bold text."
+	icon = 'icons/obj/custom_items/kira_carrier.dmi'
+	icon_override = 'icons/obj/custom_items/kira_carrier.dmi'
+	icon_state = "kira_carrier"
+	item_state = "kira_carrier"
+	contained_sprite = TRUE
+
+/obj/item/organ/external/leg/right/fluff/nines_autakh // Prosthetic Aut'akh Left Leg - Hazel #S-H9.09 - hazelmouse
+	robotize_type = PROSTHETIC_AUTAKH
+	skin_color = FALSE
+	override_robotize_force_icon = 'icons/mob/human_races/fluff/nines_leg.dmi'
+	override_robotize_painted = FALSE
+	robotize_children = FALSE
+
+/obj/item/organ/external/leg/right/fluff/nines_autakh/Initialize(mapload)
+	. = ..()
+	LAZYADD(children, new /obj/item/organ/external/foot/right/fluff/nines_autakh(src))
+
+/obj/item/organ/external/foot/right/fluff/nines_autakh // Prosthetic Aut'akh Left Foot - Hazel #S-H9.09 - hazelmouse
+	robotize_type = PROSTHETIC_AUTAKH
+	skin_color = FALSE
+	override_robotize_force_icon = 'icons/mob/human_races/fluff/nines_leg.dmi'
+	override_robotize_painted = FALSE
+	robotize_children = FALSE

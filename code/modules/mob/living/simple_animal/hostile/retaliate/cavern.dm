@@ -54,7 +54,7 @@
 	name = "electrical discharge"
 	icon_state = "stun"
 	damage_type = DAMAGE_BURN
-	check_armor = "energy"
+	check_armor = ENERGY
 	damage = 5
 
 	muzzle_type = /obj/effect/projectile/muzzle/stun
@@ -67,7 +67,9 @@
 	else
 		..()
 
-/obj/projectile/beam/cavern/on_hit(var/atom/target, var/blocked = 0)
+/obj/projectile/beam/cavern/on_hit(atom/target, blocked, def_zone)
+	. = ..()
+
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		var/shock_damage = rand(10,20)
@@ -80,7 +82,7 @@
 	icon_state = "sadrone"
 	icon_living = "sadrone"
 	icon_dead = "sadrone_dead"
-	move_to_delay = 5
+	speed = 5
 	health = 60
 	maxHealth = 60
 	harm_intent_damage = 5
@@ -175,7 +177,7 @@
 			break
 
 	if(target_ore)
-		GLOB.move_manager.move_to(src, target_ore, 1, move_to_delay)
+		GLOB.move_manager.move_to(src, target_ore, 1, speed)
 	else if(found_turfs.len)
 		for(var/turf/simulated/mineral/M in found_turfs)
 			if(!QDELETED(M) || !M.mineral)

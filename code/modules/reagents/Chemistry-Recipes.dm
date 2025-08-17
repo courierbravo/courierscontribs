@@ -1270,6 +1270,7 @@
 		/mob/living/simple_animal/hostile/gift,
 		/mob/living/simple_animal/hostile/hivebotbeacon,
 		/mob/living/simple_animal/hostile/hivebotbeacon/incendiary,
+		/mob/living/simple_animal/hostile/hivebotbeacon/weakened,
 		/mob/living/simple_animal/hostile/republicon,
 		/mob/living/simple_animal/hostile/republicon/ranged,
 		/mob/living/simple_animal/hostile/giant_spider/nurse/spider_queen,
@@ -1849,6 +1850,13 @@
 	id = "garlicsauce"
 	result = /singleton/reagent/nutriment/garlicsauce
 	required_reagents = list(/singleton/reagent/drink/garlicjuice = 1, /singleton/reagent/nutriment/triglyceride/oil/corn = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/sweet_chili
+	name = "Sweet Chili Sauce"
+	id = "sweet_chili"
+	result = /singleton/reagent/nutriment/sweet_chili
+	required_reagents = list(/singleton/reagent/sugar = 1, /singleton/reagent/capsaicin = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/peanutbutter // Yes, this doesn't make sense. No, I don't know how to do this better
@@ -3174,13 +3182,6 @@
 	result = /singleton/reagent/drink/ntella_hot_chocolate
 	required_reagents = list(/singleton/reagent/drink/milk = 1, /singleton/reagent/nutriment/choconutspread = 1, /singleton/reagent/drink/milk/cream = 1)
 	result_amount = 3
-
-/datum/chemical_reaction/drink/drink/mimosa
-	name = "Mimosa"
-	id = "mimosa"
-	result = /singleton/reagent/alcohol/mimosa
-	required_reagents = list(/singleton/reagent/alcohol/champagne = 1, /singleton/reagent/drink/orangejuice = 1)
-	result_amount = 2
 
 /datum/chemical_reaction/drink/lights_edge
 	name = "Light's Edge"
@@ -4528,3 +4529,25 @@
 	result = /singleton/reagent/drink/lovebug_boba
 	required_reagents = list(/singleton/reagent/drink/icetea = 3, /singleton/reagent/nutriment/cherryjelly = 1, /singleton/reagent/drink/strawberryjuice = 1, /singleton/reagent/drink/boba = 1)
 	result_amount = 6
+
+/datum/chemical_reaction/drink/dyn_boba
+	name = "dyn boba"
+	id = "boba_dyn"
+	result = /singleton/reagent/drink/dyn_boba
+	required_reagents = list(/singleton/reagent/drink/dynjuice/cold = 5, /singleton/reagent/drink/boba = 1)
+	result_amount = 6
+
+// Other
+/datum/chemical_reaction/gravy
+	name = "gravy"
+	id = "gravy"
+	result = /singleton/reagent/condiment/gravy
+	required_reagents = list(/singleton/reagent/nutriment/triglyceride = 2, /singleton/reagent/water = 5, /singleton/reagent/sodiumchloride = 1, /singleton/reagent/blackpepper = 1, /singleton/reagent/nutriment/flour = 5)
+	result_amount = 10
+
+/datum/chemical_reaction/drink/chocolate_soda
+	name = "Chocolate Soda"
+	id = "chocolate_soda"
+	result = /singleton/reagent/drink/chocolate_soda
+	required_reagents = list(/singleton/reagent/nutriment/coco = 1, /singleton/reagent/drink/space_cola = 1, /singleton/reagent/drink/sodawater = 3)
+	result_amount = 5

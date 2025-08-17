@@ -22,6 +22,7 @@
 		/datum/species/machine,
 		/datum/species/bug = TRUE,
 		/datum/species/bug/type_b = TRUE,
+		/datum/species/bug/type_b/type_bb = TRUE,
 		/datum/species/bug/type_e = TRUE,
 		/datum/species/diona
 	)
@@ -34,6 +35,7 @@
 			SPECIES_TAJARA_ZHAN,
 			SPECIES_VAURCA_WORKER,
 			SPECIES_VAURCA_WARRIOR,
+			SPECIES_VAURCA_ATTENDANT,
 			SPECIES_VAURCA_BULWARK,
 			SPECIES_VAURCA_BREEDER
 		)
@@ -51,10 +53,13 @@
 		"Xenobiologist" = /obj/outfit/job/scientist/xenobiologist/zeng_hu,
 		"Anomalist" = /obj/outfit/job/scientist/anomalist/zeng_hu,
 		"Xenobotanist" = /obj/outfit/job/scientist/xenobotanist/zeng_hu,
-		"Lab Assistant" = /obj/outfit/job/intern_sci/zeng_hu,
+		"Research Intern" = /obj/outfit/job/intern_sci/zeng_hu,
 		"Xenoarchaeologist"= /obj/outfit/job/scientist/xenoarchaeologist/zeng_hu,
 		"Corporate Reporter" = /obj/outfit/job/journalist/zeng_hu,
 		"Corporate Liaison" = /obj/outfit/job/representative/zeng_hu,
+		"Assistant" = /obj/outfit/job/assistant/zeng_hu,
+		"Medical Orderly" = /obj/outfit/job/assistant/med_assistant/zeng_hu,
+		"Lab Assistant" = /obj/outfit/job/assistant/lab_assistant/zeng_hu,
 		"Off-Duty Crew Member" = /obj/outfit/job/visitor/zeng_hu,
 		"Science Personnel" = /obj/outfit/job/scientist/event/zeng_hu,
 		"Medical Personnel" = /obj/outfit/job/med_tech/event/zeng_hu
@@ -77,7 +82,7 @@
 	name = "Surgeon - Zeng-Hu"
 
 	uniform = /obj/item/clothing/under/rank/medical/surgeon/zeng
-	suit = /obj/item/clothing/suit/storage/toggle/labcoat/zeng
+	suit = /obj/item/clothing/suit/storage/surgical_gown/zeng
 	id = /obj/item/card/id/zeng_hu
 	shoes = /obj/item/clothing/shoes/sneakers/medsci/zeng
 
@@ -207,7 +212,7 @@
 	messengerbag_faction = /obj/item/storage/backpack/messenger/zeng
 
 /obj/outfit/job/intern_sci/zeng_hu
-	name = "Lab Assistant - Zeng-Hu"
+	name = "Research Intern - Zeng-Hu"
 
 	uniform = /obj/item/clothing/under/rank/scientist/intern/zeng
 	id = /obj/item/card/id/zeng_hu
@@ -242,6 +247,36 @@
 	name = "Corporate Reporter - Zeng-Hu"
 
 	uniform = /obj/item/clothing/under/librarian/zeng
+	id = /obj/item/card/id/zeng_hu
+
+	backpack_faction = /obj/item/storage/backpack/zeng
+	satchel_faction = /obj/item/storage/backpack/satchel/zeng
+	dufflebag_faction = /obj/item/storage/backpack/duffel/zeng
+	messengerbag_faction = /obj/item/storage/backpack/messenger/zeng
+
+/obj/outfit/job/assistant/zeng_hu
+	name = "Assistant - Zeng-Hu"
+
+	id = /obj/item/card/id/zeng_hu
+
+	backpack_faction = /obj/item/storage/backpack/zeng
+	satchel_faction = /obj/item/storage/backpack/satchel/zeng
+	dufflebag_faction = /obj/item/storage/backpack/duffel/zeng
+	messengerbag_faction = /obj/item/storage/backpack/messenger/zeng
+
+/obj/outfit/job/assistant/med_assistant/zeng_hu
+	name = "Medical Orderly - Zeng-Hu"
+
+	id = /obj/item/card/id/zeng_hu
+
+	backpack_faction = /obj/item/storage/backpack/zeng
+	satchel_faction = /obj/item/storage/backpack/satchel/zeng
+	dufflebag_faction = /obj/item/storage/backpack/duffel/zeng
+	messengerbag_faction = /obj/item/storage/backpack/messenger/zeng
+
+/obj/outfit/job/assistant/lab_assistant/zeng_hu
+	name = "Lab Assistant - Zeng-Hu"
+
 	id = /obj/item/card/id/zeng_hu
 
 	backpack_faction = /obj/item/storage/backpack/zeng

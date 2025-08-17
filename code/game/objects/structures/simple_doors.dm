@@ -15,6 +15,11 @@
 	var/health = 100
 	var/maxhealth = 100
 
+/obj/structure/simple_door/feedback_hints(mob/user, distance, is_adjacent)
+	. += ..()
+	if(lock)
+		. += SPAN_NOTICE("It appears to have a lock.")
+
 /obj/structure/simple_door/fire_act(exposed_temperature, exposed_volume)
 	. = ..()
 
@@ -60,11 +65,6 @@
 	lock = null
 	return ..()
 
-/obj/structure/simple_door/get_examine_text(mob/user, distance, is_adjacent, infix, suffix)
-	. = ..()
-	if(lock)
-		. += SPAN_NOTICE("It appears to have a lock.")
-
 /obj/structure/simple_door/CollidedWith(atom/bumped_atom)
 	..()
 	if(!state)
@@ -86,7 +86,10 @@
 	return
 
 /obj/structure/simple_door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group) return 0
+	if(air_group)
+		return FALSE
+	if(mover?.movement_type & PHASING)
+		return TRUE
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
 	return !density
@@ -193,9 +196,13 @@
 		attack_hand(user)
 	return
 
-/obj/structure/simple_door/bullet_act(var/obj/projectile/Proj)
-	health -= Proj.damage
-	bullet_ping(Proj)
+/obj/structure/simple_door/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit)
+	. = ..()
+	if(. != BULLET_ACT_HIT)
+		return .
+
+	health -= hitting_projectile.damage
+	bullet_ping(hitting_projectile)
 	CheckHealth()
 
 /obj/structure/simple_door/proc/CheckHealth()

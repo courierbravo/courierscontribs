@@ -69,19 +69,6 @@ GLOBAL_PROTECT(config)
 		GLOB.round_id = "[c[(t % l) + 1]][GLOB.round_id]"
 		t = round(t / l)
 
-/world
-	mob = /mob/abstract/new_player
-	turf = /turf/space
-	area = /area/space
-	view = "15x15"
-	cache_lifespan = 0	//stops player uploaded stuff from being kept in the rsc past the current session
-	maxx = WORLD_MIN_SIZE	// So that we don't get map-window-popin at boot. DMMS will expand this.
-	maxy = WORLD_MIN_SIZE
-	fps = 20
-#ifdef FIND_REF_NO_CHECK_TICK
-	loop_checks = FALSE
-#endif
-
 #define RECOMMENDED_VERSION 515
 /world/New()
 	//logs
@@ -116,7 +103,7 @@ GLOBAL_PROTECT(config)
 #ifdef UNIT_TEST
 	#if defined(MANUAL_UNIT_TEST)
 
-	world.log << "[ascii_green] *** NOTICE *** [ascii_reset] Unit Tests Enabled.  This will destroy the world when testing is complete."
+	world.log << TEST_OUTPUT_GREEN("*** NOTICE *** Unit Tests Enabled.  This will destroy the world when testing is complete.")
 
 	#else
 
@@ -133,7 +120,7 @@ GLOBAL_PROTECT(config)
 
 	return
 
-var/list/world_api_rate_limit = list()
+GLOBAL_LIST_INIT(world_api_rate_limit, list())
 
 /world/Topic(T, addr, master, key)
 	var/list/response[] = list()
@@ -277,6 +264,8 @@ var/list/world_api_rate_limit = list()
 		GLOB.config.load("config/age_restrictions.txt", "age_restrictions")
 
 /world/proc/update_status()
+	SHOULD_NOT_SLEEP(TRUE)
+
 	var/list/s = list()
 
 	if (GLOB.config && GLOB.config.server_name)

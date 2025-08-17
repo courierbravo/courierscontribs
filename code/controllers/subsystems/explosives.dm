@@ -137,7 +137,7 @@ SUBSYSTEM_DEF(explosives)
 						continue
 
 					var/dist = get_dist(M_turf, epicenter)
-					var/explosion_dir = angle2text(Get_Angle(M_turf, epicenter))
+					var/explosion_dir = angle2text(get_angle(M_turf, epicenter))
 					if (reception == 2 && (M.ear_deaf <= 0 || !M.ear_deaf)) //Dont play sounds to deaf people
 
 						// Anyone with sensitive hearing gets a bonus to hearing explosions
@@ -176,7 +176,7 @@ SUBSYSTEM_DEF(explosives)
 						//Becuse values higher than those just get really silly
 
 	if(adminlog)
-		message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
+		message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
 		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ")
 
 	if(heavy_impact_range > 1)
@@ -242,7 +242,7 @@ SUBSYSTEM_DEF(explosives)
 	if(!epicenter)
 		return
 
-	message_admins("Explosion with size ([power]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
+	message_admins("Explosion with size ([power]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
 	log_game("Explosion with size ([power]) in area [epicenter.loc.name] ")
 
 	LOG_DEBUG("iexpl: Beginning discovery phase.")

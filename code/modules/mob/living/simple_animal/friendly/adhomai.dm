@@ -47,7 +47,10 @@
 	if(!stat && prob(3) && eggsleft > 0 && (gender = FEMALE))
 		visible_message("[src] lays an egg.")
 		eggsleft--
-		new /obj/item/reagent_containers/food/snacks/egg/ice_tunnelers(get_turf(src))
+		var/obj/item/reagent_containers/food/snacks/egg/ice_tunnelers/egg = new /obj/item/reagent_containers/food/snacks/egg/ice_tunnelers(get_turf(src))
+		egg.fertilize()
+		egg.pixel_x = rand(-6,6)
+		egg.pixel_y = rand(-6,6)
 
 /mob/living/simple_animal/ice_tunneler/male
 	icon_state = "tunneler_m"
@@ -217,8 +220,8 @@
 /mob/living/simple_animal/ice_catcher/Move()
 	if(burrowed)
 		return
-	else
-		..()
+
+	. = ..()
 
 /mob/living/simple_animal/ice_catcher/proc/unburrow()
 	burrowed = FALSE
@@ -239,10 +242,13 @@
 		unburrow()
 	..()
 
-/mob/living/simple_animal/ice_catcher/bullet_act(obj/projectile/P, def_zone)
+/mob/living/simple_animal/ice_catcher/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit)
+	. = ..()
+	if(. != BULLET_ACT_HIT)
+		return .
+
 	if(burrowed && (stat != DEAD))
 		unburrow()
-	..()
 
 /mob/living/simple_animal/ice_catcher/death(gibbed)
 	..()
@@ -282,9 +288,9 @@
 	meat_amount = 4
 	vehicle_version = /obj/vehicle/animal/climber
 	natural_armor = list(
-		melee = ARMOR_MELEE_MEDIUM,
-		bullet = ARMOR_BALLISTIC_MINOR,
-		bomb = ARMOR_BOMB_MINOR
+		MELEE = ARMOR_MELEE_MEDIUM,
+		BULLET = ARMOR_BALLISTIC_MINOR,
+		BOMB = ARMOR_BOMB_MINOR
 	)
 
 /mob/living/simple_animal/climber/saddle

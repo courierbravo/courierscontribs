@@ -84,7 +84,7 @@
 	..()
 
 /obj/item/gun/projectile/heavysniper/verb/scope()
-	set category = "Object"
+	set category = "Object.Held"
 	set name = "Use Scope"
 	set src in usr
 
@@ -129,7 +129,7 @@
 		if(H.mob_size < 10 && !has_online_rig) // smaller than an unathi
 			H.visible_message(SPAN_WARNING("\The [src] goes flying out of \the [H]'s hand!"), SPAN_WARNING("\The [src] flies out of your hand!"))
 			H.drop_item(src)
-			src.throw_at(get_edge_target_turf(src, GLOB.reverse_dir[H.dir]), 3, 3)
+			src.throw_at(get_edge_target_turf(src, REVERSE_DIR(H.dir)), 3, 3)
 
 			var/obj/item/organ/external/LH = H.get_organ(BP_L_HAND)
 			var/obj/item/organ/external/RH = H.get_organ(BP_R_HAND)
@@ -221,7 +221,7 @@
 	return ..()
 
 /obj/item/gun/projectile/dragunov/verb/scope()
-	set category = "Object"
+	set category = "Object.Held"
 	set name = "Use Scope"
 	set src in usr
 
@@ -271,7 +271,7 @@
 		icon_state = "w556rifle-empty"
 
 /obj/item/gun/projectile/automatic/rifle/w556/verb/scope()
-	set category = "Object"
+	set category = "Object.Held"
 	set name = "Use Scope"
 	set src in usr
 

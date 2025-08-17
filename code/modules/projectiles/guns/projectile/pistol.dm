@@ -28,7 +28,7 @@
 
 /obj/item/gun/projectile/colt/detective/verb/rename_gun()
 	set name = "Name Gun"
-	set category = "Object"
+	set category = "Object.Held"
 	set desc = "Rename your gun. If you're the detective."
 	set src in usr
 
@@ -112,6 +112,9 @@
 		icon_state = "secgun"
 	else
 		icon_state = "secgun-e"
+
+/obj/item/gun/projectile/sec/unloaded
+	magazine_type = null
 
 /obj/item/gun/projectile/sec/lethal
 	magazine_type = /obj/item/ammo_magazine/c45m
@@ -329,7 +332,7 @@
 
 /obj/item/gun/projectile/pistol/detective/verb/rename_gun()
 	set name = "Name Gun"
-	set category = "Object"
+	set category = "Object.Held"
 	set desc = "Rename your gun."
 	set src in usr
 
@@ -480,10 +483,10 @@
 	accuracy = -3
 	accuracy_wielded = 1
 
-/obj/item/gun/projectile/pistol/super_heavy/Initialize()
-	. = ..()
-	desc_info = "This is an extremely powerful ballistic weapon, using .599 Kumar Super ammunition. If you aren't an Unathi or a G2 IPC, firing without wielding (clicking in-hand) could lead to serious injury or death; Unathi and G2s may fire it unwielded \
-	with an aim penalty. To fire the weapon, toggle the safety with ctrl-click (or enable HARM intent), then click where you want to fire.  To reload, click the gun with an empty hand to remove the magazine, and then insert a new one."
+/obj/item/gun/projectile/pistol/super_heavy/mechanics_hints(mob/user, distance, is_adjacent)
+	. += ..()
+	. += "This is an extremely powerful ballistic weapon, using .599 Kumar Super ammunition."
+	. += "If you aren't an Unathi or a G2 IPC, firing without wielding (clicking in-hand) could lead to serious injury or death. Unathi and G2s may fire it unwielded with an aim penalty."
 
 /obj/item/gun/projectile/pistol/super_heavy/update_icon()
 	..()
@@ -505,7 +508,7 @@
 			if(H.mob_size <10)
 				H.visible_message(SPAN_WARNING("\The [src] flies out of \the [H]'s' hand!"), SPAN_WARNING("\The [src] flies out of your hand!"))
 				H.drop_item(src)
-				src.throw_at(get_edge_target_turf(src, GLOB.reverse_dir[H.dir]), 4, 4)
+				src.throw_at(get_edge_target_turf(src, REVERSE_DIR(H.dir)), 4, 4)
 
 				var/obj/item/organ/external/LH = H.get_organ(BP_L_HAND)
 				var/obj/item/organ/external/RH = H.get_organ(BP_R_HAND)

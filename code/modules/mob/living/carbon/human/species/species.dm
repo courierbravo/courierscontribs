@@ -29,8 +29,6 @@
 	var/preview_icon = 'icons/mob/human_races/human/human_preview.dmi'
 	var/bandages_icon
 
-	var/talk_bubble_icon
-
 	// Damage overlay and masks.
 	var/damage_overlays = 'icons/mob/human_races/masks/dam_human.dmi'
 	var/damage_mask = 'icons/mob/human_races/masks/dam_mask_human.dmi'
@@ -326,9 +324,17 @@
 	)
 
 	var/zombie_type	//What zombie species they become
-	var/list/character_color_presets
 	var/bodyfall_sound = /singleton/sound_category/bodyfall_sound //default, can be used for species specific falling sounds
 	var/footsound = /singleton/sound_category/blank_footsteps //same as above but for footsteps without shoes
+
+	/// Sets the base "tint" of the species' sprite, which is then adjusted by the skin tone
+	var/list/character_color_presets
+
+	/// The lower bound for the skin tone value, the lower, the "lighter" they'll appear
+	var/lower_skin_tone_bound = 30
+
+	/// The upper bound for the skin tone value, the higher, the "darker" they'll appear
+	var/upper_skin_tone_bound = 220
 
 	var/list/alterable_internal_organs = list(BP_HEART, BP_EYES, BP_LUNGS, BP_LIVER, BP_BRAIN, BP_KIDNEYS, BP_STOMACH, BP_APPENDIX) //what internal organs can be changed in character setup
 	var/list/possible_external_organs_modifications = list("Normal","Amputated","Prosthesis")
@@ -419,9 +425,9 @@
 /datum/species/proc/get_random_name(var/gender)
 	if(!name_language)
 		if(gender == FEMALE)
-			return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+			return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 		else
-			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+			return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 
 	var/datum/language/species_language = GLOB.all_languages[name_language]
 	if(!species_language)
@@ -495,7 +501,7 @@
 		target.IgniteMob()
 		H.visible_message(SPAN_DANGER("[H] taps [target], setting [target.get_pronoun("his")] ablaze!"), \
 						SPAN_WARNING("You tap [target], setting [target.get_pronoun("him")] ablaze!"))
-		msg_admin_attack("[key_name(H)] spread fire to [target.name] ([target.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[H.x];Y=[H.y];Z=[H.z]'>JMP</a>)",ckey=key_name(H),ckey_target=key_name(target))
+		msg_admin_attack("[key_name(H)] spread fire to [target.name] ([target.ckey]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[H.x];Y=[H.y];Z=[H.z]'>JMP</a>)",ckey=key_name(H),ckey_target=key_name(target))
 	else
 		H.visible_message(SPAN_NOTICE("[H] taps [target] to get [target.get_pronoun("his")] attention!"), \
 						SPAN_NOTICE("You tap [target] to get [target.get_pronoun("his")] attention!"))
@@ -621,20 +627,20 @@
 	if(!H.client)//no client, no screen to update
 		return 1
 
-	H.set_fullscreen(H.eye_blind, "blind", /obj/screen/fullscreen/blind)
-	H.set_fullscreen(H.stat == UNCONSCIOUS, "blackout", /obj/screen/fullscreen/blackout)
+	H.set_fullscreen(H.eye_blind, "blind", /atom/movable/screen/fullscreen/blind)
+	H.set_fullscreen(H.stat == UNCONSCIOUS, "blackout", /atom/movable/screen/fullscreen/blackout)
 
 	if(GLOB.config.welder_vision)
 		if(H.equipment_tint_total)
-			H.overlay_fullscreen("welder", /obj/screen/fullscreen/impaired, H.equipment_tint_total, 0.5 SECONDS)
+			H.overlay_fullscreen("welder", /atom/movable/screen/fullscreen/impaired, H.equipment_tint_total, 0.5 SECONDS)
 		else
 			H.clear_fullscreen("welder")
 	var/how_nearsighted = get_how_nearsighted(H)
-	H.set_fullscreen(how_nearsighted, "nearsighted", /obj/screen/fullscreen/oxy, how_nearsighted)
-	H.set_fullscreen(H.eye_blurry, "blurry", /obj/screen/fullscreen/blurry)
+	H.set_fullscreen(how_nearsighted, "nearsighted", /atom/movable/screen/fullscreen/oxy, how_nearsighted)
+	H.set_fullscreen(H.eye_blurry, "blurry", /atom/movable/screen/fullscreen/blurry)
 
 	if(H.druggy)
-		H.client.screen += global_hud.druggy
+		H.client.screen += GLOB.global_hud.druggy
 	if(H.druggy > 5)
 		H.add_client_color(/datum/client_color/oversaturated)
 	else
@@ -655,7 +661,7 @@
 		prescriptions += 7
 	if(H.equipment_prescription)
 		prescriptions -= H.equipment_prescription
-	return Clamp(prescriptions, 0, 7)
+	return clamp(prescriptions, 0, 7)
 
 // pre_move is set to TRUE when the mob checks whether it's even possible to move, so resources aren't drained until after the move completes
 // once the mob moves and its loc actually changes, the pre_move is set to FALSE and all the proper resources are drained
@@ -752,7 +758,7 @@
 	if(length(trail_info))
 		var/track_path = trail_info["footprint_type"]
 		T.add_tracks(track_path ? track_path : H.species.get_move_trail(H), trail_info["footprint_DNA"], H.dir, 0, trail_info["footprint_color"]) // Coming
-		var/turf/simulated/from = get_step(H, reverse_direction(H.dir))
+		var/turf/simulated/from = get_step(H, REVERSE_DIR(H.dir))
 		if(istype(from))
 			from.add_tracks(track_path ? track_path : H.species.get_move_trail(H), trail_info["footprint_DNA"], 0, H.dir, trail_info["footprint_color"]) // Going
 
@@ -849,9 +855,18 @@
 		return src
 	return name
 
-// prevents EMP damage if return it returns TRUE
-/datum/species/proc/handle_emp_act(var/mob/living/carbon/human/H, var/severity)
-	return FALSE
+/**
+ * Handles EMP act for a specie
+ *
+ * * hit_mob - The mob that was hit by the EMP (aka the mob that is this specie)
+ * * severity - The severity of the EMP, one of the EMP_ defines in empulse.dm
+ *
+ * returns a bitfield with the EMP_PROTECT_* defines to determine what should happen from the mob perspective
+ */
+/datum/species/proc/handle_emp_act(mob/living/carbon/human/hit_mob, severity)
+	SHOULD_NOT_SLEEP(TRUE)
+	SHOULD_CALL_PARENT(FALSE)
+	return NONE
 
 /**
  * DEPRECATED: Use `/datum/movespeed_modifier` instead

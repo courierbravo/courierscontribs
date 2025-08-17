@@ -135,10 +135,13 @@
 	wires = null
 	return ..()
 
-/obj/machinery/power/smes/buildable/bullet_act(obj/projectile/P, def_zone)
+/obj/machinery/power/smes/buildable/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit)
 	. = ..()
-	visible_message(SPAN_WARNING("\The [src] is hit by \the [P]!"))
-	health_check(P.damage)
+	if(. != BULLET_ACT_HIT)
+		return .
+
+	visible_message(SPAN_WARNING("\The [src] is hit by \the [hitting_projectile]!"))
+	health_check(hitting_projectile.damage)
 
 /obj/machinery/power/smes/buildable/proc/health_check(var/health_reduction = 0)
 	health -= health_reduction
@@ -260,7 +263,7 @@
 		if(G.siemens_coefficient == 0)
 			user_protected = 1
 	log_game("SMES FAILURE: <b>[src.x]X [src.y]Y [src.z]Z</b> User: [usr.ckey], Intensity: [intensity]/100")
-	message_admins("SMES FAILURE: <b>[src.x]X [src.y]Y [src.z]Z</b> User: [usr.ckey], Intensity: [intensity]/100 - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>")
+	message_admins("SMES FAILURE: <b>[src.x]X [src.y]Y [src.z]Z</b> User: [usr.ckey], Intensity: [intensity]/100 - <A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>")
 
 
 	switch (intensity)

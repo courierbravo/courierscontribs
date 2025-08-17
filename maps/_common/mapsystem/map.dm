@@ -63,6 +63,9 @@
 	var/bluespace_called_message
 	var/bluespace_recall_message
 
+	/// The typepath of the visitable our main map is, for example /obj/effect/overmap/visitable/ship/sccv_horizon
+	var/overmap_visitable_type
+
 	/// If this map has ports of call and refuels there. Crew are implied to be able to leave to these ports.
 	/// Ports of call are taken from the current map sector.
 	var/ports_of_call = FALSE
@@ -83,9 +86,9 @@
 	var/allowed_spawns = list("Arrivals Shuttle","Gateway", "Cryogenic Storage", "Cyborg Storage")
 	var/default_spawn = "Arrivals Shuttle"
 
-	var/list/lobby_icons = list() // The icons which contains the lobby images. A dmi is picked at random.
-	var/lobby_icon                // This is what the game uses to store the chosen dmi.
-	var/list/lobby_screens = list() // The list of lobby screen to pick() from. Leave this unset to fill from the lobby icon DMI.
+	/// A list of paths to rotate for the lobby image, png/bmp/jpg/gif only
+	var/list/lobby_icon_image_paths = list()
+
 	var/lobby_transitions = FALSE          // If a number, transition between the lobby screens with this delay instead of picking just one.
 
 	var/use_overmap = FALSE		//If overmap should be used (including overmap space travel override)
@@ -128,6 +131,7 @@
 
 	var/allow_borgs_to_leave = FALSE //this controls if borgs can leave the station or ship without exploding
 	var/area/warehouse_basearea //this controls where the cargospawner tries to populate warehouse items
+	var/area/warehouse_packagearea // used to handle spawnpoints for the packages that spawned after Initialize. See: `receptacle.dm`.
 
 	/**
 	 * A list of the shuttles on this map, used by the Shuttle Manifest program to populate itself.
@@ -153,9 +157,6 @@
 	if(!LAZYLEN(planet_size))
 		planet_size = list(world.maxx, world.maxy)
 
-/datum/map/proc/generate_asteroid()
-	return
-
 // Override to set custom access requirements for camera networks.
 /datum/map/proc/get_network_access(var/network)
 	return 0
@@ -176,9 +177,6 @@
 	return pick(empty_levels)
 
 /datum/map/proc/setup_shuttles()
-
-// Called right after SSatlas finishes loading the map & multiz is setup.
-/datum/map/proc/finalize_load()
 	return
 
 /datum/map/proc/build_exoplanets()
@@ -324,15 +322,6 @@
 	for(var/datum/map_template/template in selected)
 		var/bounds = template.load_new_z()
 		if(bounds)
-			// do away site exoplanet generation, if needed
-			var/datum/map_template/ruin/away_site/away_site = template
-			if(istype(away_site) && away_site.exoplanet_themes)
-				for(var/z_index = bounds[MAP_MINZ]; z_index <= bounds[MAP_MAXZ]; z_index++)
-					for(var/marker_turf_type in away_site.exoplanet_themes)
-						var/datum/exoplanet_theme/exoplanet_theme_type = away_site.exoplanet_themes[marker_turf_type]
-						var/datum/exoplanet_theme/exoplanet_theme = new exoplanet_theme_type()
-						exoplanet_theme.generate_map(z_index, 1, 1, 254, 254, marker_turf_type)
-			// fin
 			log_admin("Loaded away site [template]!")
 		else
 			log_admin("Failed loading away site [template]!")

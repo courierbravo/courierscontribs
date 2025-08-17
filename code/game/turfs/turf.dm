@@ -104,7 +104,7 @@
 		luminosity = 1
 
 	if (smoothing_flags)
-		SSicon_smooth.add_to_queue(src)
+		QUEUE_SMOOTH(src)
 
 	if (light_range && light_power)
 		update_light()
@@ -117,9 +117,11 @@
 
 	var/area/A = loc
 
-	if(!baseturf)
+	if(A.base_turf)
+		baseturf = A.base_turf
+	else if(!baseturf)
 		// Hard-coding this for performance reasons.
-		baseturf = A.base_turf || SSatlas.current_map.base_turf_by_z["[z]"] || /turf/space
+		baseturf = SSatlas.current_map.base_turf_by_z["[z]"] || /turf/space
 
 	if (A.area_flags & AREA_FLAG_SPAWN_ROOF)
 		spawn_roof()
@@ -194,6 +196,44 @@
 	if (!.)
 		return TRUE
 	return TRUE
+
+/// Call to move a turf from its current area to a new one
+/turf/proc/change_area(area/old_area, area/new_area)
+	//don't waste our time
+	if(old_area == new_area)
+		return
+
+	//move the turf
+
+	new_area.contents += src
+
+	/* START AURORA SNOWFLAKE */
+	var/old_outside = is_outside()
+
+	var/is_old_area_valid = !QDELETED(old_area) && istype(old_area)
+	var/is_new_area_valid = !QDELETED(new_area) && istype(new_area)
+
+	for(var/atom/movable/AM in src)
+		if(is_old_area_valid)
+			old_area.Exited(AM)
+
+		if(is_new_area_valid)
+			new_area.Entered(AM)
+			if(istype(AM, /obj/machinery))
+				var/obj/machinery/M = AM
+				M.shuttle_move(src)
+
+	last_outside_check = OUTSIDE_UNCERTAIN
+	if(is_outside == OUTSIDE_AREA && (is_outside() != old_outside))
+		update_weather()
+	/* END AURORA SNOWFLAKE */
+
+	//changes to make after turf has moved
+	on_change_area(old_area, new_area)
+
+/// Allows for reactions to an area change without inherently requiring change_area() be called (I hate maploading)
+/turf/proc/on_change_area(area/old_area, area/new_area)
+	transfer_area_lighting(old_area, new_area)
 
 /turf/proc/handle_hand_interception(var/mob/user)
 	var/datum/component/turf_hand/THE
@@ -309,8 +349,6 @@
 		return FALSE
 	return TRUE
 
-var/const/enterloopsanity = 100
-
 /turf/Entered(atom/movable/arrived, atom/old_loc)
 	if(movement_disabled)
 		to_chat(usr, SPAN_WARNING("Movement is admin-disabled.")) //This is to identify lag problems)
@@ -366,14 +404,14 @@ var/const/enterloopsanity = 100
 
 	if(tracks_footprint && ishuman(arrived))
 		var/mob/living/carbon/human/H = arrived
-		H.species.deploy_trail(H, src)
+		H.species?.deploy_trail(H, src)
 
 	..()
 
 	var/objects = 0
 	if(arrived && (arrived.movable_flags & MOVABLE_FLAG_PROXMOVE) && arrived.simulated)
-		for(var/atom/movable/oAM in range(1))
-			if(objects > enterloopsanity)
+		for(var/atom/movable/oAM in range(1, src))
+			if(objects > 100)
 				break
 			objects++
 
@@ -394,7 +432,7 @@ var/const/enterloopsanity = 100
 
 	//Items that are in phoron, but not on a mob, can still be contaminated.
 	var/obj/item/I = arrived
-	if(istype(I) && vsc.plc.CLOTH_CONTAMINATION && I.can_contaminate())
+	if(istype(I) && GLOB.vsc.plc.CLOTH_CONTAMINATION && I.can_contaminate())
 		var/datum/gas_mixture/env = return_air(1)
 		if(!env)
 			return
@@ -446,11 +484,12 @@ var/const/enterloopsanity = 100
 		..()
 
 /turf/proc/inertial_drift(atom/movable/A as mob|obj)
-	if(!(A.last_move))	return
+	if(!(A.last_move))
+		return
 	if((istype(A, /mob/) && src.x > 2 && src.x < (world.maxx - 1) && src.y > 2 && src.y < (world.maxy-1)))
 		var/mob/M = A
 		if(M.Allow_Spacemove(1))
-			M.inertia_dir  = 0
+			M.inertia_dir = 0
 			return
 		spawn(5)
 			if((M && !(M.anchored) && !(M.pulledby) && (M.loc == src)))

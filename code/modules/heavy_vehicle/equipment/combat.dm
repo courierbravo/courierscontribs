@@ -6,6 +6,11 @@
 	icon_state = "mecha_taser"
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND, HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	restricted_software = list(MECH_SOFTWARE_WEAPONS)
+	module_hints = list(
+		"<b>Left Click:</b> Fire a projectile in the target direction.",
+		"A mech can only fire within a 90 degree arc in the direction it is currently facing.",
+		"This weapon passively regenerates its ammunition using the mech's power supply.",
+	)
 
 /obj/item/mecha_equipment/mounted_system/combat/CtrlClick(mob/user)
 	if(owner && istype(holding, /obj/item/gun))
@@ -288,6 +293,12 @@
 	var/cooldown = 3.5 SECONDS // Time until we can recharge again after a blocked impact
 	restricted_hardpoints = list(HARDPOINT_BACK)
 	restricted_software = list(MECH_SOFTWARE_WEAPONS)
+	module_hints = list(
+		"<b>Alt Click(Icon):</b> Activates the shield drone.",
+		"When active, a large energy shield will appear in the mech's front facing arc.",
+		"The shield consumes a kilowatt of power each second while active.",
+		"It also consumes power to block incoming damage, and will shut down if it runs out.",
+	)
 
 /obj/item/mecha_equipment/shield/installed(mob/living/heavy_vehicle/_owner)
 	. = ..()
@@ -306,7 +317,7 @@
 
 /obj/item/mecha_equipment/shield/proc/stop_damage(var/damage)
 	var/difference = damage - charge
-	charge = Clamp(charge - damage, 0, max_charge)
+	charge = clamp(charge - damage, 0, max_charge)
 
 	last_recharge = world.time
 
@@ -358,7 +369,7 @@
 	if((world.time - last_recharge) < cooldown)
 		return
 
-	var/actual_required_power = Clamp(max_charge - charge, 0, charging_rate)
+	var/actual_required_power = clamp(max_charge - charge, 0, charging_rate)
 	owner.use_cell_power(actual_required_power)
 
 /obj/item/mecha_equipment/shield/get_hardpoint_status_value()
@@ -366,6 +377,10 @@
 
 /obj/item/mecha_equipment/shield/get_hardpoint_maptext()
 	return "[(aura && aura.active) ? "ONLINE" : "OFFLINE"]: [round((charge / max_charge) * 100)]%"
+
+/obj/item/mecha_equipment/shield/Destroy()
+	aura = null
+	return ..()
 
 /obj/aura/mechshield
 	icon = 'icons/mecha/shield.dmi'
@@ -409,17 +424,20 @@
 	else
 		icon_state = "shield_null"
 
-/obj/aura/mechshield/bullet_act(obj/projectile/P, var/def_zone)
+/obj/aura/mechshield/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit)
 	if(!active)
 		return
+
+	. = ..()
+
 	if(shields?.charge)
-		P.damage = shields.stop_damage(P.damage)
+		hitting_projectile.damage = shields.stop_damage(hitting_projectile.damage)
 		user.visible_message(SPAN_WARNING("\The [shields.owner]'s shields flash and crackle."))
 		flick("shield_impact", src)
 		playsound(user, 'sound/effects/basscannon.ogg', 35, TRUE)
 		//light up the night.
-		new /obj/effect/effect/smoke/illumination(get_turf(src), 5, 4, 1, "#ffffff")
-		if(P.damage <= 0)
+		new /obj/effect/smoke/illumination(get_turf(src), 5, 4, 1, "#ffffff")
+		if(hitting_projectile.damage <= 0)
 			return AURA_FALSE|AURA_CANCEL
 
 		spark(get_turf(src), 5, GLOB.alldirs)

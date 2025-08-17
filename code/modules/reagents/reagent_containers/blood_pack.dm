@@ -34,6 +34,11 @@
 	drop_sound = 'sound/items/drop/food.ogg'
 	pickup_sound = 'sound/items/pickup/food.ogg'
 
+/obj/item/reagent_containers/blood/feedback_hints(mob/user, distance, is_adjacent)
+	. += ..()
+	if (distance <= 2 && vampire_marks)
+		. += SPAN_WARNING("There are sharp, canine-like teeth marks on it.")
+
 /obj/item/reagent_containers/blood/Initialize()
 	. = ..()
 	if(blood_type != null)
@@ -66,8 +71,8 @@
 	if(reagents && reagents.total_volume)
 		AddOverlays(overlay_image('icons/obj/bloodpack.dmi', "[icon_state][get_filling_state()]", color = reagents.get_color()))
 
-/obj/item/reagent_containers/blood/attack(mob/living/carbon/human/M as mob, mob/living/carbon/human/user as mob, var/target_zone)
-	if(user == M && (MODE_VAMPIRE in user.mind?.antag_datums))
+/obj/item/reagent_containers/blood/attack(mob/living/target_mob, mob/living/user, target_zone)
+	if(user == target_mob && (MODE_VAMPIRE in user.mind?.antag_datums))
 		var/datum/vampire/vampire = user.mind.antag_datums[MODE_VAMPIRE]
 		if (being_feed)
 			to_chat(user, SPAN_NOTICE("You are already feeding on \the [src]."))
@@ -77,7 +82,7 @@
 			being_feed = TRUE
 			vampire_marks = TRUE
 			if (!LAZYLEN(src.other_DNA))
-				LAZYADD(src.other_DNA, M.dna.unique_enzymes)
+				LAZYADD(src.other_DNA, target_mob.dna.unique_enzymes)
 				src.other_DNA_type = "saliva"
 
 			while (do_after(user, 25, 5))
@@ -97,20 +102,20 @@
 	else
 		..()
 
-/obj/item/reagent_containers/blood/MouseDrop(over_object, src_location, over_location)
+/obj/item/reagent_containers/blood/mouse_drop_dragged(atom/over, mob/user, src_location, over_location, params)
 	if(!ismob(loc))
 		return
 	var/turf/our_turf = get_turf(src)
-	var/turf/target_turf = get_turf(over_object)
+	var/turf/target_turf = get_turf(over)
 	if(!our_turf.Adjacent(target_turf))
 		return
 	if(attached_mob)
 		remove_iv_mob()
-	else if(ishuman(over_object))
-		visible_message(SPAN_WARNING("\The [usr] starts hooking \the [over_object] up to \the [src]."))
-		if(do_after(usr, 30))
-			to_chat(usr, SPAN_NOTICE("You hook \the [over_object] up to \the [src]."))
-			attached_mob = WEAKREF(over_object)
+	else if(ishuman(over))
+		visible_message(SPAN_WARNING("\The [user] starts hooking \the [over] up to \the [src]."))
+		if(do_after(user, 30))
+			to_chat(user, SPAN_NOTICE("You hook \the [over] up to \the [src]."))
+			attached_mob = WEAKREF(over)
 			START_PROCESSING(SSprocessing, src)
 	update_icon()
 
@@ -154,11 +159,6 @@
 				affecting.take_damage(brute = 5, damage_flags = DAMAGE_FLAG_SHARP)
 		attached_mob = null
 	STOP_PROCESSING(SSprocessing, src)
-
-/obj/item/reagent_containers/blood/get_examine_text(mob/user, distance, is_adjacent, infix, suffix)
-	. = ..()
-	if (distance <= 2 && vampire_marks)
-		. += SPAN_WARNING("There are sharp, canine-like teeth marks on it.")
 
 /obj/item/reagent_containers/blood/attackby(obj/item/attacking_item, mob/user)
 	..()

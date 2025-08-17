@@ -1,5 +1,9 @@
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
+	if(air_group || (height==0))
+		return TRUE
+
+	if(mover?.movement_type & PHASING)
+		return TRUE
 
 	if(ismob(mover))
 		var/mob/moving_mob = mover
@@ -9,6 +13,8 @@
 			for(var/obj/item/grab/G in moving_mob.grabbed_by)
 				if(G.assailant == src)
 					return TRUE
+		if(HAS_TRAIT(src, TRAIT_UNDENSE))
+			return TRUE
 		return (!mover.density || !density || lying)
 	else
 		return (!mover.density || !density || lying)
@@ -89,7 +95,8 @@
 /client/verb/swap_hand()
 	set hidden = 1
 	if(istype(mob, /mob/living/carbon))
-		mob:swap_hand()
+		var/mob/living/carbon/C = mob
+		C.swap_hand()
 	if(istype(mob,/mob/living/silicon/robot))
 		var/mob/living/silicon/robot/R = mob
 		R.cycle_modules()
@@ -108,8 +115,11 @@
 	set hidden = 1
 	if(!istype(mob, /mob/living/carbon))
 		return
-	if (!mob.stat && isturf(mob.loc) && !mob.restrained())
-		mob:toggle_throw_mode()
+
+	var/mob/living/carbon/C = mob
+
+	if (!C.stat && isturf(C.loc) && !C.restrained())
+		C.toggle_throw_mode()
 	else
 		return
 
@@ -129,96 +139,6 @@
 			return O.relaymove(mob, 16)
 	*/
 	return
-
-//This proc should never be overridden elsewhere at /atom/movable to keep directions sane.
-/atom/movable/Move(atom/newloc, direction, glide_size_override = 0, update_dir = TRUE) //Last 2 parameters are not used but they're caught
-	. = FALSE
-	if(!newloc || newloc == loc)
-		return
-
-	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, newloc) & COMPONENT_MOVABLE_BLOCK_PRE_MOVE)
-		return
-
-	var/old_loc = loc
-
-	//Diagonal move
-	if(direction & (direction - 1))
-		if(direction & 1)
-			if(direction & 4)
-				if(step(src, NORTH))
-					. = step(src, EAST)
-				else
-					if(step(src, EAST))
-						. = step(src, NORTH)
-			else
-				if(direction & 8)
-					if(step(src, NORTH))
-						. = step(src, WEST)
-					else
-						if(step(src, WEST))
-							. = step(src, NORTH)
-		else
-			if(direction & 2)
-				if(direction & 4)
-					if(step(src, SOUTH))
-						. = step(src, EAST)
-					else
-						if(step(src, EAST))
-							. = step(src, SOUTH)
-				else
-					if(direction & 8)
-						if(step(src, SOUTH))
-							. = step(src, WEST)
-						else
-							if(step(src, WEST))
-								. = step(src, SOUTH)
-
-	//Cardinal move
-	else
-		var/atom/A = src.loc
-
-		var/olddir = dir //we can't override this without sacrificing the rest of movable/New()
-		. = ..(newloc, direction)
-
-		if(.)
-			// Events.
-			if(GLOB.moved_event.global_listeners[src])
-				GLOB.moved_event.raise_event(src, old_loc, loc)
-
-			// Lighting.
-			if(light_sources)
-				var/datum/light_source/L
-				var/thing
-				for(thing in light_sources)
-					L = thing
-					L.source_atom.update_light()
-
-			// Openturf.
-			if(bound_overlay)
-				// The overlay will handle cleaning itself up on non-openspace turfs.
-				bound_overlay.forceMove(get_step(src, UP))
-				if(bound_overlay.dir != dir)
-					bound_overlay.set_dir(dir)
-
-			if(opacity)
-				updateVisibility(src)
-
-			//Mimics
-			if(bound_overlay)
-				bound_overlay.forceMove(get_step(src, UP))
-				if(bound_overlay.dir != dir)
-					bound_overlay.set_dir(dir)
-
-			Moved(old_loc, FALSE)
-
-		if(direction != olddir)
-			dir = olddir
-			set_dir(direction)
-
-		src.move_speed = world.time - src.l_move_time
-		src.l_move_time = world.time
-		if ((A != src.loc && A && A.z == src.z))
-			src.last_move = get_dir(A, src.loc)
 
 /client/proc/Move_object(direct)
 	if(mob && mob.control_object)
@@ -250,7 +170,7 @@
 	if(mob.control_object)
 		Move_object(direct)
 
-	if(mob.incorporeal_move && isobserver(mob))
+	if(mob.incorporeal_move && isabstractmob(mob))
 		Process_Incorpmove(direct, mob)
 		return
 
@@ -356,7 +276,7 @@
 				move_delay = (old_move_delay + world.tick_lag > world.time) ? old_move_delay : world.time
 				//drunk driving
 				if(mob.confused && prob(25))
-					direct = pick(GLOB.cardinal)
+					direct = pick(GLOB.cardinals)
 				return mob.buckled_to.relaymove(mob,direct)
 
 			//TODO: Fuck wheelchairs.
@@ -372,7 +292,7 @@
 					min_move_delay = driver.min_walk_delay
 				//drunk wheelchair driving
 				if(mob.confused && prob(25))
-					direct = pick(GLOB.cardinal)
+					direct = pick(GLOB.cardinals)
 				move_delay += max((mob.movement_delay() + GLOB.config.walk_speed) * GLOB.config.walk_delay_multiplier, min_move_delay)
 				return mob.buckled_to.relaymove(mob,direct)
 
@@ -409,7 +329,7 @@
 
 		//Wheelchair pushing goes here for now.
 		//TODO: Fuck wheelchairs.
-		if(istype(mob.pulledby, /obj/structure/bed/stool/chair/office/wheelchair) || istype(mob.pulledby, /obj/structure/janitorialcart))
+		if(istype(mob.pulledby, /obj/structure/bed/stool/chair/office/wheelchair) || istype(mob.pulledby, /obj/structure/janitorialcart) || istype(mob.pulledby, /obj/structure/engineeringcart))
 			var/obj/structure/S = mob.pulledby
 			move_delay += S.slowdown
 			return mob.pulledby.relaymove(mob, direct)
@@ -428,13 +348,13 @@
 						step(G.affecting, get_dir(G.affecting.loc, mob.loc))
 
 		if(mob.confused && prob(25) && mob.m_intent == M_RUN)
-			step(mob, pick(GLOB.cardinal))
+			step(mob, pick(GLOB.cardinals))
 		else
 			. = mob.SelfMove(new_loc, direct)
 
 		for (var/obj/item/grab/G in list(mob.l_hand, mob.r_hand))
 			if (G.state == GRAB_NECK)
-				mob.set_dir(GLOB.reverse_dir[direct])
+				mob.set_dir(REVERSE_DIR(direct))
 			G.adjust_position()
 
 		for (var/obj/item/grab/G in mob.grabbed_by)

@@ -1,4 +1,6 @@
 /obj/item/modular_computer/console/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(mover?.movement_type & PHASING)
+		return TRUE
 	if(istype(mover,/obj/projectile))
 		if(prob(80))
 	//Holoscreens are non solid, and the frames of the computers are thin. So projectiles will usually
@@ -173,15 +175,6 @@
 	..()
 	ai_slot = new/obj/item/computer_hardware/ai_slot(src)
 	card_slot = new/obj/item/computer_hardware/card_slot(src)
-
-/obj/item/modular_computer/console/preset/merchant/nka
-	_app_preset_type = /datum/modular_computer_app_presets/merchant/nka
-
-/obj/item/modular_computer/console/preset/merchant/guild
-	_app_preset_type = /datum/modular_computer_app_presets/merchant/guild
-
-/obj/item/modular_computer/console/preset/merchant/golden_deep
-	_app_preset_type = /datum/modular_computer_app_presets/merchant/golden_deep
 
 // AI
 /obj/item/modular_computer/console/preset/ai

@@ -61,6 +61,15 @@
 
 	can_astar_pass = CANASTARPASS_ALWAYS_PROC
 
+/obj/machinery/door/condition_hints(mob/user, distance, is_adjacent)
+	. = ..()
+	if(src.health < src.maxhealth / 4)
+		. += SPAN_WARNING("\The [src] looks like it's about to break!")
+	else if(src.health < src.maxhealth / 2)
+		. += SPAN_WARNING("\The [src] looks seriously damaged!")
+	else if(src.health < src.maxhealth * 3/4)
+		. += SPAN_WARNING("\The [src] shows signs of damage!")
+
 /obj/machinery/door/attack_generic(var/mob/user, var/damage)
 	if(damage >= 10)
 		visible_message(SPAN_DANGER("\The [user] smashes into the [src]!"))
@@ -185,7 +194,7 @@
 			else
 				do_animate("deny")
 		return
-	if(istype(bumped_atom, /obj/structure/janitorialcart))
+	if(istype(bumped_atom, /obj/structure/janitorialcart) || istype(bumped_atom, /obj/structure/engineeringcart))
 		var/obj/structure/janitorialcart/cart = bumped_atom
 		if(density)
 			if(cart.pulling && (src.allowed(cart.pulling)))
@@ -207,8 +216,11 @@
 
 
 /obj/machinery/door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group) return !block_air_zones
+	if(air_group)
+		return !block_air_zones
 	if (istype(mover))
+		if(mover.movement_type & PHASING)
+			return TRUE
 		if(mover.pass_flags & PASSGLASS)
 			return !opacity
 		if(density && hashatch && mover.pass_flags & PASSDOORHATCH)
@@ -228,7 +240,7 @@
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)	return
-	if(user.last_airflow > world.time - vsc.airflow_delay) //Fakkit
+	if(user.last_airflow > world.time - GLOB.vsc.airflow_delay) //Fakkit
 		return
 	src.add_fingerprint(user)
 	if(density)
@@ -236,17 +248,19 @@
 		else				do_animate("deny")
 	return
 
-/obj/machinery/door/bullet_act(var/obj/projectile/Proj)
-	..()
+/obj/machinery/door/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit)
+	. = ..()
+	if(. != BULLET_ACT_HIT)
+		return .
 
-	var/damage = Proj.get_structure_damage()
+	var/damage = hitting_projectile.get_structure_damage()
 
 	// Emitter Blasts - these will eventually completely destroy the door, given enough time.
 	if (damage > 90)
 		destroy_hits--
 		if (destroy_hits <= 0)
 			visible_message(SPAN_DANGER("\The [src.name] disintegrates!"))
-			switch (Proj.damage_type)
+			switch (hitting_projectile.damage_type)
 				if(DAMAGE_BRUTE)
 					new /obj/item/stack/material/steel(src.loc, 2)
 					new /obj/item/stack/rods(src.loc, 3)
@@ -409,15 +423,6 @@
 			visible_message(SPAN_WARNING("\The [src] shows signs of damage!"))
 	update_icon()
 	return
-
-/obj/machinery/door/get_examine_text(mob/user, distance, is_adjacent, infix, suffix)
-	. = ..()
-	if(src.health < src.maxhealth / 4)
-		. += SPAN_WARNING("\The [src] looks like it's about to break!")
-	else if(src.health < src.maxhealth / 2)
-		. += SPAN_WARNING("\The [src] looks seriously damaged!")
-	else if(src.health < src.maxhealth * 3/4)
-		. += SPAN_WARNING("\The [src] shows signs of damage!")
 
 /obj/machinery/door/proc/set_broken()
 	stat |= BROKEN

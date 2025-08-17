@@ -41,7 +41,8 @@
 
 	//None of these mobs can 'die' in any sense, and none of them should be able to become ghosts.
 	//Ghosts are the only ones that even technically 'exist' and aren't just an abstraction using mob code for convenience
-	if (istype(src, /mob/living))
+	//Well, those and storytellers. This code is seriously shit and needs a rework, but who gives a fuck right now. Sue me.
+	if (istype(src, /mob/living) && !isstoryteller(src))
 		ghostize()
 
 	if (istype(src.loc, /atom/movable))
@@ -51,8 +52,7 @@
 	QDEL_NULL(ability_master)
 
 	if(click_handlers)
-		click_handlers.QdelClear()
-		QDEL_NULL(click_handlers)
+		QDEL_LIST(click_handlers)
 
 	return ..()
 
@@ -125,7 +125,7 @@
 
 /client/verb/typing_indicator()
 	set name = "Show/Hide Typing Indicator"
-	set category = "Preferences"
+	set category = "Preferences.Game"
 	set desc = "Toggles showing an indicator when you are typing emote or say message."
 	prefs.toggles ^= HIDE_TYPING_INDICATOR
 	prefs.save_preferences()
@@ -180,7 +180,7 @@
 			continue
 		if (!M.client || istype(M, /mob/abstract/new_player))
 			continue
-		if((get_turf(M) in messageturfs) || (show_observers && isobserver(M) && (M.client.prefs.toggles & CHAT_GHOSTSIGHT)))
+		if((get_turf(M) in messageturfs) || (show_observers && isghost(M) && (M.client.prefs.toggles & CHAT_GHOSTSIGHT)))
 			messagemobs += M
 
 	for(var/o in GLOB.listening_objects)
@@ -191,7 +191,7 @@
 
 	for(var/A in messagemobs)
 		var/mob/M = A
-		if(isobserver(M))
+		if(isghost(M))
 			M.show_message("[ghost_follow_link(src, M)] [message]", 1)
 			continue
 		if(self_message && M == src)
@@ -206,8 +206,14 @@
 		var/obj/O = o
 		O.see_emote(src, message)
 
+	var/list/hear_clients = list()
+	for(var/mob/M in messagemobs)
+		if(M.client)
+			hear_clients += M.client
+
+
 	if(intent_message)
-		intent_message(intent_message, intent_range, messagemobs)
+		intent_message(intent_message, intent_range, messagemobs + src)
 
 	//Multiz, have shadow do same
 	if(bound_overlay)
@@ -263,7 +269,7 @@
 
 /mob/proc/findname(msg)
 	for(var/mob/M in GLOB.mob_list)
-		if (M.real_name == text("[]", msg))
+		if (M.real_name == "[msg]")
 			return M
 	return 0
 
@@ -298,7 +304,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 
 	if(LAZYLEN(spell_masters))
-		for(var/obj/screen/movable/spell_master/spell_master in spell_masters)
+		for(var/atom/movable/screen/movable/spell_master/spell_master in spell_masters)
 			spell_master.update_spells(0, src)
 
 	if(stat != DEAD)
@@ -363,14 +369,14 @@
 /mob/proc/show_inv(mob/user)
 	user.set_machine(src)
 	var/dat = {"
-	<BR><B>Head(Mask):</B> <A href='?src=[REF(src)];item=mask'>[(wear_mask ? wear_mask : "Nothing")]</A>
-	<BR><B>Left Hand:</B> <A href='?src=[REF(src)];item=l_hand'>[(l_hand ? l_hand  : "Nothing")]</A>
-	<BR><B>Right Hand:</B> <A href='?src=[REF(src)];item=r_hand'>[(r_hand ? r_hand : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='?src=[REF(src)];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? " <A href='?src=[REF(src)];item=internal'>Set Internal</A>" : "")]
-	<BR>[(internal ? text("<A href='?src=[REF(src)];item=internal'>Remove Internal</A>") : "")]
-	<BR><A href='?src=[REF(src)];item=pockets'>Empty Pockets</A>
-	<BR><A href='?src=[REF(user)];refresh=1'>Refresh</A>
-	<BR><A href='?src=[REF(user)];mach_close=mob[name]'>Close</A>
+	<BR><B>Head(Mask):</B> <A href='byond://?src=[REF(src)];item=mask'>[(wear_mask ? wear_mask : "Nothing")]</A>
+	<BR><B>Left Hand:</B> <A href='byond://?src=[REF(src)];item=l_hand'>[(l_hand ? l_hand  : "Nothing")]</A>
+	<BR><B>Right Hand:</B> <A href='byond://?src=[REF(src)];item=r_hand'>[(r_hand ? r_hand : "Nothing")]</A>
+	<BR><B>Back:</B> <A href='byond://?src=[REF(src)];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? " <A href='byond://?src=[REF(src)];item=internal'>Set Internal</A>" : "")]
+	<BR>[(internal ? "<A href='byond://?src=[REF(src)];item=internal'>Remove Internal</A>" : "")]
+	<BR><A href='byond://?src=[REF(src)];item=pockets'>Empty Pockets</A>
+	<BR><A href='byond://?src=[REF(user)];refresh=1'>Refresh</A>
+	<BR><A href='byond://?src=[REF(user)];mach_close=mob[name]'>Close</A>
 	<BR>"}
 
 	var/datum/browser/mob_win = new(user, "mob[name]", capitalize_first_letters(name))
@@ -382,7 +388,8 @@
 	set name = "Examine"
 	set category = "IC"
 
-	examinate(usr, A)
+	//examinate(usr, A)
+	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, GLOBAL_PROC_REF(examinate), src, A))
 
 /mob/proc/can_examine()
 	if(client?.eye == src)
@@ -407,25 +414,31 @@
 	set name = "Point To"
 	set category = "Object"
 
-	if(!isturf(src.loc) || !(A in range(world.view, get_turf(src))))
-		return FALSE
-	if(next_point_time >= world.time)
-		return FALSE
+	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(_pointed), A))
 
-	next_point_time = world.time + 25
-	face_atom(A)
-	if(isturf(A))
+/// possibly delayed verb that finishes the pointing process starting in [/mob/verb/pointed()].
+/// either called immediately or in the tick after pointed() was called, as per the [DEFAULT_QUEUE_OR_CALL_VERB()] macro
+/mob/proc/_pointed(atom/pointing_at)
+
+	if(!isturf(src.loc) || !(pointing_at in range(world.view, get_turf(src))))
+		return FALSE
+	if(TIMER_COOLDOWN_RUNNING(src, "point_verb_emote_cooldown"))
+		return FALSE
+	else
+		TIMER_COOLDOWN_START(src, "point_verb_emote_cooldown", 2.5 SECONDS)
+
+	face_atom(pointing_at)
+	if(isturf(pointing_at))
 		if(pointing_effect)
 			end_pointing_effect()
-		pointing_effect = new /obj/effect/decal/point(A)
+		pointing_effect = new /obj/effect/decal/point(pointing_at)
 		pointing_effect.set_invisibility(invisibility)
 		addtimer(CALLBACK(src, PROC_REF(end_pointing_effect), pointing_effect), 2 SECONDS)
 	else if(!invisibility)
-		var/atom/movable/M = A
-		M.add_filter("pointglow", 1, list(type = "drop_shadow", x = 0, y = -1, offset = 1, size = 1, color = "#F00"))
-		addtimer(CALLBACK(M, TYPE_PROC_REF(/atom/movable, remove_filter), "pointglow"), 2 SECONDS)
-	A.handle_pointed_at(src)
-	SEND_SIGNAL(src, COMSIG_MOB_POINT, A)
+		var/atom/movable/M = pointing_at
+		M.add_point_filter()
+		M.handle_pointed_at(src)
+	SEND_SIGNAL(src, COMSIG_MOB_POINT, pointing_at)
 	return TRUE
 
 /mob/proc/end_pointing_effect()
@@ -433,9 +446,13 @@
 
 /mob/verb/mode()
 	set name = "Activate Held Object"
-	set category = "Object"
+	set category = "Object.Held"
 	set src = usr
 
+	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(execute_mode)))
+
+///proc version to finish /mob/verb/mode() execution. used in case the proc needs to be queued for the tick after its first called
+/mob/proc/execute_mode()
 	if(hand)
 		var/obj/item/W = l_hand
 		if (W)
@@ -657,7 +674,7 @@
 
 /mob/Topic(href, href_list)
 	if(href_list["mach_close"])
-		var/t1 = text("window=[href_list["mach_close"]]")
+		var/t1 = "window=[href_list["mach_close"]]"
 		unset_machine()
 		src << browse(null, t1)
 
@@ -697,13 +714,20 @@
 			return 1
 	return 0
 
-/mob/MouseDrop(mob/M as mob)
+/mob/mouse_drop_dragged(atom/over, mob/user, src_location, over_location, params)
 	..()
-	if(M != usr) return
-	if(usr == src) return
-	if(!Adjacent(usr)) return
-	if(istype(M,/mob/living/silicon/ai)) return
-	show_inv(usr)
+	var/mob/M = over
+	if(M != user)
+		return
+	if(user == src)
+		return
+	if(!Adjacent(user))
+		return
+
+	if(istype(M,/mob/living/silicon/ai))
+		return
+
+	show_inv(user)
 
 
 /mob/verb/stop_pulling()
@@ -888,12 +912,12 @@
 			canmove = !MOB_IS_INCAPACITATED(INCAPACITATION_KNOCKOUT) && !weakened
 
 	if(lying)
-		density = 0
+		ADD_TRAIT(src, TRAIT_UNDENSE, TRAIT_SOURCE_LYING_DOWN)
 		if(!lying_is_intentional)
 			if(l_hand) unEquip(l_hand)
 			if(r_hand) unEquip(r_hand)
 	else
-		density = initial(density)
+		REMOVE_TRAIT(src, TRAIT_UNDENSE, TRAIT_SOURCE_LYING_DOWN)
 
 	for(var/obj/item/grab/G in grabbed_by)
 		if(G.wielded)
@@ -1047,7 +1071,7 @@
 
 /mob/living/carbon/human/flash_strong_pain()
 	if(can_feel_pain())
-		overlay_fullscreen("strong_pain", /obj/screen/fullscreen/strong_pain)
+		overlay_fullscreen("strong_pain", /atom/movable/screen/fullscreen/strong_pain)
 		addtimer(CALLBACK(src, PROC_REF(clear_strong_pain)), 10, TIMER_UNIQUE)
 
 /mob/living/proc/clear_strong_pain()
@@ -1222,7 +1246,7 @@
 
 /mob/verb/face_direction()
 	set name = "Face Direction"
-	set category = "IC"
+	set category = "IC.Maneuver"
 	set src = usr
 
 	set_face_dir(dir)
@@ -1253,12 +1277,12 @@
 	else
 		return ..(ndir)
 
-/mob/forceMove(atom/dest)
+/mob/forceMove(atom/destination)
 	var/old_z = GET_Z(src)
 
 	var/atom/movable/AM
-	if (dest != loc && istype(dest, /atom/movable))
-		AM = dest
+	if (destination != loc && istype(destination, /atom/movable))
+		AM = destination
 		LAZYADD(AM.contained_mobs, src)
 		if(ismob(pulledby))
 			var/mob/M = pulledby
@@ -1385,7 +1409,7 @@
 	return 1
 
 /client/proc/check_has_body_select()
-	return mob && mob.hud_used && istype(mob.zone_sel, /obj/screen/zone_sel)
+	return mob && mob.hud_used && istype(mob.zone_sel, /atom/movable/screen/zone_sel)
 
 /client/verb/body_toggle_head()
 	set name = "body-toggle-head"
@@ -1430,7 +1454,7 @@
 /client/proc/toggle_zone_sel(list/zones)
 	if(!check_has_body_select())
 		return
-	var/obj/screen/zone_sel/selector = mob.zone_sel
+	var/atom/movable/screen/zone_sel/selector = mob.zone_sel
 	selector.set_selected_zone(next_in_list(mob.zone_sel.selecting,zones), usr)
 
 /mob/proc/get_speech_bubble_state_modifier()
@@ -1530,6 +1554,14 @@
 		)
 	else
 		remove_movespeed_modifier(/datum/movespeed_modifier/equipment_speedmod)
+
+/mob/living/carbon/human/update_equipment_speed_mods()
+	//Do not apply the equipment mods if the specie is not affected by them
+	if(species?.flags & NO_EQUIP_SPEEDMODS)
+		return
+
+	. = ..()
+
 
 ///Get all items in our possession that should affect our movespeed
 /mob/proc/get_equipped_speed_mod_items()

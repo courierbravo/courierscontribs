@@ -92,7 +92,7 @@
 		if("change_supplied_law_position")
 			var/new_position = input(usr, "Enter new supplied law position between 1 and [MAX_SUPPLIED_LAW_NUMBER], inclusive. Inherent laws at the same index as a supplied law will not be stated.", "Law Position", supplied_law_position) as num|null
 			if(isnum(new_position) && !computer.use_check_and_message(usr))
-				supplied_law_position = Clamp(new_position, 1, MAX_SUPPLIED_LAW_NUMBER)
+				supplied_law_position = clamp(new_position, 1, MAX_SUPPLIED_LAW_NUMBER)
 			return TRUE
 
 		if("edit_law")
@@ -126,7 +126,7 @@
 			if(is_malf(usr))
 				var/datum/ai_laws/ALs = locate(params["transfer_laws"]) in (is_admin(usr) ? admin_laws : player_laws)
 				if(ALs)
-					log_and_message_admins("has transfered the [ALs.name] laws to [owner].")
+					log_and_message_admins("has transferred the [ALs.name] laws to [owner].")
 					ALs.sync(owner, 0)
 					current_view = 0
 			return TRUE

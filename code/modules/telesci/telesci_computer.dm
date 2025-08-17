@@ -100,6 +100,10 @@
 	 */
 	var/obj/effect/portal/destination_portal
 
+/obj/machinery/computer/telescience/feedback_hints(mob/user, distance, is_adjacent)
+	. += ..()
+	. += "There are [length(crystals) ? length(crystals) : "no"] bluespace crystal\s in the crystal slots."
+
 /obj/machinery/computer/telescience/Initialize()
 	. = ..()
 
@@ -142,11 +146,6 @@
 	telepad = null
 
 	return ..()
-
-/obj/machinery/computer/telescience/get_examine_text(mob/user, distance, is_adjacent, infix, suffix)
-	. = ..()
-	. += "There are [length(crystals) ? length(crystals) : "no"] bluespace crystal\s in the crystal slots."
-
 
 /obj/machinery/computer/telescience/attackby(obj/item/attacking_item, mob/user, params)
 
@@ -199,15 +198,15 @@
 		t += "<div class='statusDisplay'>No telepad located. <BR>Please add telepad data via use of Multitool.</div><BR>"
 	else
 		if(inserted_gps)
-			t += "<A href='?src=[REF(src)];ejectGPS=1'>Eject GPS</A>"
-			t += "<A href='?src=[REF(src)];setMemory=1'>Set GPS memory</A>"
+			t += "<A href='byond://?src=[REF(src)];ejectGPS=1'>Eject GPS</A>"
+			t += "<A href='byond://?src=[REF(src)];setMemory=1'>Set GPS memory</A>"
 		else
 			t += "<span class='linkOff'>Eject GPS</span>"
 			t += "<span class='linkOff'>Set GPS memory</span>"
 		t += "<div class='statusDisplay'>[temp_msg]</div><BR>"
-		t += "<A href='?src=[REF(src)];setrotation=1'>Set Bearing</A>"
+		t += "<A href='byond://?src=[REF(src)];setrotation=1'>Set Bearing</A>"
 		t += "<div class='statusDisplay'>[rotation]&deg;</div>"
-		t += "<A href='?src=[REF(src)];setangle=1'>Set Elevation</A>"
+		t += "<A href='byond://?src=[REF(src)];setangle=1'>Set Elevation</A>"
 		t += "<div class='statusDisplay'>[angle]&deg;</div>"
 		t += "<span class='linkOn'>Set Power</span>"
 		t += "<div class='statusDisplay'>"
@@ -219,14 +218,14 @@
 			if(power == power_options[i])
 				t += "<span class='linkOn'>[power_options[i]]</span>"
 				continue
-			t += "<A href='?src=[REF(src)];setpower=[i]'>[power_options[i]]</A>"
+			t += "<A href='byond://?src=[REF(src)];setpower=[i]'>[power_options[i]]</A>"
 		t += "</div>"
 
-		t += "<A href='?src=[REF(src)];setz=1'>Set Vertical Offset</A>"
+		t += "<A href='byond://?src=[REF(src)];setz=1'>Set Vertical Offset</A>"
 		t += "<div class='statusDisplay'>[!isnull(zlevel_offset) ? zlevel_offset : "No Data"]</div>"
 
-		t += "<BR><A href='?src=[REF(src)];send=1'>Open Portal</A>"
-		t += "<BR><A href='?src=[REF(src)];recal=1'>Recalibrate Crystals</A> <A href='?src=[REF(src)];eject=1'>Eject Crystals</A>"
+		t += "<BR><A href='byond://?src=[REF(src)];send=1'>Open Portal</A>"
+		t += "<BR><A href='byond://?src=[REF(src)];recal=1'>Recalibrate Crystals</A> <A href='byond://?src=[REF(src)];eject=1'>Eject Crystals</A>"
 
 		// Information about the last teleport
 		t += "<BR><div class='statusDisplay'>"
@@ -277,15 +276,15 @@
 
 	if(telepad)
 
-		var/truePower = Clamp(power + power_off, 1, 1000)
+		var/truePower = clamp(power + power_off, 1, 1000)
 		var/trueRotation = rotation + rotation_off
-		var/trueAngle = Clamp(angle, 1, 90)
+		var/trueAngle = clamp(angle, 1, 90)
 
 		var/datum/projectile_data/proj_data = projectile_trajectory(telepad.x, telepad.y, trueRotation, trueAngle, truePower)
 		last_tele_data = proj_data
 
-		var/trueX = Clamp(round(proj_data.dest_x, 1), 1, world.maxx)
-		var/trueY = Clamp(round(proj_data.dest_y, 1), 1, world.maxy)
+		var/trueX = clamp(round(proj_data.dest_x, 1), 1, world.maxx)
+		var/trueY = clamp(round(proj_data.dest_y, 1), 1, world.maxy)
 		var/spawn_time = round(proj_data.time)
 
 		var/turf/target = locate(trueX, trueY, target_zlevel)
@@ -361,7 +360,11 @@
 	updateDialog()
 
 /obj/machinery/computer/telescience/proc/teleport(mob/user)
-	if(rotation == null || angle == null || target_zlevel == null)
+	//If the offset was never changed, use the current zlevel
+	if(isnull(target_zlevel))
+		target_zlevel = GET_Z(src)
+
+	if(rotation == null || angle == null)
 		temp_msg = "ERROR!<BR>Set a angle, rotation and sector."
 		return
 	if(power <= 0)
@@ -407,14 +410,14 @@
 		var/new_rot = input("Please input desired bearing in degrees.", name, rotation) as num
 		if(..()) // Check after we input a value, as they could've moved after they entered something
 			return
-		rotation = Clamp(new_rot, -900, 900)
+		rotation = clamp(new_rot, -900, 900)
 		rotation = round(rotation, 0.01)
 
 	if(href_list["setangle"])
 		var/new_angle = input("Please input desired elevation in degrees.", name, angle) as num
 		if(..())
 			return
-		angle = Clamp(round(new_angle, 0.1), 1, 9999)
+		angle = clamp(round(new_angle, 0.1), 1, 9999)
 
 	if(href_list["setpower"])
 		var/index = href_list["setpower"]

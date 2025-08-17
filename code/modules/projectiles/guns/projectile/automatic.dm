@@ -85,6 +85,7 @@
 /obj/item/gun/projectile/automatic/c20r/sol
 	name = "solarian submachine gun"
 	desc = "Designed by Zavodskoi as a scaled-down version of their M469, the M470-L is a personal defense weapon intended for use by second-line personnel from all branches of the Solarian military, such as support troops and Navy crewmen."
+	desc_extended = null
 	icon = 'icons/obj/guns/sol_smg.dmi'
 	icon_state = "vityaz"
 	item_state = "vityaz"
@@ -135,6 +136,9 @@
 	can_suppress = TRUE
 	suppressor_x_offset = 10
 	suppressor_y_offset = -1
+
+/obj/item/gun/projectile/automatic/wt550/unloaded
+	magazine_type = null
 
 /obj/item/gun/projectile/automatic/wt550/lethal
 	magazine_type = /obj/item/ammo_magazine/mc9mmt
@@ -332,7 +336,6 @@
 /obj/item/gun/projectile/automatic/rifle/dominia/update_icon()
 	..()
 	icon_state = (ammo_magazine)? "acr" : "acr-empty"
-	item_state = icon_state
 
 /obj/item/gun/projectile/automatic/rifle/z8
 	name = "bullpup assault carbine"
@@ -367,6 +370,13 @@
 
 	var/use_launcher = 0
 	var/obj/item/gun/launcher/grenade/underslung/launcher
+
+/obj/item/gun/projectile/automatic/rifle/z8/feedback_hints(mob/user, distance, is_adjacent)
+	. += ..()
+	if(launcher.chambered)
+		. += "\The [launcher] has \a [launcher.chambered] loaded."
+	else
+		. += "\The [launcher] is empty."
 
 /obj/item/gun/projectile/automatic/rifle/z8/Initialize()
 	. = ..()
@@ -404,13 +414,6 @@
 	else
 		icon_state = "carbine-empty"
 
-/obj/item/gun/projectile/automatic/rifle/z8/get_examine_text(mob/user, distance, is_adjacent, infix, suffix)
-	. = ..()
-	if(launcher.chambered)
-		. += "\The [launcher] has \a [launcher.chambered] loaded."
-	else
-		. += "\The [launcher] is empty."
-
 /obj/item/gun/projectile/automatic/rifle/jingya
 	name = "burst rifle"
 	desc = "The Jingya A-1 is the first of a new line of NanoTrasen rifles, developed in cooperation with Zavodskoi Interstellar's Kumar Arms subsidiary. Primarily made of high strength polymers, the rifle is designed to be cheap to mass produce while remaining reliable."
@@ -434,6 +437,9 @@
 		list(mode_name="semiauto", burst=1, fire_delay=ROF_RIFLE),
 		list(mode_name="2-round bursts", burst=2, burst_accuracy=list(1, 1))
 	)
+
+/obj/item/gun/projectile/automatic/rifle/jingya/unloaded
+	magazine_type = null
 
 /obj/item/gun/projectile/automatic/rifle/jingya/update_icon()
 	..()
@@ -748,7 +754,7 @@
 	scoped_accuracy = 2
 
 /obj/item/gun/projectile/automatic/terminator/verb/scope()
-	set category = "Object"
+	set category = "Object.Held"
 	set name = "Use Scope"
 	set src in usr
 
@@ -854,7 +860,6 @@
 /obj/item/gun/projectile/automatic/rifle/dominia_lmg/update_icon()
 	..()
 	icon_state = (ammo_magazine)? "dom_lmg" : "dom_lmg-empty"
-	item_state = icon_state
 
 /obj/item/gun/projectile/automatic/rifle/shotgun
 	name = "assault shotgun"
