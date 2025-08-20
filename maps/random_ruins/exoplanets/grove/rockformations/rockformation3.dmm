@@ -3,7 +3,7 @@
 /turf/simulated/mineral/random/exoplanet,
 /area/space)
 "b" = (
-/obj/structure/closet/crate/loot,
+/obj/structure/closet/crate/loot/contraband,
 /turf/simulated/floor/exoplanet/barren/cave,
 /area/space)
 "c" = (
@@ -17,11 +17,19 @@
 "i" = (
 /turf/template_noop,
 /area/space)
+"k" = (
+/obj/structure/flora/tree/grove,
+/turf/template_noop,
+/area/space)
 "m" = (
 /turf/simulated/floor/exoplanet/barren/cave,
 /area/space)
 "u" = (
 /obj/effect/landmark/clear,
+/turf/template_noop,
+/area/space)
+"y" = (
+/obj/structure/flora/ausbushes/ppflowers,
 /turf/template_noop,
 /area/space)
 "G" = (
@@ -31,47 +39,63 @@
 /obj/effect/landmark/clear,
 /turf/simulated/floor/exoplanet/water/shallow,
 /area/space)
+"K" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/template_noop,
+/area/space)
+"N" = (
+/obj/structure/flora/ausbushes/brflowers,
+/turf/template_noop,
+/area/space)
 "T" = (
 /obj/item/material/sword/dao,
 /turf/simulated/floor/exoplanet/barren/cave,
 /area/space)
+"V" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/template_noop,
+/area/space)
+"X" = (
+/obj/structure/flora/ausbushes/palebush,
+/turf/template_noop,
+/area/space)
 
 (1,1,1) = {"
+y
+i
+i
+i
+y
+i
+K
+i
+i
+i
+K
 i
 i
 i
 i
 i
 i
+V
 i
 i
 i
 i
+y
 i
 i
 i
-i
-i
-i
-i
-i
-i
-i
-i
-i
-i
-i
-i
-i
-i
+X
 "}
 (2,1,1) = {"
 i
 i
 i
+k
 i
-i
-i
+N
 i
 i
 a
@@ -80,19 +104,19 @@ a
 a
 a
 a
+X
+i
+y
+K
 i
 i
 i
+k
 i
+y
 i
-i
-i
-i
-i
-i
-i
-i
-i
+N
+N
 "}
 (3,1,1) = {"
 i
@@ -100,7 +124,7 @@ i
 i
 i
 i
-i
+y
 i
 a
 a
@@ -121,7 +145,7 @@ i
 i
 i
 i
-i
+N
 "}
 (4,1,1) = {"
 i
@@ -148,9 +172,9 @@ i
 i
 i
 i
+k
 i
-i
-i
+N
 "}
 (5,1,1) = {"
 i
@@ -173,19 +197,19 @@ a
 a
 a
 a
+X
 i
 i
 i
 i
-i
-i
+K
 i
 "}
 (6,1,1) = {"
+k
+V
 i
-i
-i
-i
+X
 a
 a
 a
@@ -212,7 +236,7 @@ i
 "}
 (7,1,1) = {"
 i
-i
+V
 i
 a
 a
@@ -234,14 +258,14 @@ a
 a
 a
 i
+V
 i
-i
-i
-i
+y
+K
 "}
 (8,1,1) = {"
 i
-i
+K
 i
 a
 a
@@ -262,7 +286,7 @@ G
 a
 a
 a
-i
+X
 i
 i
 i
@@ -294,11 +318,11 @@ a
 a
 i
 i
-i
-i
+k
+V
 "}
 (10,1,1) = {"
-i
+N
 i
 a
 a
@@ -324,7 +348,7 @@ a
 i
 i
 i
-i
+V
 "}
 (11,1,1) = {"
 i
@@ -382,11 +406,11 @@ m
 u
 u
 i
-i
+k
 "}
 (13,1,1) = {"
 i
-i
+X
 a
 a
 a
@@ -414,7 +438,7 @@ i
 i
 "}
 (14,1,1) = {"
-i
+y
 a
 a
 a
@@ -443,7 +467,7 @@ u
 i
 "}
 (15,1,1) = {"
-i
+y
 a
 a
 a
@@ -469,7 +493,7 @@ u
 u
 u
 u
-i
+X
 "}
 (16,1,1) = {"
 i
@@ -559,7 +583,7 @@ u
 u
 "}
 (19,1,1) = {"
-i
+K
 a
 a
 a
@@ -619,7 +643,7 @@ u
 (21,1,1) = {"
 i
 i
-i
+y
 a
 a
 a
@@ -647,9 +671,9 @@ u
 "}
 (22,1,1) = {"
 i
+V
 i
 i
-i
 a
 a
 a
@@ -672,7 +696,7 @@ u
 u
 u
 u
-i
+V
 "}
 (23,1,1) = {"
 i
@@ -701,15 +725,15 @@ u
 u
 u
 i
-i
+k
 "}
 (24,1,1) = {"
 i
+k
+i
+N
 i
 i
-i
-i
-i
 a
 a
 a
@@ -722,8 +746,8 @@ a
 a
 a
 a
-i
-i
+y
+X
 u
 u
 u
@@ -736,57 +760,57 @@ i
 i
 i
 i
+N
+K
+X
+i
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 i
 i
-i
-i
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-i
-i
-i
+k
 i
 u
 u
-i
-i
+y
+X
 i
 i
 "}
 (26,1,1) = {"
+X
+i
+i
+i
+y
+i
+i
+y
+i
+i
+V
+y
+i
+i
+i
+V
 i
 i
 i
 i
+V
 i
+y
+N
+N
 i
-i
-i
-i
-i
-i
-i
-i
-i
-i
-i
-i
-i
-i
-i
-i
-i
-i
-i
-i
-i
-i
+y
 "}
