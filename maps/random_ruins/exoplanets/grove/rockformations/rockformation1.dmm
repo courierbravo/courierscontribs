@@ -5,14 +5,8 @@
 "c" = (
 /turf/simulated/mineral/random/high_chance/exoplanet,
 /area/space)
-<<<<<<< HEAD
-=======
 "F" = (
 /obj/structure/flora/tree/grove,
-/turf/template_noop,
-/area/space)
-"G" = (
-/obj/effect/landmark/clear,
 /turf/template_noop,
 /area/space)
 "H" = (
@@ -27,7 +21,6 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/template_noop,
 /area/space)
->>>>>>> 8e41072ee227b66d360422cd10fd0119bb29e268
 "W" = (
 /turf/simulated/mineral/random/exoplanet,
 /area/space)
@@ -168,7 +161,7 @@ W
 a
 a
 a
-a
+X
 a
 a
 W
@@ -198,7 +191,7 @@ W
 a
 a
 a
-a
+X
 a
 W
 c
@@ -227,7 +220,7 @@ W
 W
 W
 a
-a
+T
 a
 a
 W
@@ -256,7 +249,7 @@ a
 W
 W
 W
-a
+L
 a
 a
 W
@@ -323,14 +316,14 @@ W
 W
 W
 W
+X
 a
 a
 a
 a
 a
 a
-a
-a
+F
 a
 a
 W
@@ -346,7 +339,7 @@ W
 W
 W
 W
-a
+T
 a
 W
 W
@@ -361,7 +354,7 @@ a
 a
 a
 a
-a
+Z
 a
 W
 W
@@ -389,10 +382,10 @@ c
 c
 a
 a
+X
+X
 a
-a
-a
-a
+L
 a
 W
 W
@@ -408,18 +401,18 @@ W
 W
 W
 a
+L
 a
+H
 a
-a
-a
-a
+Z
 c
 c
 c
 c
 c
 a
-a
+X
 a
 a
 a
@@ -439,7 +432,7 @@ W
 W
 W
 a
-a
+H
 a
 a
 a
@@ -448,12 +441,12 @@ c
 c
 c
 a
-a
+H
 a
 W
 W
 a
-a
+T
 a
 W
 W
@@ -472,7 +465,7 @@ a
 a
 a
 a
-a
+F
 a
 a
 c
@@ -484,7 +477,7 @@ W
 W
 a
 a
-a
+H
 a
 W
 W
@@ -503,8 +496,8 @@ a
 a
 a
 a
-a
-a
+T
+Z
 a
 a
 a
@@ -513,7 +506,7 @@ W
 W
 W
 a
-a
+H
 a
 a
 W
@@ -533,8 +526,8 @@ W
 a
 a
 a
-a
-a
+T
+L
 a
 a
 W
@@ -544,7 +537,7 @@ W
 a
 a
 a
-a
+H
 a
 a
 W
@@ -562,7 +555,7 @@ W
 W
 W
 W
-a
+X
 a
 a
 W
@@ -574,7 +567,7 @@ W
 a
 a
 a
-a
+H
 a
 a
 W
@@ -601,7 +594,7 @@ W
 W
 W
 a
-a
+T
 a
 a
 a
