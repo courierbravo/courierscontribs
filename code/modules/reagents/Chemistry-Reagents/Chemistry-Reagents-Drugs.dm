@@ -44,6 +44,7 @@
 	color = "#60A584"
 	taste_description = "bitterness"
 	taste_mult = 0.4
+	value = 2.8
 
 /singleton/reagent/drugs/mms/affect_blood(mob/living/carbon/M, alien, removed, datum/reagents/holder)
 	..()
@@ -64,7 +65,7 @@
 	if(power > 20)
 		var/probmod = 5 + (power-20)
 		if(prob(probmod) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
-			step(M, pick(GLOB.cardinal))
+			step(M, pick(GLOB.cardinals))
 
 	if(prob(7))
 		M.emote(pick("smile","giggle","moan","yawn","laugh","drool","twitch"))
@@ -83,6 +84,7 @@
 	taste_description = "bitterness"
 	fallback_specific_heat = 1.2
 	effect_messages = FALSE
+	value = 2.5
 
 /singleton/reagent/drugs/serotrotium/affect_blood(mob/living/carbon/M, alien, removed, datum/reagents/holder)
 	..()
@@ -110,6 +112,7 @@
 	overdose = REAGENTS_OVERDOSE
 	taste_description = "sourness"
 	effect_messages = FALSE
+	value = 2
 
 /singleton/reagent/drugs/cryptobiolin/affect_blood(mob/living/carbon/M, alien, removed, datum/reagents/holder)
 	..()
@@ -133,7 +136,7 @@
 /singleton/reagent/drugs/snowflake/affect_blood(mob/living/carbon/M, alien, removed, datum/reagents/holder)
 	..()
 	M.add_chemical_effect(CE_PAINKILLER, 3 * power)
-	M.bodytemperature = max(M.bodytemperature - 15 * TEMPERATURE_DAMAGE_COEFFICIENT * power, 0)
+	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0)
 	if(prob(12))
 		M.emote(pick("shiver", "sniff"))
 	if(prob(5))
@@ -153,6 +156,7 @@
 	overdose = REAGENTS_OVERDOSE
 	taste_description = "numbness"
 	effect_messages = FALSE
+	value = 1.8
 
 /singleton/reagent/drugs/impedrezene/affect_blood(mob/living/carbon/M, alien, removed, datum/reagents/holder)
 	..()
@@ -173,6 +177,7 @@
 	overdose = REAGENTS_OVERDOSE
 	taste_description = "sourness"
 	ignores_drug_resistance = TRUE
+	value = 0.6
 
 /singleton/reagent/drugs/mindbreaker/affect_blood(mob/living/carbon/M, alien, removed, datum/reagents/holder)
 	..()
@@ -194,6 +199,7 @@
 	metabolism = REM * 0.5
 	taste_description = "mushroom"
 	fallback_specific_heat = 1.2
+	value = 0.7
 	condiment_name = "Psilocybin"
 	condiment_desc = "A small bottle full of a pink liquid. Whatever could it do?"
 	condiment_icon_state = "psilocybin"
@@ -480,6 +486,8 @@
 	taste_description = "spicy earth"
 	taste_mult = 0.4
 	fallback_specific_heat = 1.6
+	value = 2.8
+	effect_messages = FALSE
 	condiment_name = "Ambrosia Extract Bottle"
 	condiment_desc = "A small dropper bottle full of a stoner's paradise."
 	condiment_icon_state = "ambrosiaextract"
@@ -720,7 +728,7 @@
 
 /singleton/reagent/drugs/dionae_stimulant
 	name = "Diesel"
-	description = "Fondly dubbed Diesel by the dionae of the Narrows where it is served in the ship's cafeteria, this viscous sludge is the byproduct of refining radioactive materialls and provides an invigorating kick to a dionae's workday."
+	description = "Fondly dubbed Diesel by the dionae of the Narrows where it is served in the ship's cafeteria, this viscous sludge is the byproduct of refining radioactive materials and provides an invigorating kick to a dionae's workday."
 	color = "#465044"
 	taste_description = "gritty corium"
 	reagent_state = SOLID
@@ -742,6 +750,8 @@
 		if(prob(5))
 			to_chat(M, SPAN_GOOD(pick("A bubbling sensation is felt by your nymphs.", "A nymph comments that this is the most energetic it has ever been!", "A warm energy builds within your central structure.", "Your nymphs can't stay still!")))
 			M.emote(pick("chirp", "twitch", "shiver"))
+	else
+		M.apply_damage(10, DAMAGE_TOXIN, damage_flags = DAMAGE_FLAG_DISPERSED)
 
 /singleton/reagent/drugs/dionae_stimulant/overdose(mob/living/carbon/M, alien, removed, datum/reagents/holder)
 	..()
@@ -764,6 +774,24 @@
 	if(alien == IS_DIONA)
 		M.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/dionae_stimulant)
 	. = ..()
+
+/singleton/reagent/drugs/dionae_stimulant/diet
+	name = "diet Diesel"
+	description = "Diesel produced straight from the Narrows that has been made \"diet\" or decontaminated of radiation, making it safe for distribution around the Orion Spur."
+
+/singleton/reagent/drugs/dionae_stimulant/diet/initial_effect(mob/living/carbon/M, alien, datum/reagents/holder)
+	return
+
+/singleton/reagent/drugs/dionae_stimulant/diet/affect_blood(mob/living/carbon/M, alien, removed, datum/reagents/holder)
+	if(alien == IS_DIONA)
+		if(prob(5))
+			to_chat(M, SPAN_GOOD(pick("A bubbling sensation is felt by your nymphs.", "A nymph comments that this is the most energetic it has ever been!", "A warm energy builds within your central structure.", "Your nymphs can't stay still!")))
+			M.emote(pick("chirp", "twitch", "shiver"))
+	else
+		M.apply_damage(5, DAMAGE_TOXIN, damage_flags = DAMAGE_FLAG_DISPERSED) //Less toxic than regular Diesel due to the lack of radioactivity, but still toxic
+
+/singleton/reagent/drugs/dionae_stimulant/diet/final_effect(mob/living/carbon/M, alien, removed, datum/reagents/holder)
+	return
 
 #undef DRUG_MESSAGE_DELAY
 

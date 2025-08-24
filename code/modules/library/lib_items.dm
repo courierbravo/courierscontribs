@@ -1,9 +1,9 @@
 /* Library Items
  *
  * Contains:
- *		Bookcase
- *		Book
- *		Barcode Scanner
+ * * Bookcase
+ * * Book
+ * * Barcode Scanner
  */
 
 
@@ -17,7 +17,6 @@
 	icon_state = "book-0"
 	anchored = 1
 	density = 1
-	opacity = 1
 	build_amt = 5
 
 /obj/structure/bookcase/Initialize()
@@ -134,15 +133,19 @@
 	update_icon()
 
 /obj/structure/bookcase/libraryspawn/fiction
+	name = "bookcase" //Because SDMM doesn't recognise the name otherwise, for some reason
 	spawn_category = "Fiction"
 
 /obj/structure/bookcase/libraryspawn/nonfiction
+	name = "bookcase" //Because SDMM doesn't recognise the name otherwise, for some reason
 	spawn_category = "Non-Fiction"
 
 /obj/structure/bookcase/libraryspawn/reference
+	name = "bookcase" //Because SDMM doesn't recognise the name otherwise, for some reason
 	spawn_category = "Reference"
 
 /obj/structure/bookcase/libraryspawn/religion
+	name = "bookcase" //Because SDMM doesn't recognise the name otherwise, for some reason
 	spawn_category = "Religion"
 
 /obj/structure/bookcase/manuals/medical
@@ -186,12 +189,8 @@
 /obj/item/book
 	name = "book"
 	icon = 'icons/obj/library.dmi'
-	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items/lefthand_books.dmi',
-		slot_r_hand_str = 'icons/mob/items/righthand_books.dmi'
-		)
+	contained_sprite = TRUE
 	icon_state = "book"
-	desc_antag = "As a Cultist, this item can be reforged to become a cult tome."
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL		 //upped to three because books are, y'know, pretty big. (and you could hide them inside eachother recursively forever)
@@ -206,6 +205,10 @@
 	drop_sound = 'sound/items/drop/book.ogg'
 	pickup_sound = 'sound/items/pickup/book.ogg'
 
+/obj/item/book/antagonist_hints(mob/user, distance, is_adjacent)
+	. += ..()
+	. += "As a Cultist, this item can be reforged to become a cult tome."
+
 /obj/item/book/attack_self(var/mob/user as mob)
 	if(carved)
 		if(store)
@@ -217,11 +220,10 @@
 			to_chat(user, SPAN_NOTICE("The pages of [title] have been cut out!"))
 			return
 	if(src.dat)
-		user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
+		user << browse(HTML_SKELETON("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]"), "window=book")
 		user.visible_message("[user] opens a book titled \"[src.title]\" and begins reading intently.")
-		playsound(loc, 'sound/bureaucracy/bookopen.ogg', 50, 1)
+		playsound(loc, 'sound/bureaucracy/bookopen.ogg', 50, TRUE)
 		onclose(user, "book")
-		onclose(playsound(loc, 'sound/bureaucracy/bookclose.ogg', 50, 1))
 	else
 		to_chat(user, "This book is completely blank!")
 
@@ -310,11 +312,11 @@
 	else
 		..()
 
-/obj/item/book/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob, var/target_zone)
+/obj/item/book/attack(mob/living/target_mob, mob/living/user, target_zone)
 	if(target_zone == BP_EYES)
-		user.visible_message(SPAN_NOTICE("You open up the book and show it to [M]. "), \
-			SPAN_NOTICE(" [user] opens up a book and shows it to [M]. "))
-		M << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
+		user.visible_message(SPAN_NOTICE("You open up the book and show it to [target_mob]. "), \
+			SPAN_NOTICE(" [user] opens up a book and shows it to [target_mob]. "))
+		target_mob << browse(HTML_SKELETON("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]"), "window=book")
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
 
 

@@ -44,7 +44,7 @@
 	if(istype(loc, /obj/item/gripper)) // fixes ghost cube when using syringe
 		var/obj/item/gripper/G = loc
 		G.drop_item()
-	var/mob/living/carbon/human/H = new(src.loc)
+	var/mob/living/carbon/human/H = new(get_turf(src))
 	H.set_species(monkey_type)
 	H.real_name = H.species.get_random_name()
 	H.name = H.real_name
@@ -383,7 +383,7 @@
 	storage_type = "packaging"
 	starts_with = list(/obj/item/reagent_containers/food/snacks/cookiesnack = 6)
 	can_hold = list(/obj/item/reagent_containers/food/snacks/cookiesnack)
-	max_storage_space = 6
+	make_exact_fit = TRUE
 
 	use_sound = 'sound/items/storage/wrapper.ogg'
 	drop_sound = 'sound/items/drop/wrapper.ogg'
@@ -417,7 +417,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	starts_with = list(/obj/item/clothing/mask/chewable/candy/gum = 5)
 	can_hold = list(/obj/item/clothing/mask/chewable/candy/gum, /obj/item/trash/spitgum)
-	max_storage_space = 5
+	make_exact_fit = TRUE
 
 	use_sound = 'sound/items/storage/wrapper.ogg'
 	drop_sound = 'sound/items/drop/wrapper.ogg'
@@ -456,7 +456,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	starts_with = list(/obj/item/reagent_containers/food/snacks/mint/admints = 6)
 	can_hold = list(/obj/item/reagent_containers/food/snacks/mint/admints)
-	max_storage_space = 6
+	make_exact_fit = TRUE
 
 	use_sound = 'sound/items/storage/wrapper.ogg'
 	drop_sound = 'sound/items/drop/wrapper.ogg'
@@ -809,7 +809,7 @@
 	storage_type = "packaging"
 	starts_with = list(/obj/item/reagent_containers/food/snacks/foy = 6)
 	can_hold = list(/obj/item/reagent_containers/food/snacks/foy)
-	max_storage_space = 6
+	make_exact_fit = TRUE
 
 	use_sound = 'sound/items/storage/wrapper.ogg'
 	drop_sound = 'sound/items/drop/wrapper.ogg'

@@ -119,7 +119,6 @@
 /obj/item/gun/energy/mousegun
 	name = "pest gun"
 	desc = "The NT \"Arodentia\" Pesti-Shock is a highly sophisticated and probably safe beamgun designed for rapid pest-control."
-	desc_antag = "This gun can be emagged to make it fire damaging beams and get more max shots. It doesn't do a lot of damage, but it is concealable."
 	icon = 'icons/obj/guns/pestishock.dmi'
 	icon_state = "pestishock"
 	item_state = "pestishock"
@@ -133,6 +132,10 @@
 	sel_mode = 1
 	var/emagged = FALSE
 	needspin = FALSE
+
+/obj/item/gun/energy/mousegun/antagonist_hints(mob/user, distance, is_adjacent)
+	. += ..()
+	. += "This gun can be emagged to make it fire damaging beams and get more max shots. It doesn't do a lot of damage, but it is concealable."
 
 /obj/item/gun/energy/mousegun/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0, var/playemote = 1)
 	var/T = get_turf(user)
@@ -263,16 +266,14 @@
 	is_charging = 0
 	if(!istype(user.get_active_hand(), src))
 		return
-	msg_admin_attack("[key_name_admin(user)] shot with \a [src.type] [key_name_admin(src)]'s target (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)",ckey=key_name(user),ckey_target=key_name(src))
+	msg_admin_attack("[key_name_admin(user)] shot with \a [src.type] [key_name_admin(src)]'s target (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)",ckey=key_name(user),ckey_target=key_name(src))
 
 	return ..()
 
 /obj/item/gun/energy/vaurca/blaster
 	name = "\improper thermic blaster"
-	desc = "Designed after the Zo'ra arrival in the Spur, this modern reimagining of the venerable Zo'rane Thermic Blaster is as much a rare and brutal personal defense weapon as it is a badge of office for the Zo'ra Ta that now wield it. \
-	The design blends visual elements from a revolver, chosen by the Hive for its status as a respected weapon throughout much of the Spur, with the might of Zo'rane energy technology."
-	desc_extended = "The Thermic Blaster, sometimes known as the Zo'ra Blaster, is an incendiary energy weapon capable of tearing through any would-be interloper, though the phoron-powered battery is held back by an unremarkable capacity. \
-	While the blaster's smaller battery may cause problems in longer engagements, its intended use as the sidearm of Zo'ra Diplomats and certain Warriors makes it a low priority to increase given the already remarkably steep cost of the design."
+	desc = "An opulent Vaurceisan pistol, handcrafted for each wielder by the Court of Queen's master weaponsmiths. For those Ta and few notable Warriors who wield it, the Thermic Blaster is as much a badge of office as it is a fiercely deadly weapon."
+	desc_extended = "The Thermic Blaster is a weapon with a history dating back as far as the Vaurcesian Court of Queens, for since its founding, it has forged one of these blasters for every newborn Ta, bestowed as a coming-of-age gift. With every major advancement in technology, the Court's weaponsmiths have gathered together to upgrade the existing batch, resulting in many Thermic Blasters being millennia old, and many Ta add personal flourishes. This iteration of the firearm was developed after the Zo'rane arrival in the Spur and distributed as a celebration for the refounding of the Court of Queens. The Court may occasionally bestow this exceptionally expensive Blaster on an accomplished Warrior, but very few ever leave Vaurca hands and those that do are fiercely prized."
 	icon = 'icons/obj/guns/blaster.dmi'
 	icon_state = "blaster"
 	item_state = "blaster"
@@ -280,7 +281,8 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_PHORON = 4, TECH_POWER = 4)
 	fire_sound = 'sound/weapons/laser1.ogg'
 	slot_flags = SLOT_BACK | SLOT_HOLSTER | SLOT_BELT
-	w_class = WEIGHT_CLASS_NORMAL
+	self_recharge = 1
+	recharge_time = 7
 	accuracy = 1
 	recoil = 1
 	force = 15
@@ -296,13 +298,10 @@
 /obj/item/gun/energy/vaurca/typec
 	name = "thermal lance"
 	desc = "A powerful piece of Zo'rane energy artillery, converted to be portable...if you weigh a metric tonne, that is."
-	icon = 'icons/mob/species/breeder/inventory.dmi'
+	icon = 'icons/obj/guns/megaglaive.dmi'
+	sprite_sheets = list(BODYTYPE_VAURCA_BREEDER = 'icons/obj/guns/megaglaive.dmi')
 	icon_state = "megaglaive0"
 	item_state = "megaglaive"
-	item_icons = list(//DEPRECATED. USE CONTAINED SPRITES IN FUTURE
-		slot_l_hand_str = 'icons/mob/species/breeder/held_l.dmi',
-		slot_r_hand_str = 'icons/mob/species/breeder/held_r.dmi'
-		)
 	origin_tech = list(TECH_COMBAT = 6, TECH_PHORON = 8)
 	fire_sound = 'sound/magic/lightningbolt.ogg'
 	attack_verb = list("sundered", "annihilated", "sliced", "cleaved", "slashed", "pulverized")
@@ -325,10 +324,9 @@
 	self_recharge = 1
 	recharge_time = 2
 	needspin = FALSE
-
 	is_wieldable = TRUE
 
-/obj/item/gun/energy/vaurca/typec/attack(mob/living/carbon/human/M as mob, mob/living/carbon/user as mob)
+/obj/item/gun/energy/vaurca/typec/attack(mob/living/target_mob, mob/living/user, target_zone)
 	user.setClickCooldown(16)
 	..()
 
@@ -356,7 +354,7 @@
 	is_charging = 0
 	if(!istype(user.get_active_hand(), src))
 		return
-	msg_admin_attack("[key_name_admin(user)] shot with \a [src.type] [key_name_admin(src)]'s target (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)",ckey=key_name(user),ckey_target=key_name(src))
+	msg_admin_attack("[key_name_admin(user)] shot with \a [src.type] [key_name_admin(src)]'s target (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)",ckey=key_name(user),ckey_target=key_name(src))
 
 	return ..()
 
@@ -441,7 +439,7 @@
 	is_charging = FALSE
 	if(needs_wielding && user.get_active_hand() != src)
 		return
-	msg_admin_attack("[key_name_admin(user)] shot with \a [src.type] [key_name_admin(src)]'s target (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
+	msg_admin_attack("[key_name_admin(user)] shot with \a [src.type] [key_name_admin(src)]'s target (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
 	return ..()
 
 /obj/item/gun/energy/vaurca/thermaldrill/mounted
@@ -656,7 +654,7 @@
 		user.update_inv_back()
 
 /obj/item/gun/energy/galatea/Move()
-	..()
+	. = ..()
 	if(loc != source.loc)
 		INVOKE_ASYNC(source, TYPE_PROC_REF(/obj/item/laserpack, remove_gun)) // prevent even weirder shit
 

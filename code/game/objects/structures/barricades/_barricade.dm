@@ -3,7 +3,6 @@
 	climbable = TRUE
 	anchored = TRUE
 	density = TRUE
-	throwpass = TRUE //You can throw objects over this, despite its density.
 	atom_flags = ATOM_FLAG_CHECKS_BORDER
 
 	var/stack_type //The type of stack the barricade dropped when disassembled if any.
@@ -30,11 +29,8 @@
 	update_icon()
 	starting_maxhealth = maxhealth
 
-/obj/structure/barricade/get_examine_text(mob/user, distance, is_adjacent, infix, suffix)
-	. = ..()
-	. += SPAN_INFO("It is recommended to stand flush to a barricade or one tile away for maximum efficiency.")
-	if(is_wired)
-		. += SPAN_INFO("There is a length of wire strewn across the top of this barricade.")
+/obj/structure/barricade/condition_hints(mob/user, distance, is_adjacent)
+	. += ..()
 	switch(damage_state)
 		if(BARRICADE_DMG_NONE)
 			. += SPAN_INFO("It appears to be in good shape.")
@@ -44,6 +40,17 @@
 			. += SPAN_WARNING("It's quite beat up, but it's holding together.")
 		if(BARRICADE_DMG_HEAVY)
 			. += SPAN_WARNING("It's crumbling apart, just a few more blows will tear it apart!")
+
+/obj/structure/barricade/mechanics_hints(mob/user, distance, is_adjacent)
+	. += ..()
+	if(!is_wired)
+		. += "Use a length of barbed wire on this barricade to restrict enemies from climbing it and damage them on attacking it at close range."
+
+/obj/structure/barricade/feedback_hints(mob/user, distance, is_adjacent)
+	. += ..()
+	. += SPAN_INFO("It is recommended to stand flush to a barricade or one tile away for maximum efficiency.")
+	if(is_wired)
+		. += SPAN_INFO("There is a length of barbed wire strewn across the top of this barricade, preventing it from being climbed and making it hazardous to attack at close range.")
 
 /obj/structure/barricade/update_icon()
 	CutOverlays()
@@ -83,6 +90,8 @@
 	return prob(max(30,(100.0*health)/maxhealth))
 
 /obj/structure/barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(mover?.movement_type & PHASING)
+		return TRUE
 	if(air_group || (height==0))
 		return TRUE
 	if(istype(mover, /obj/projectile))
@@ -144,7 +153,7 @@
 		playsound(src, barricade_hitsound, 50, 1)
 	if(is_wired)
 		visible_message(SPAN_DANGER("\The [src]'s barbed wire slices into [L]!"))
-		L.apply_damage(rand(5, 10), DAMAGE_BRUTE, pick(BP_R_HAND, BP_L_HAND), "barbed wire", DAMAGE_FLAG_SHARP|DAMAGE_FLAG_EDGE, 25)
+		L.apply_damage((5), DAMAGE_BRUTE, pick(BP_R_HAND, BP_L_HAND), "barbed wire", DAMAGE_FLAG_SHARP|DAMAGE_FLAG_EDGE, 25)
 	L.do_attack_animation(src)
 	take_damage(damage)
 
@@ -197,11 +206,14 @@
 			playsound(src, barricade_hitsound, 25, 1)
 		hit_barricade(attacking_item, user)
 
-/obj/structure/barricade/bullet_act(obj/projectile/P)
-	bullet_ping(P)
-	var/damage_to_take = P.damage * P.anti_materiel_potential
+/obj/structure/barricade/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit)
+	. = ..()
+	if(. != BULLET_ACT_HIT)
+		return .
+
+	bullet_ping(hitting_projectile)
+	var/damage_to_take = hitting_projectile.damage * hitting_projectile.anti_materiel_potential
 	take_damage(damage_to_take)
-	return TRUE
 
 /obj/structure/barricade/proc/barricade_deconstruct(deconstruct)
 	if(deconstruct && is_wired)
@@ -219,7 +231,7 @@
 
 /obj/structure/barricade/ex_act(severity, direction, cause_data)
 	for(var/obj/structure/barricade/B in get_step(src,dir)) //discourage double-stacking barricades by removing health from opposing barricade
-		if(B.dir == reverse_direction(dir))
+		if(B.dir == REVERSE_DIR(dir))
 			INVOKE_ASYNC(B, TYPE_PROC_REF(/atom, ex_act), severity, direction)
 	update_health(round(severity))
 
@@ -250,13 +262,13 @@
 
 /obj/structure/barricade/proc/take_damage(var/damage)
 	for(var/obj/structure/barricade/B in get_step(src,dir)) //discourage double-stacking barricades by removing health from opposing barricade
-		if(B.dir == reverse_direction(dir))
+		if(B.dir == REVERSE_DIR(dir))
 			B.update_health(damage)
 	update_health(damage)
 
 /obj/structure/barricade/proc/update_health(damage, nomessage)
 	health -= damage
-	health = Clamp(health, 0, maxhealth)
+	health = clamp(health, 0, maxhealth)
 
 	if(!health)
 		if(!nomessage)

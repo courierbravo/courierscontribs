@@ -140,7 +140,10 @@
 	if(src.ear_damage < 25)
 		src.ear_damage = FALSE
 
-	src.density = !src.lying
+	if(lying)
+		ADD_TRAIT(src, TRAIT_UNDENSE, TRAIT_SOURCE_LYING_DOWN)
+	else
+		REMOVE_TRAIT(src, TRAIT_UNDENSE, TRAIT_SOURCE_LYING_DOWN)
 
 	if(src.sdisabilities & BLIND)
 		src.blinded = TRUE
@@ -267,13 +270,13 @@
 			if(holding_still)
 				holding_still = max(holding_still - 1 - hungry, 0)
 			else if(canmove && !pulledby && !length(grabbed_by) && isturf(loc) && prob(50))
-				step(src, pick(GLOB.cardinal))
+				step(src, pick(GLOB.cardinals))
 
 		else
 			if(holding_still)
 				holding_still = max(holding_still - 1, 0)
 			else if(canmove && !pulledby && !length(grabbed_by) && isturf(loc) && prob(33))
-				step(src, pick(GLOB.cardinal))
+				step(src, pick(GLOB.cardinals))
 
 /mob/living/carbon/slime/proc/handle_AI() // the master AI process
 	if(victim?.stat & DEAD)

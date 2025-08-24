@@ -12,6 +12,7 @@
 	is_hole = TRUE
 	roof_type = null
 	footstep_sound = null
+	explosion_resistance = 3
 	z_flags = ZM_MIMIC_DEFAULTS | ZM_MIMIC_OVERWRITE | ZM_MIMIC_NO_AO | ZM_ALLOW_ATMOS
 	turf_flags = TURF_FLAG_BACKGROUND
 	pathing_pass_method = TURF_PATHING_PASS_NO //You'll fall down most likely, unless no gravity, but not worth the processing just for this special case
@@ -208,6 +209,13 @@
 	for(var/obj/O in src)
 		O.hide(0)
 
+/turf/simulated/open/examine(mob/user, distance, is_adjacent, infix, suffix, show_extended)
+	. = ..()
+	if(isliving(user))
+		var/mob/living/looker = user
+		if(looker.Adjacent(src) && !looker.incapacitated())
+			looker.look_down_open_space(src)
+
 /turf/simulated/open/get_examine_text(mob/user, distance, is_adjacent, infix, suffix)
 	. = ..()
 	if(distance <= 2)
@@ -258,7 +266,6 @@
 	return
 
 /turf/simulated/open/attack_hand(var/mob/user)
-
 	if(ishuman(user) && user.a_intent == I_GRAB)
 		var/mob/living/carbon/human/H = user
 		var/turf/T = get_turf(H)

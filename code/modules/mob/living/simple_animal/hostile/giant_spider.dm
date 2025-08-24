@@ -41,8 +41,7 @@
 	faction = "spiders"
 	var/busy = 0
 	pass_flags = PASSTABLE
-	move_to_delay = 6
-	speed = 3
+	speed = 6
 	mob_size = 6
 	smart_melee = FALSE
 
@@ -87,11 +86,6 @@
 	speed = -2
 	poison_type = /singleton/reagent/soporific
 	fed = 1
-	minbodytemp = 0
-	maxbodytemp = 350
-	min_oxy = 0
-	max_co2 = 0
-	max_tox = 0
 	var/playable = TRUE
 	sample_data = list("Genetic markers identified as being linked with stem cell differentiaton", "Cellular structures indicative of high offspring production", "Tissue sample contains high neural cell content")
 
@@ -113,7 +107,7 @@
 	melee_damage_upper = 20
 	armor_penetration = 15
 	poison_per_bite = 5
-	move_to_delay = 4
+	speed = 4
 	sample_data = list("Genetic markers identified as being linked with stem cell differentiaton", "Cellular biochemistry shows high metabolic capacity")
 	smart_melee = TRUE
 
@@ -130,13 +124,13 @@
 	armor_penetration = 15
 	poison_type = /singleton/reagent/perconol // mildly beneficial for organics
 	poison_per_bite = 2
-	move_to_delay = 5
+	speed = 5
 	sample_data = list("Genetic markers identified as being linked with stem cell differentiaton", "Cellular biochemistry geared towards creating strong electrical potential differences")
 	smart_melee = TRUE
 
 /mob/living/simple_animal/hostile/giant_spider/bombardier
 	name = "greimorian bombardier"
-	desc = "A disgusting crawling Greimorian. This one has vents that shoot out condensed capsaicin."
+	desc = "A disgusting crawling Greimorian. This one has vents that shoot out acid."
 	icon_state = "greimorian_bombardier"
 	icon_living = "greimorian_bombardier"
 	icon_dead = "greimorian_bombardier_dead"
@@ -147,10 +141,10 @@
 	armor_penetration = 5
 	ranged = TRUE
 	ranged_attack_range = 4
-	poison_type = /singleton/reagent/capsaicin/condensed
+	poison_type = /singleton/reagent/acid/greimorian
 	poison_per_bite = 2
-	move_to_delay = 5
-	sample_data = list("Genetic markers identified as being linked with stem cell differentiaton", "Exocrinic caspaicin synthesis detected")
+	speed = 5
+	sample_data = list("Genetic markers identified as being linked with stem cell differentiaton", "Exocrinic acid synthesis detected")
 	smart_melee = TRUE
 
 /mob/living/simple_animal/hostile/giant_spider/bombardier/Shoot(var/target, var/start, var/mob/user, var/bullet = 0)
@@ -161,8 +155,8 @@
 
 	var/turf/target_turf = get_turf(target)
 	var/obj/effect/effect/water/chempuff/pepperspray = new /obj/effect/effect/water/chempuff(get_turf(src))
-	pepperspray.create_reagents(15)
-	pepperspray.reagents.add_reagent(poison_type, 15)
+	pepperspray.create_reagents(10)
+	pepperspray.reagents.add_reagent(poison_type, 10)
 	pepperspray.set_color()
 	pepperspray.set_up(target_turf, 3, 5)
 
@@ -195,7 +189,7 @@
 		var/list/armors = target.get_armors_by_zone(limb.limb_name, DAMAGE_BRUTE, DAMAGE_FLAG_SHARP)
 		for(var/armor in armors)
 			var/datum/component/armor/armor_datum = armor
-			inject_probability -= armor_datum.armor_values["melee"] * 1.8
+			inject_probability -= armor_datum.armor_values[MELEE] * 1.8
 		if(prob(inject_probability))
 			to_chat(target, SPAN_WARNING("You feel a tiny prick."))
 			target.reagents.add_reagent(poison_type, poison_per_bite)
@@ -232,7 +226,7 @@
 				for(var/turf/T in orange(20, src))
 					move_targets.Add(T)*/
 				stop_automated_movement = 1
-				GLOB.move_manager.move_to(src, pick(orange(20, src)), 1, move_to_delay)
+				GLOB.move_manager.move_to(src, pick(orange(20, src)), 1, speed)
 				addtimer(CALLBACK(src, PROC_REF(stop_walking)), 50, TIMER_UNIQUE)
 
 /mob/living/simple_animal/hostile/giant_spider/proc/stop_walking()
@@ -247,17 +241,16 @@
 			if(!busy && prob(30))
 				//first, check for potential food nearby to cocoon
 				for(var/mob/living/C in view(src, world.view))
-					if(C.stat)
+					if(C.stat && !istype(C, /mob/living/simple_animal/hostile/giant_spider))
 						cocoon_target = C
 						busy = MOVING_TO_TARGET
-						GLOB.move_manager.move_to(src, C, 1, move_to_delay)
+						GLOB.move_manager.move_to(src, C, 1, speed)
 						//give up if we can't reach them after 10 seconds
 						addtimer(CALLBACK(src, PROC_REF(GiveUp), C), 100, TIMER_UNIQUE)
 						return
 
-				//second, spin a sticky spiderweb on this tile
-				var/obj/effect/spider/stickyweb/W = locate() in get_turf(src)
-				if(!W)
+				//second, spin a sticky spiderweb on this tile if there isn't already a spiderweb there
+				if(!locate(/obj/effect/spider/stickyweb) in src.loc)
 					busy = SPINNING_WEB
 					src.visible_message(SPAN_NOTICE("\The [src] begins to secrete a sticky substance."))
 					stop_automated_movement = 1
@@ -280,7 +273,7 @@
 								cocoon_target = O
 								busy = MOVING_TO_TARGET
 								stop_automated_movement = 1
-								GLOB.move_manager.move_to(src, O, 1, move_to_delay)
+								GLOB.move_manager.move_to(src, O, 1, speed)
 								//give up if we can't reach them after 10 seconds
 								GiveUp(O)
 
@@ -312,7 +305,7 @@
 		stop_automated_movement = 0
 
 /mob/living/simple_animal/hostile/giant_spider/nurse/proc/finalize_web()
-	if(busy == SPINNING_WEB)
+	if(busy == SPINNING_WEB && !locate(/obj/effect/spider/stickyweb) in src.loc) // Additional check, to be extra-sure they don't stack webs.
 		new /obj/effect/spider/stickyweb(src.loc)
 		busy = 0
 		stop_automated_movement = 0
@@ -361,12 +354,13 @@
 	set desc = "Create a web that slows down movement."
 	set category = "Greimorian"
 
-	var/obj/effect/spider/stickyweb/W = locate() in get_turf(src)
-	if(!W)
-		to_chat(usr, SPAN_NOTICE("\The [src] begins to secrete a sticky substance."))
-		if(!do_after(src, 20))
+	if(!locate(/obj/effect/spider/stickyweb) in src.loc)
+		src.visible_message(SPAN_NOTICE("\The [src] begins to secrete a sticky substance."))
+		if(!do_after(src, 20) || locate(/obj/effect/spider/stickyweb) in src.loc) // Additional check so you can't queue it multiple times at once to stack webs.
 			return
 		new /obj/effect/spider/stickyweb(get_turf(src))
+	else
+		to_chat(usr, SPAN_WARNING("You cannot secrete webs on a turf that is already webbed!"))
 
 
 /mob/living/simple_animal/hostile/giant_spider/nurse/verb/cocoon()

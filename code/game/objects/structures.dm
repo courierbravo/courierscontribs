@@ -3,6 +3,7 @@
 	w_class = WEIGHT_CLASS_GIGANTIC
 	layer = STRUCTURE_LAYER
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+	pass_flags_self = PASSSTRUCTURE
 
 	var/material_alteration = MATERIAL_ALTERATION_ALL // Overrides for material shit. Set them manually if you don't want colors etc. See wood chairs/office chairs.
 	var/climbable
@@ -25,15 +26,15 @@
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
 	if (smoothing_flags)
-		SSicon_smooth.add_to_queue(src)
-		SSicon_smooth.add_to_queue_neighbors(src)
+		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
 
 /obj/structure/Destroy()
 	if(parts)
 		new parts(loc)
 	if (smoothing_flags)
 		SSicon_smooth.remove_from_queues(src)
-		SSicon_smooth.add_to_queue_neighbors(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
 
 	climbers = null
 
@@ -78,14 +79,17 @@
 		dismantle_material.place_sheet(loc)
 	qdel(src)
 
-/obj/structure/bullet_act(obj/projectile/P, def_zone)
+/obj/structure/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit)
 	. = ..()
-	bullet_ping(P)
+	if(. != BULLET_ACT_HIT)
+		return .
+
+	bullet_ping(hitting_projectile)
 
 /obj/structure/proc/climb_on()
 
-	set name = "Climb structure"
-	set desc = "Climbs onto a structure."
+	set name = "Climb Structure"
+	set desc = "Climbs onto a structure. Shortcut middle-mouse click."
 	set category = "Object"
 	set src in oview(1)
 
@@ -98,11 +102,11 @@
 		return TRUE
 	return FALSE
 
-/obj/structure/MouseDrop_T(mob/target, mob/user)
+/obj/structure/mouse_drop_receive(atom/dropped, mob/user, params)
 
 	var/mob/living/H = user
-	if(istype(H) && can_climb(H) && target == user)
-		do_climb(target)
+	if(istype(H) && can_climb(H) && dropped == user)
+		do_climb(dropped)
 	else
 		return ..()
 

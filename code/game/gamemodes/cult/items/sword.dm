@@ -1,7 +1,6 @@
 /obj/item/melee/cultblade
 	name = "eldritch blade"
 	desc = "A sword humming with unholy energy. It glows with a dim red light and looks deadly sharp."
-	desc_antag = "This sword is a powerful weapon, capable of severing limbs easily, if they are targeted.  Non-believers are unable to use this weapon."
 	icon = 'icons/obj/sword_64.dmi'
 	icon_state = "cultblade"
 	item_state = "cultblade"
@@ -24,10 +23,15 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	can_embed = FALSE //can't get stuck anymore, because blood magic
 
+/obj/item/melee/cultblade/antagonist_hints(mob/user, distance, is_adjacent)
+	. += ..()
+	. += "This sword is a powerful weapon, capable of severing limbs easily if they are targeted."
+	. += "Non-believers are unable to use this weapon."
+
 /obj/item/melee/cultblade/cultify()
 	return
 
-/obj/item/melee/cultblade/attack(mob/living/M, mob/living/user, var/target_zone)
+/obj/item/melee/cultblade/attack(mob/living/target_mob, mob/living/user, target_zone)
 	if(iscultist(user) || !does_cult_check)
 		return ..()
 

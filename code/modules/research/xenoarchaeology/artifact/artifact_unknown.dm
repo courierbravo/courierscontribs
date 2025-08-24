@@ -173,9 +173,11 @@
 /obj/machinery/artifact/attack_hand(mob/user)
 	if(use_check_and_message(user, USE_ALLOW_NON_ADV_TOOL_USR))
 		return
-	if(ishuman(user) && user:gloves)
-		to_chat(user, "<b>You touch \the [src]</b> with your gloved hands, [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")].")
-		return
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.gloves)
+			to_chat(user, "<b>You touch \the [src]</b> with your gloved hands, [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")].")
+			return
 
 	src.add_fingerprint(user)
 
@@ -279,17 +281,18 @@
 				to_chat(H, "<b>You accidentally touch [src].</b>")
 	..()
 
-/obj/machinery/artifact/bullet_act(var/obj/projectile/P)
-	if(istype(P,/obj/projectile/bullet) ||\
-		istype(P,/obj/projectile/bullet/pistol/hivebotspike))
+/obj/machinery/artifact/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit)
+	. = ..()
+	if(. != BULLET_ACT_HIT)
+		return .
+
+	if(istype(hitting_projectile, /obj/projectile/bullet) || istype(hitting_projectile, /obj/projectile/bullet/pistol/hivebotspike))
 		if(my_effect.trigger == TRIGGER_FORCE)
 			my_effect.ToggleActivate()
 		if(secondary_effect?.trigger == TRIGGER_FORCE)
 			secondary_effect.ToggleActivate()
 
-	else if(istype(P,/obj/projectile/beam) ||\
-		istype(P,/obj/projectile/ion) ||\
-		istype(P,/obj/projectile/energy))
+	else if(istype(hitting_projectile, /obj/projectile/beam) || istype(hitting_projectile, /obj/projectile/ion) || istype(hitting_projectile, /obj/projectile/energy))
 		if(my_effect.trigger == TRIGGER_ENERGY)
 			my_effect.ToggleActivate()
 		if(secondary_effect?.trigger == TRIGGER_ENERGY)
@@ -314,7 +317,7 @@
 	return
 
 /obj/machinery/artifact/Move()
-	..()
+	. = ..()
 	if(my_effect)
 		my_effect.UpdateMove()
 	if(secondary_effect)

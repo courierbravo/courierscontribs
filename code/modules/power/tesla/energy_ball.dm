@@ -26,14 +26,16 @@
 	var/energy_to_lower = -20
 	var/list/immune_things = list(/obj/effect/projectile/muzzle/emitter, /obj/effect/ebeam, /obj/effect/decal/cleanable/ash, /obj/singularity)
 
+/obj/singularity/energy_ball/feedback_hints(mob/user, distance, is_adjacent)
+	. += ..()
+	if(orbiting_balls.len)
+		. +=  "There are <b>[orbiting_balls.len] energy balls</b> orbiting \the [src]."
+
 /obj/singularity/energy_ball/ex_act(severity, target)
 	return
 
 /obj/singularity/energy_ball/Destroy()
 	walk(src, 0) // Stop walking
-	if(orbiting && istype(orbiting.orbiting, /obj/singularity/energy_ball))
-		var/obj/singularity/energy_ball/EB = orbiting.orbiting
-		EB.orbiting_balls -= src
 
 	for(var/ball in orbiting_balls)
 		var/obj/singularity/energy_ball/EB = ball
@@ -68,12 +70,6 @@
 		return
 	else
 		..()
-
-/obj/singularity/energy_ball/get_examine_text(mob/user, distance, is_adjacent, infix, suffix)
-	. = ..()
-	if(orbiting_balls.len)
-		. +=  "There are [orbiting_balls.len] energy balls orbiting \the [src]."
-
 
 /obj/singularity/energy_ball/proc/move_the_basket_ball(var/move_amount)
 
@@ -257,10 +253,6 @@
 	. = ..()
 
 /obj/singularity/energy_ball/stop_orbit()
-	if (orbiting && istype(orbiting.orbiting, /obj/singularity/energy_ball))
-		var/obj/singularity/energy_ball/orbitingball = orbiting.orbiting
-		orbitingball.orbiting_balls -= src
-		orbitingball.dissipate_strength = orbitingball.orbiting_balls.len
 	. = ..()
 	if (!loc && !QDELETED(src))
 		qdel(src)
@@ -431,7 +423,7 @@
 		closest_emitter.tesla_act(power, melt)
 
 	else if(closest_mob)
-		var/shock_damage = Clamp(round(power/400), 10, 90) + rand(-5, 5)
+		var/shock_damage = clamp(round(power/400), 10, 90) + rand(-5, 5)
 		closest_mob.electrocute_act(shock_damage, source, 1, tesla_shock = 1)
 		if(issilicon(closest_mob))
 			var/mob/living/silicon/S = closest_mob

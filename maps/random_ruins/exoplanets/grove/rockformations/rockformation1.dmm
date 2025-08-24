@@ -5,8 +5,39 @@
 "c" = (
 /turf/simulated/mineral/random/high_chance/exoplanet,
 /area/space)
+<<<<<<< HEAD
+=======
+"F" = (
+/obj/structure/flora/tree/grove,
+/turf/template_noop,
+/area/space)
+"G" = (
+/obj/effect/landmark/clear,
+/turf/template_noop,
+/area/space)
+"H" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/template_noop,
+/area/space)
+"L" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/template_noop,
+/area/space)
+"T" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/template_noop,
+/area/space)
+>>>>>>> 8e41072ee227b66d360422cd10fd0119bb29e268
 "W" = (
 /turf/simulated/mineral/random/exoplanet,
+/area/space)
+"X" = (
+/obj/structure/flora/ausbushes/brflowers,
+/turf/template_noop,
+/area/space)
+"Z" = (
+/obj/structure/flora/ausbushes/palebush,
+/turf/template_noop,
 /area/space)
 
 (1,1,1) = {"
@@ -21,58 +52,74 @@ a
 a
 a
 a
+H
+H
+a
+L
+a
+Z
+a
+a
+T
 a
 a
 a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+Z
 a
 "}
 (2,1,1) = {"
+X
+a
+a
+W
+a
+a
+a
+a
+F
+H
+H
+a
+a
 a
 a
 a
 W
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-W
 W
 a
 a
+H
+H
 a
 a
+F
 a
 a
-a
-a
-a
-a
+X
 "}
 (3,1,1) = {"
+X
+a
+a
+W
+a
+T
 a
 a
 a
+a
+a
+a
+T
+T
+W
+W
+W
+W
+W
 W
 a
 a
@@ -80,36 +127,20 @@ a
 a
 a
 a
-a
-a
-a
-a
-W
-W
-W
-W
-W
-W
-a
-a
-a
-a
-a
-a
-a
-a
+X
+X
 "}
 (4,1,1) = {"
 a
-a
+L
 a
 W
+T
 a
 a
 a
 a
-a
-a
+Z
 a
 a
 W
@@ -123,10 +154,10 @@ W
 W
 a
 a
+T
 a
-a
-a
-a
+L
+X
 a
 "}
 (5,1,1) = {"
@@ -153,7 +184,7 @@ W
 W
 W
 a
-a
+T
 a
 a
 a
@@ -186,11 +217,11 @@ W
 W
 a
 a
-a
-a
+F
+Z
 "}
 (7,1,1) = {"
-a
+T
 a
 W
 W
@@ -247,7 +278,7 @@ W
 a
 a
 a
-a
+T
 "}
 (9,1,1) = {"
 a
@@ -275,8 +306,8 @@ W
 c
 W
 W
-a
-a
+Z
+H
 a
 "}
 (10,1,1) = {"
@@ -307,7 +338,7 @@ W
 W
 a
 a
-a
+H
 "}
 (11,1,1) = {"
 a
@@ -337,7 +368,7 @@ W
 W
 a
 a
-a
+H
 "}
 (12,1,1) = {"
 a
@@ -396,11 +427,11 @@ a
 a
 W
 W
-a
+L
 a
 "}
 (14,1,1) = {"
-a
+H
 W
 W
 W
@@ -430,7 +461,7 @@ W
 a
 "}
 (15,1,1) = {"
-a
+H
 W
 W
 W
@@ -487,11 +518,11 @@ a
 a
 W
 W
-a
+T
 "}
 (17,1,1) = {"
 a
-a
+L
 W
 W
 W
@@ -517,11 +548,11 @@ a
 a
 a
 W
-a
+T
 "}
 (18,1,1) = {"
 a
-a
+L
 a
 W
 W
@@ -550,7 +581,7 @@ W
 a
 "}
 (19,1,1) = {"
-a
+T
 a
 a
 W
@@ -580,9 +611,9 @@ W
 a
 "}
 (20,1,1) = {"
+T
 a
-a
-a
+X
 a
 W
 W
@@ -600,11 +631,11 @@ W
 W
 W
 a
+Z
 a
 a
 a
-a
-a
+L
 a
 a
 a
@@ -612,7 +643,7 @@ a
 (21,1,1) = {"
 a
 a
-a
+X
 a
 W
 W
@@ -628,15 +659,15 @@ W
 W
 W
 a
+Z
+a
+a
+T
 a
 a
 a
 a
-a
-a
-a
-a
-a
+Z
 a
 "}
 (22,1,1) = {"
@@ -644,7 +675,7 @@ a
 a
 a
 a
-a
+Z
 a
 W
 W
@@ -661,19 +692,19 @@ a
 a
 a
 a
+T
 a
 a
 a
-a
-a
+F
 a
 a
 "}
 (23,1,1) = {"
 a
+F
 a
-a
-a
+L
 a
 a
 a
@@ -686,6 +717,10 @@ W
 W
 W
 a
+T
+L
+a
+X
 a
 a
 a
@@ -693,43 +728,49 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
+T
 "}
 (24,1,1) = {"
 a
 a
+H
 a
+T
 a
-a
-a
-a
+X
 a
 a
 W
 W
 W
 W
+Z
+a
+a
+a
+F
+a
+X
+Z
+a
+H
 a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+H
 "}
 (25,1,1) = {"
+Z
+a
+H
+a
+a
+X
+X
+a
+a
+Z
 a
 a
 a
@@ -738,24 +779,14 @@ a
 a
 a
 a
+T
 a
 a
+T
+H
 a
+L
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+H
+H
 "}

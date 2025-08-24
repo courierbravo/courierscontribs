@@ -49,6 +49,8 @@
 	icon_state = "[facing]_[secure]windoor_assembly[state]"
 
 /obj/structure/windoor_assembly/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(mover?.movement_type & PHASING)
+		return TRUE
 	if(istype(mover) && mover.pass_flags & PASSGLASS)
 		return 1
 	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
@@ -165,7 +167,7 @@
 						src.name = "Anchored Windoor Assembly"
 
 			//Adding airlock electronics for access. Step 6 complete.
-			else if(istype(attacking_item, /obj/item/airlock_electronics) && attacking_item:icon_state != "door_electronics_smoked")
+			else if(istype(attacking_item, /obj/item/airlock_electronics) && attacking_item.icon_state != "door_electronics_smoked")
 				var/obj/item/airlock_electronics/EL = attacking_item
 				if(!EL.is_installed)
 					playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)

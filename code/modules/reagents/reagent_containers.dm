@@ -49,7 +49,7 @@
 	if(N)
 		amount_per_transfer_from_this = N
 
-/obj/item/reagent_containers/Initialize()
+/obj/item/reagent_containers/Initialize(mapload)
 	. = ..()
 	if(!possible_transfer_amounts)
 		src.verbs -= /obj/item/reagent_containers/verb/set_APTFT
@@ -108,8 +108,8 @@
 				return TRUE
 	return ..()
 
-/obj/item/reagent_containers/attack(mob/M, mob/user, def_zone)
-	if(can_operate(M) && do_surgery(M, user, src))
+/obj/item/reagent_containers/attack(mob/living/target_mob, mob/living/user, target_zone)
+	if(can_operate(target_mob) && do_surgery(target_mob, user, src))
 		return
 	if(!reagents.total_volume && user.a_intent == I_HURT)
 		return ..()
@@ -190,9 +190,9 @@
 	var/contained = reagentlist()
 	var/temperature = reagents.get_temperature()
 	var/temperature_text = "Temperature: ([temperature]K/[temperature]C)"
-	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been splashed with [name] by [user.name] ([user.ckey]). Reagents: [contained] [temperature_text].</font>")
-	user.attack_log += text("\[[time_stamp()]\] <span class='warning'>Used the [name] to splash [target.name] ([target.key]). Reagents: [contained] [temperature_text].</span>")
-	msg_admin_attack("[user.name] ([user.ckey]) splashed [target.name] ([target.key]) with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)",ckey=key_name(user),ckey_target=key_name(target))
+	target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been splashed with [name] by [user.name] ([user.ckey]). Reagents: [contained] [temperature_text].</font>"
+	user.attack_log += "\[[time_stamp()]\] <span class='warning'>Used the [name] to splash [target.name] ([target.key]). Reagents: [contained] [temperature_text].</span>"
+	msg_admin_attack("[user.name] ([user.ckey]) splashed [target.name] ([target.key]) with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)",ckey=key_name(user),ckey_target=key_name(target))
 
 	user.visible_message(SPAN_DANGER("\The [target] has been splashed with something by \the [user]!"),
 							SPAN_WARNING("You splash the solution onto \the [target]."))
@@ -274,15 +274,15 @@
 		other_feed_message_finish(user, target)
 
 		var/contained = reagentlist()
-		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [name] by [user.name] ([user.ckey]). Reagents: [contained]</font>")
-		user.attack_log += text("\[[time_stamp()]\] <span class='warning'>Fed [name] by [target.name] ([target.ckey]). Reagents: [contained]</span>")
-		msg_admin_attack("[key_name(user)] fed [key_name(target)] with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)",ckey=key_name(user),ckey_target=key_name(target))
+		target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been fed [name] by [user.name] ([user.ckey]). Reagents: [contained]</font>"
+		user.attack_log += "\[[time_stamp()]\] <span class='warning'>Fed [name] by [target.name] ([target.ckey]). Reagents: [contained]</span>"
+		msg_admin_attack("[key_name(user)] fed [key_name(target)] with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)",ckey=key_name(user),ckey_target=key_name(target))
 
 		reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_INGEST)
 		feed_sound(user)
 		return 1
 
-/obj/item/reagent_containers/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
+/obj/item/reagent_containers/mouse_drop_dragged(atom/over, mob/user, src_location, over_location, params)
 	. = ..()
 	if(ishuman(over))
 		var/mob/living/carbon/human/H = over

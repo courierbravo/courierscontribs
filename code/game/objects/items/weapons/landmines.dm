@@ -5,7 +5,8 @@
 	icon_state = "landmine"
 	throwforce = 0
 	var/deployed = FALSE
-	var/deactivated = FALSE // add wire to re-activate
+	/// Add wire to re-activate
+	var/deactivated = FALSE
 
 /obj/item/landmine/Initialize()
 	. = ..()
@@ -176,7 +177,11 @@
 	else if(attacking_item.force > 10 && deployed)
 		trigger(user)
 
-/obj/item/landmine/bullet_act()
+/obj/item/landmine/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit)
+	. = ..()
+	if(. != BULLET_ACT_HIT)
+		return .
+
 	if(deployed)
 		trigger()
 
@@ -438,11 +443,14 @@
 	desc = "A landmine that projects sharpnels in a cone of explosion, towards one direction."
 	desc_extended = "A household name, this mine finds extensive use amongst military forces due to its ability to provide area penetration denial and aid ambushes. \
 	It is narrated that Gadpathur, its largest manufacturer in modern times, have built more of these mines than the census of the core planets of the Solarian Alliance."
-	desc_info = "This device can be fitted with a signaler device for remotely actuated detonations, or can be activated with the press of a button directly above it."
 	icon = 'icons/obj/item/landmine/claymore.dmi'
 	icon_state = "m20"
 	var/datum/wires/landmine/claymore/trigger_wire
 	var/obj/item/device/assembly/signaler/signaler
+
+/obj/item/landmine/claymore/mechanics_hints(mob/user, distance, is_adjacent)
+	. += ..()
+	. += "This device can be fitted with a signaler device for remotely actuated detonations, or can be activated with the press of a button directly above it."
 
 /obj/item/landmine/claymore/Initialize(mapload, ...)
 	. = ..()
@@ -490,7 +498,7 @@
 		var/turf/to_hit = pick(candidate_turfs)
 
 		var/obj/projectile/bullet/pellet/shotgun/pellet = new(get_turf(src))
-		pellet.fire(Get_Angle(get_turf(src), to_hit))
+		pellet.fire(get_angle(get_turf(src), to_hit))
 
 	qdel(src)
 

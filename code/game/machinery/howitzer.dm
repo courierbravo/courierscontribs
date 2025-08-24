@@ -93,7 +93,6 @@ ABSTRACT_TYPE(/obj/machinery/howitzer)
 				loaded_shot = null
 			return
 
-
 /obj/machinery/howitzer/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -169,7 +168,7 @@ ABSTRACT_TYPE(/obj/machinery/howitzer)
 		return
 
 	if(rotation_timerid)
-		balloon_alert_to_viewers("The howitzer is already doing an alignment!")
+		balloon_alert_to_viewers("already doing an alignment!")
 		return
 
 	//Not the same angle we are at, we have to rotate
@@ -191,7 +190,7 @@ ABSTRACT_TYPE(/obj/machinery/howitzer)
 		if(degrees_to_rotate > 180)
 			degrees_to_rotate = 360 - degrees_to_rotate
 
-		balloon_alert_to_viewers("The howitzer starts to rotate!")
+		balloon_alert_to_viewers("rotating...")
 
 		//Start the rotation looping sound
 		rotation_looping_sound = new rotation_looping_sound_type(src)
@@ -210,7 +209,7 @@ ABSTRACT_TYPE(/obj/machinery/howitzer)
 	horizontal_angle = angle
 	set_dir(wanted_dir)
 
-	balloon_alert_to_viewers("The howitzer stops rotating!")
+	balloon_alert_to_viewers("finished rotating")
 	rotation_looping_sound.stop()
 	QDEL_NULL(rotation_looping_sound)
 
@@ -227,7 +226,7 @@ ABSTRACT_TYPE(/obj/machinery/howitzer)
 		return
 
 	if(rotation_timerid)
-		balloon_alert_to_viewers("The howitzer is already doing an alignment!")
+		balloon_alert_to_viewers("already doing an alignment!")
 		return
 
 	if(vertical_angle != angle)
@@ -238,7 +237,7 @@ ABSTRACT_TYPE(/obj/machinery/howitzer)
 		if(degrees_to_change > 180) //Yes this shouldn't happen, copy paste anyways
 			degrees_to_change = 360 - degrees_to_change
 
-		balloon_alert_to_viewers("The howitzer starts to change the elevation!")
+		balloon_alert_to_viewers("changing elevation...")
 
 		rotation_looping_sound = new rotation_looping_sound_type(src)
 		rotation_looping_sound.start()
@@ -253,7 +252,7 @@ ABSTRACT_TYPE(/obj/machinery/howitzer)
 
 	vertical_angle = angle
 
-	balloon_alert_to_viewers("The howitzer steadies the barrel at the requested elevation!")
+	balloon_alert_to_viewers("finished changing elevation")
 	rotation_looping_sound.stop()
 	QDEL_NULL(rotation_looping_sound)
 
@@ -266,7 +265,7 @@ ABSTRACT_TYPE(/obj/machinery/howitzer)
  */
 /obj/machinery/howitzer/proc/fire(mob/user)
 	if(!anchored)
-		balloon_alert_to_viewers("The howitzer is not anchored down!")
+		balloon_alert_to_viewers("not anchored down!")
 		to_chat(user, SPAN_WARNING("The howitzer is not anchored down!"))
 		return
 
@@ -274,12 +273,12 @@ ABSTRACT_TYPE(/obj/machinery/howitzer)
 		return
 
 	if(!ready_to_fire)
-		balloon_alert_to_viewers("The howitzer is not ready to fire, it's adjusting the aim!")
+		balloon_alert_to_viewers("not ready to fire!")
 		to_chat(user, SPAN_WARNING("The howitzer is not ready to fire, it's adjusting the aim!"))
 		return
 
 	if(!loaded_shot)
-		balloon_alert_to_viewers("The barrel is empty!")
+		balloon_alert_to_viewers("barrel is empty!")
 		to_chat(user, SPAN_WARNING("The barrel is empty!"))
 		return
 
@@ -321,7 +320,10 @@ ABSTRACT_TYPE(/obj/machinery/howitzer)
 		stack_trace("Unable to locate the target, somehow.")
 		return
 
-	shot_projectile.launch_projectile(target)
+	shot_projectile.preparePixelProjectile(target, get_turf(src))
+	shot_projectile.firer = src
+	shot_projectile.fired_from = src
+	shot_projectile.fire()
 
 	flick((icon_state + "_fire"), src)
 
@@ -337,7 +339,7 @@ ABSTRACT_TYPE(/obj/machinery/howitzer)
 		else
 			break
 
-	new /obj/effect/effect/smoke(smoke_position, 2 SECONDS)
+	new /obj/effect/smoke(smoke_position, 2 SECONDS)
 
 	for(var/mob/living/carbon/human/H in range(3, src))
 		if(H.client)
@@ -365,12 +367,11 @@ ABSTRACT_TYPE(/obj/item/ammo_casing/howitzer)
 
 	projectile_type = /obj/projectile/howitzer
 
-/obj/item/ammo_casing/howitzer/get_examine_text(mob/user, distance, is_adjacent, infix, suffix)
-	. = ..()
+/obj/item/ammo_casing/howitzer/feedback_hints(mob/user, distance, is_adjacent)
+	. += ..()
 	. += "\A [name], to be used in a howitzer."
 	if(!BB && distance < 4)
 		. += "This one is spent."
-
 
 /**
  * # Howitzer Ammo
@@ -383,9 +384,8 @@ ABSTRACT_TYPE(/obj/projectile/howitzer)
 	icon_state = "howitzer_ammo"
 	damage = 0
 	range = 999 //Follow what the path says, not range
-	forcedodge = TRUE //Don't directly hit people
 
-/obj/projectile/howitzer/can_hit_target(atom/target, list/passthrough)
+/obj/projectile/howitzer/can_hit_target(atom/target, direct_target = FALSE, ignore_loc = FALSE, cross_failed = FALSE)
 	if(target == original)
 		return TRUE
 	else
@@ -394,14 +394,14 @@ ABSTRACT_TYPE(/obj/projectile/howitzer)
 //We have to handle collisions like the snowflake projectile we are. Or rewrite the projectile logic, you can do that if you want, I do not
 /obj/projectile/howitzer/Collide(atom/A)
 	if(A == original)
-		on_impact(A)
+		on_hit(A)
 		qdel(src)
 
-/obj/projectile/howitzer/on_impact(atom/A, affected_limb)
+/obj/projectile/howitzer/on_hit(atom/target, blocked, def_zone)
 	. = ..()
 
-	if(A == original)
-		terminal_effect(get_turf(A))
+	if(target == original)
+		terminal_effect(get_turf(target))
 
 /**
  * Takes care of performing the terminal effect of the projectile

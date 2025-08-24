@@ -1,16 +1,16 @@
 /*
- *	Absorbs /obj/item/secstorage.
- *	Reimplements it only slightly to use existing storage functionality.
+ * Absorbs /obj/item/secstorage.
+ * Reimplements it only slightly to use existing storage functionality.
  *
- *	Contains:
- *		Secure Briefcase
- *		Wall Safe
+ * Contains:
+ * * Secure Briefcase
+ * * Wall Safe
  */
 
 // -----------------------------
 //         Generic Item
 // -----------------------------
-/obj/item/storage/secure
+ABSTRACT_TYPE(/obj/item/storage/secure)
 	name = "secstorage"
 	var/icon_locking = "secureb"
 	var/icon_sparking = "securespark"
@@ -25,11 +25,11 @@
 	var/open = 0
 	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = WEIGHT_CLASS_NORMAL
-	max_storage_space = 16
+	max_storage_space = DEFAULT_BOX_STORAGE
 	use_sound = 'sound/items/storage/briefcase.ogg'
 
-/obj/item/storage/secure/get_examine_text(mob/user, distance, is_adjacent, infix, suffix)
-	. = ..()
+/obj/item/storage/secure/feedback_hints(mob/user, distance, is_adjacent)
+	. += ..()
 	if(distance <= 1)
 		. += "The service panel is [src.open ? "open" : "closed"]."
 
@@ -70,29 +70,29 @@
 	..()
 
 
-/obj/item/storage/secure/MouseDrop(over_object, src_location, over_location)
+/obj/item/storage/secure/mouse_drop_dragged(atom/over, mob/user, src_location, over_location, params)
 	if (locked)
-		src.add_fingerprint(usr)
+		src.add_fingerprint(user)
 		return
 	..()
 
 
 /obj/item/storage/secure/attack_self(mob/user as mob)
 	user.set_machine(src)
-	var/dat = text("<TT><B>[]</B><BR>\n\nLock Status: []",src, (src.locked ? "LOCKED" : "UNLOCKED"))
+	var/dat = "<TT><B>[src]</B><BR>\n\nLock Status: [(src.locked ? "LOCKED" : "UNLOCKED")]"
 	var/message = "Code"
 	if ((src.l_set == 0) && (!src.emagged) && (!src.l_setshort))
-		dat += text("<p>\n<b>5-DIGIT PASSCODE NOT SET.<br>ENTER NEW PASSCODE.</b>")
+		dat += "<p>\n<b>5-DIGIT PASSCODE NOT SET.<br>ENTER NEW PASSCODE.</b>"
 	if (src.emagged)
-		dat += text("<p>\n<font color=red><b>LOCKING SYSTEM ERROR - 1701</b></font>")
+		dat += "<p>\n<font color=red><b>LOCKING SYSTEM ERROR - 1701</b></font>"
 	if (src.l_setshort)
-		dat += text("<p>\n<font color=red><b>ALERT: MEMORY SYSTEM ERROR - 6040 201</b></font>")
-	message = text("[]", src.code)
+		dat += "<p>\n<font color=red><b>ALERT: MEMORY SYSTEM ERROR - 6040 201</b></font>"
+	message = "[src.code]"
 	if (!src.locked)
 		message = "*****"
-	dat += "<HR>\n>[message]<BR>\n<A href='?src=[REF(src)];type=1'>1</A>-<A href='?src=[REF(src)];type=2'>2</A>-<A href='?src=[REF(src)];type=3'>3</A><BR>\n<A href='?src=[REF(src)];type=4'>4</A>-<A href='?src=[REF(src)];type=5'>5</A>-<A href='?src=[REF(src)];type=6'>6</A><BR>\n<A href='?src=[REF(src)];type=7'>7</A>-<A href='?src=[REF(src)];type=8'>8</A>-<A href='?src=[REF(src)];type=9'>9</A><BR>\n<A href='?src=[REF(src)];type=R'>R</A>-<A href='?src=[REF(src)];type=0'>0</A>-<A href='?src=[REF(src)];type=E'>E</A><BR>\n</TT>"
+	dat += "<HR>\n>[message]<BR>\n<A href='byond://?src=[REF(src)];type=1'>1</A>-<A href='byond://?src=[REF(src)];type=2'>2</A>-<A href='byond://?src=[REF(src)];type=3'>3</A><BR>\n<A href='byond://?src=[REF(src)];type=4'>4</A>-<A href='byond://?src=[REF(src)];type=5'>5</A>-<A href='byond://?src=[REF(src)];type=6'>6</A><BR>\n<A href='byond://?src=[REF(src)];type=7'>7</A>-<A href='byond://?src=[REF(src)];type=8'>8</A>-<A href='byond://?src=[REF(src)];type=9'>9</A><BR>\n<A href='byond://?src=[REF(src)];type=R'>R</A>-<A href='byond://?src=[REF(src)];type=0'>0</A>-<A href='byond://?src=[REF(src)];type=E'>E</A><BR>\n</TT>"
 
-	user << browse(dat, "window=caselock;size=300x280")
+	user << browse(HTML_SKELETON(dat), "window=caselock;size=300x280")
 
 /obj/item/storage/secure/Topic(href, href_list)
 	..()
@@ -117,7 +117,7 @@
 				src.code = null
 				src.close(usr)
 			else
-				src.code += text("[]", href_list["type"])
+				src.code += "[href_list["type"]]"
 				if (length(src.code) > 5)
 					src.code = "ERROR"
 		src.add_fingerprint(usr)

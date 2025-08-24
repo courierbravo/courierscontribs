@@ -99,26 +99,27 @@
 			W.forceMove(T)
 			return T
 
-//The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
-var/list/slot_equipment_priority = list( \
-		slot_back,\
-		slot_wear_id,\
-		slot_w_uniform,\
-		slot_wear_suit,\
-		slot_wear_mask,\
-		slot_head,\
-		slot_shoes,\
-		slot_gloves,\
-		slot_l_ear,\
-		slot_r_ear,\
-		slot_glasses,\
-		slot_belt,\
-		slot_s_store,\
-		slot_tie,\
-		slot_l_store,\
-		slot_r_store,\
-		slot_wrists\
-	)
+///The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
+GLOBAL_LIST_INIT(slot_equipment_priority, list(
+		slot_back,
+		slot_wear_id,
+		slot_w_uniform,
+		slot_wear_suit,
+		slot_wear_mask,
+		slot_head,
+		slot_shoes,
+		slot_gloves,
+		slot_l_ear,
+		slot_r_ear,
+		slot_glasses,
+		slot_belt,
+		slot_s_store,
+		slot_tie,
+		slot_l_store,
+		slot_r_store,
+		slot_wrists,
+		slot_pants
+	))
 
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
 /mob/proc/slot_is_accessible(var/slot, var/obj/item/I, mob/user=null)
@@ -129,7 +130,7 @@ var/list/slot_equipment_priority = list( \
 /mob/proc/equip_to_appropriate_slot(obj/item/W)
 	if(!istype(W)) return 0
 
-	for(var/slot in slot_equipment_priority)
+	for(var/slot in GLOB.slot_equipment_priority)
 		if(equip_to_slot_if_possible(W, slot, delete_on_fail = FALSE, disable_warning = TRUE, redraw_mob = TRUE))
 			return 1
 
@@ -354,8 +355,10 @@ var/list/slot_equipment_priority = list( \
 	return 1
 
 
-//Attemps to remove an object on a mob.
+///Attemps to remove an object on a mob
 /mob/proc/remove_from_mob(var/obj/O)
+	SHOULD_NOT_SLEEP(TRUE)
+
 	src.u_equip(O)
 	if (src.client)
 		src.client.screen -= O
@@ -403,7 +406,7 @@ var/list/slot_equipment_priority = list( \
 	return FALSE
 
 /mob/living/carbon/throw_item(atom/target)
-	if(stat || !target || istype(target, /obj/screen))
+	if(stat || !target || istype(target, /atom/movable/screen))
 		return FALSE
 
 	var/atom/movable/item = src.get_active_hand()
@@ -431,9 +434,9 @@ var/list/slot_equipment_priority = list( \
 				var/start_T_descriptor = "<font color='#6b5d00'>tile at [start_T.x], [start_T.y], [start_T.z] in area [get_area(start_T)]</font>"
 				var/end_T_descriptor = "<font color='#6b4400'>tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]</font>"
 
-				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been thrown by [usr.name] ([usr.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
-				usr.attack_log += text("\[[time_stamp()]\] <span class='warning'>Has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</span>")
-				msg_admin_attack("[usr.name] ([usr.ckey]) has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)",ckey=key_name(usr),ckey_target=key_name(M))
+				M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been thrown by [usr.name] ([usr.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>"
+				usr.attack_log += "\[[time_stamp()]\] <span class='warning'>Has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</span>"
+				msg_admin_attack("[usr.name] ([usr.ckey]) has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor] (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)",ckey=key_name(usr),ckey_target=key_name(M))
 
 			qdel(G)
 		else

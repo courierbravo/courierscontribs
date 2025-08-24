@@ -21,7 +21,7 @@
 #define DECAY_FACTOR 700			//Affects how fast the supermatter power decays
 #define CRITICAL_TEMPERATURE 5000	//K
 #define CHARGING_FACTOR 0.05
-#define DAMAGE_RATE_LIMIT 2			//damage rate cap at power = 300, scales linearly with power
+#define DAMAGE_RATE_LIMIT 4			//damage rate cap at power = 300, scales linearly with power
 #define SPACED_DAMAGE_FACTOR 0.5	//multiplier for damage taken in a vacuum, but on a tile. Used to prevent/configure near-instant explosions when vented
 
 //These would be what you would get at point blank, decreases with distance
@@ -39,18 +39,6 @@
 /obj/machinery/power/supermatter
 	name = "supermatter crystal"
 	desc = "A strangely translucent and iridescent crystal. <span class='warning'>You get headaches just from looking at it.</span>"
-	desc_info = "When energized by a laser (or something hitting it), it emits radiation and heat.  If the heat reaches above 7000 kelvin, it will send an alert and start taking damage. \
-	After integrity falls to zero percent, it will delaminate, causing a massive explosion, station-wide radiation spikes, and hallucinations. \
-	Supermatter reacts badly to oxygen in the atmosphere.  It'll also heat up really quick if it is in vacuum.<br>\
-	<br>\
-	Supermatter cores are extremely dangerous to be close to, and requires protection to handle properly.  The protection you will need is:<br>\
-	Optical meson scanners on your eyes, to prevent hallucinations when looking at the supermatter.<br>\
-	Radiation helmet and suit, as the supermatter is radioactive.<br>\
-	<br>\
-	Touching the supermatter will result in *instant death*, with no corpse left behind!  You can drag the supermatter, but anything else will kill you."
-	desc_antag = "Always ahelp before sabotaging the supermatter, as it can potentially ruin the round. Exposing the supermatter to oxygen or vaccuum will cause it to start rapidly heating up.  \
-	Sabotaging the supermatter and making it explode will cause a period of lag as the explosion is processed by the server, as well as irradiating the entire station and causing hallucinations to happen.  \
-	Wearing radiation equipment will protect you from most of the delamination effects sans explosion."
 	icon = 'icons/obj/supermatter.dmi'
 	icon_state = "supermatter"
 	density = TRUE
@@ -118,6 +106,18 @@
 	/// cooldown tracker for accent sounds,
 	var/last_accent_sound = 0
 
+/obj/machinery/power/supermatter/mechanics_hints(mob/user, distance, is_adjacent)
+	. += ..()
+	. += "When energized by a laser (or something hitting it), it emits radiation and heat. If the heat reaches above 7000 kelvin, it will send an alert and start taking damage."
+	. += "After integrity falls to zero percent, it will delaminate, causing a massive explosion, station-wide radiation spikes, and hallucinations."
+	. += "Supermatter reacts badly to oxygen in the atmosphere. It'll also heat up really quick if it is in vacuum."
+	. += "Supermatter cores are extremely dangerous to be close to, and requires protection to handle properly. Safety goggles and full rad suits are needed to protect against both hallucinations and radiation."
+	. += "Touching the supermatter will result in *instant death*, with no corpse left behind! You can drag the supermatter, but anything else will kill you."
+
+/obj/machinery/power/supermatter/antagonist_hints(mob/user, distance, is_adjacent)
+	. += ..()
+	. += "Always ahelp before sabotaging the supermatter, as it can potentially ruin the round."
+
 /obj/machinery/power/supermatter/Initialize()
 	. = ..()
 	radio = new /obj/item/device/radio{channels=list("Engineering")}(src)
@@ -129,7 +129,7 @@
 	. = ..()
 
 /obj/machinery/power/supermatter/proc/explode()
-	message_admins("Supermatter exploded at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
+	message_admins("Supermatter exploded at ([x],[y],[z] - <A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 	log_game("Supermatter exploded at ([x],[y],[z])")
 	anchored = TRUE
 	grav_pulling = TRUE
@@ -232,7 +232,7 @@
 		supermatter_pull()
 
 	if(power)
-		soundloop.volume = Clamp((50 + (power / 50)), 50, 100)
+		soundloop.volume = clamp((50 + (power / 50)), 50, 100)
 	if(damage >= 300)
 		soundloop.mid_sounds = list('sound/machines/sm/loops/delamming.ogg' = 1)
 	else
@@ -241,9 +241,9 @@
 	if(last_accent_sound < world.time && prob(20))
 		var/aggression = min(((damage / 800) * (power / 2500)), 1.0) * 100
 		if(damage >= 300)
-			playsound(src, /singleton/sound_category/supermatter_delam, max(50, aggression), FALSE, 10)
+			playsound(src, /singleton/sound_category/supermatter_delam, clamp(aggression, 50, 75), FALSE, 10)
 		else
-			playsound(src, /singleton/sound_category/supermatter_calm, max(50, aggression), FALSE, 10)
+			playsound(src, /singleton/sound_category/supermatter_calm, clamp(aggression, 50, 75), FALSE, 10)
 		var/next_sound = round((100 - aggression) * 5)
 		last_accent_sound = world.time + max(SUPERMATTER_ACCENT_SOUND_MIN_COOLDOWN, next_sound)
 
@@ -340,15 +340,19 @@
 	return 1
 
 
-/obj/machinery/power/supermatter/bullet_act(var/obj/projectile/Proj)
+/obj/machinery/power/supermatter/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit)
+	. = ..()
+	if(. != BULLET_ACT_HIT)
+		return .
+
 	var/turf/L = loc
 	if(!istype(L))		// We don't run process() when we are in space
 		return 0	// This stops people from being able to really power up the supermatter
 				// Then bring it inside to explode instantly upon landing on a valid turf.
 
 
-	var/proj_damage = Proj.get_structure_damage()
-	if(istype(Proj, /obj/projectile/beam))
+	var/proj_damage = hitting_projectile.get_structure_damage()
+	if(istype(hitting_projectile, /obj/projectile/beam))
 		power += proj_damage * config_bullet_energy	* CHARGING_FACTOR / POWER_FACTOR
 	else
 		damage += proj_damage * config_bullet_energy
@@ -367,10 +371,11 @@
 	ui_interact(user)
 
 /obj/machinery/power/supermatter/attack_hand(mob/user as mob)
-	user.visible_message("<span class=\"warning\">\The [user] reaches out and touches \the [src], inducing a resonance... [user.get_pronoun("he")] body starts to glow and bursts into flames before flashing into ash.</span>",\
-		"<span class=\"danger\">You reach out and touch \the [src]. Everything starts burning and all you can hear is ringing. Your last thought is \"That was not a wise decision.\"</span>",\
-		"<span class=\"warning\">You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat.</span>")
-
+	user.visible_message(
+		SPAN_WARNING("\The [user] reaches out and touches \the [src], inducing a resonance. For a brief instant, [user.get_pronoun("his")] body glows brilliantly, then flashes into ash."),
+		SPAN_DANGER(FONT_LARGE("You reach out and touch \the [src]. Instantly, you feel a curious sensation as your body turns into new and exciting forms of plasma. That was not a wise decision.")),
+		SPAN_WARNING("You hear an unearthly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat.")
+	)
 	Consume(user)
 
 // Only accessed by AIs or robots.
@@ -396,9 +401,11 @@
 	if(!istype(living_user))
 		return
 
-	living_user.visible_message("<span class=\"warning\">\The [living_user] touches \a [attacking_item] to \the [src] as a silence fills the room...</span>",\
-		"<span class=\"danger\">You touch \the [attacking_item] to \the [src] when everything suddenly goes silent.\"</span>\n<span class=\"notice\">\The [attacking_item] flashes into dust as you flinch away from \the [src].</span>",\
-		"<span class=\"warning\">Everything suddenly goes silent.</span>")
+	living_user.visible_message(
+		SPAN_WARNING("\The [living_user] touches \a [attacking_item] to \the [src], then flinches away as it flashes instantly into dust. Silence blankets the air."),
+		SPAN_DANGER("You touch \the [attacking_item] to \the [src]. Everything suddenly goes silent as it flashes into dust, and you flinch away."),
+		SPAN_WARNING("For a brief moment, you hear an oppressive, unnatural silence.")
+	)
 
 	living_user.drop_from_inventory(attacking_item)
 	Consume(attacking_item)
@@ -415,12 +422,16 @@
 	if(isprojectile(bumped_atom))
 		return
 	if(istype(bumped_atom, /mob/living))
-		bumped_atom.visible_message("<span class=\"warning\">\The [bumped_atom] slams into \the [src] inducing a resonance... [bumped_atom.get_pronoun("his")] body starts to glow and catch flame before flashing into ash.</span>",\
-		"<span class=\"danger\">You slam into \the [src] as your ears are filled with unearthly ringing. Your last thought is \"Oh, fuck.\"</span>",\
-		"<span class=\"warning\">You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat.</span>")
+		bumped_atom.visible_message(
+			SPAN_WARNING("\The [bumped_atom] slams \the [src], inducing a resonance. For a brief instant, [bumped_atom.get_pronoun("his")] body glows brilliantly, then flashes into ash."),
+			SPAN_DANGER(FONT_LARGE("You slam into \the [src], and your mind fills with unearthly shrieking. Your vision floods with light as your body instantly dissolves into dust.")),
+			SPAN_WARNING("You hear an unearthly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat.")
+		)
 	else if(!grav_pulling) //To prevent spam, detonating supermatter does not indicate non-mobs being destroyed
-		bumped_atom.visible_message("<span class=\"warning\">\The [bumped_atom] smacks into \the [src] and rapidly flashes to ash.</span>",\
-		"<span class=\"warning\">You hear a loud crack as you are washed with a wave of heat.</span>")
+		bumped_atom.visible_message(
+			SPAN_WARNING("\The [bumped_atom] smacks into \the [src] and rapidly flashes to ash."),
+			SPAN_WARNING("You hear a loud crack as you are washed with a wave of heat.")
+		)
 
 	Consume(bumped_atom)
 

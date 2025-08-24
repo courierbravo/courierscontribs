@@ -9,7 +9,7 @@
 	contained_sprite = TRUE
 	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = WEIGHT_CLASS_NORMAL
-	max_storage_space = 14 //The sum of the w_classes of all the items in this storage item.
+	max_storage_space = DEFAULT_BOX_STORAGE //The sum of the w_classes of all the items in this storage item.
 	req_access = list(ACCESS_ARMORY)
 	var/locked = 1
 	var/broken = 0
@@ -18,7 +18,7 @@
 	var/icon_broken = "lockbox+b"
 
 
-/obj/item/storage/lockbox/attackby(attacking_item, mob/user)
+/obj/item/storage/lockbox/attackby(obj/item/attacking_item, mob/user, params)
 	if(istype(attacking_item, /obj/item/card/id))
 		if(src.broken)
 			to_chat(user, SPAN_WARNING("It appears to be broken."))

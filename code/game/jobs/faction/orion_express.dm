@@ -1,4 +1,4 @@
-/datum/faction/orin_express
+/datum/faction/orion_express
 	name = "Orion Express"
 	description = {"<p>
 	Founded in 2464, the Orion Express is a corporation designed to handle logistics for the
@@ -20,6 +20,7 @@
 		/datum/species/unathi,
 		/datum/species/bug = TRUE,
 		/datum/species/bug/type_b = TRUE,
+		/datum/species/bug/type_b/type_bb = TRUE,
 		/datum/species/bug/type_e = TRUE,
 		/datum/species/tajaran,
 		/datum/species/diona
@@ -30,6 +31,7 @@
 		"Corporate Liaison" = list(
 			SPECIES_VAURCA_WORKER,
 			SPECIES_VAURCA_WARRIOR,
+			SPECIES_VAURCA_ATTENDANT,
 			SPECIES_VAURCA_BULWARK,
 			SPECIES_VAURCA_BREEDER
 		)
@@ -49,6 +51,8 @@
 		"Corporate Reporter" = /obj/outfit/job/journalist/orion,
 		"Chaplain" = /obj/outfit/job/chaplain/orion,
 		"Corporate Liaison" = /obj/outfit/job/representative/orion,
+		"Assistant" = /obj/outfit/job/assistant/orion,
+		"Wait Staff" = /obj/outfit/job/assistant/waiter/orion,
 		"Off-Duty Crew Member" = /obj/outfit/job/visitor/orion,
 		"Operations Personnel" = /obj/outfit/job/hangar_tech/event/orion,
 		"Service Personnel" = /obj/outfit/job/bartender/orion
@@ -193,6 +197,26 @@
 
 /obj/outfit/job/chaplain/orion
 	name = "Chaplain - Orion Express"
+
+	id = /obj/item/card/id/orion
+
+	backpack_faction = /obj/item/storage/backpack/orion
+	satchel_faction = /obj/item/storage/backpack/satchel/orion
+	dufflebag_faction = /obj/item/storage/backpack/duffel/orion
+	messengerbag_faction = /obj/item/storage/backpack/messenger/orion
+
+/obj/outfit/job/assistant/orion
+	name = "Assistant - Orion"
+
+	id = /obj/item/card/id/orion
+
+	backpack_faction = /obj/item/storage/backpack/orion
+	satchel_faction = /obj/item/storage/backpack/satchel/orion
+	dufflebag_faction = /obj/item/storage/backpack/duffel/orion
+	messengerbag_faction = /obj/item/storage/backpack/messenger/orion
+
+/obj/outfit/job/assistant/waiter/orion
+	name = "Wait Staff - Orion"
 
 	id = /obj/item/card/id/orion
 

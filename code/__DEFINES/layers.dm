@@ -36,6 +36,11 @@
 
 #define OVER_OPENSPACE_PLANE -4
 
+#define HEAT_EFFECT_PLANE -4
+#define HEAT_EFFECT_TARGET    "*heat"
+#define COLD_EFFECT_TARGET    "*cold"
+#define COLD_EFFECT_BACK_TARGET "*coldb"
+#define HEAT_COMPOSITE_TARGET "*heatc"
 #define WARP_EFFECT_PLANE -3
 
 #define BLACKNESS_PLANE 0 //Blackness plane as per DM documentation.
@@ -71,6 +76,7 @@
 	//HIDING MOB
 	#define HIDING_MOB_LAYER 2.16
 	#define SHALLOW_FLUID_LAYER 2.17
+	#define PROJECTILE_HIT_THRESHHOLD_LAYER 2.3
 	// OBJ
 	#define BELOW_DOOR_LAYER 2.69
 	#define OPEN_DOOR_LAYER 2.70
@@ -84,6 +90,7 @@
 	#define ABOVE_WINDOW_LAYER 2.78
 	#define BELOW_OBJ_LAYER 2.89
 	#define STRUCTURE_LAYER 2.9
+	#define ABOVE_STRUCTURE_LAYER 2.91
 	//OBJ_LAYER 3
 	#define ABOVE_OBJ_LAYER 3.01
 	#define MOB_SHADOW_LAYER 3.011
@@ -170,11 +177,15 @@
 	#define RADIAL_BASE_LAYER 6
 	#define RADIAL_CONTENT_LAYER 7
 
+#define BALLOON_CHAT_PLANE 9
+
 /// This plane masks out lighting, to create an "emissive" effect for e.g glowing screens in otherwise dark areas.
 #define EMISSIVE_PLANE 10
 #define EMISSIVE_TARGET "*emissive"
 	/// The layer you should use when you -really- don't want an emissive overlay to be blocked.
 	#define EMISSIVE_LAYER_UNBLOCKABLE 9999
+
+#define RUNECHAT_PLANE 500
 
 //-------------------- Rendering ---------------------
 

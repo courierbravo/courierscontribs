@@ -142,8 +142,8 @@
 
 /obj/item/pickaxe/verb/wield_pick()
 	if(can_wield)
-		set name = "Wield pick/drill"
-		set category = "Object"
+		set name = "Wield Pick/Drill"
+		set category = "Object.Held"
 		set src in usr
 
 		attack_self(usr)
@@ -200,7 +200,7 @@
 /obj/item/pickaxe/drill
 	name = "mining drill" // Can dig sand as well!
 	desc = "Yours is the drill that will pierce through the rock walls."
-	icon = 'icons/obj/item/tools/drills.dmi'
+	icon = 'icons/obj/item/drills.dmi'
 	icon_state = "miningdrill"
 	item_state = "miningdrill"
 	contained_sprite = TRUE
@@ -221,8 +221,8 @@
 /obj/item/pickaxe/drill/weak
 	name = "shaft drill"
 	desc = "Baby's first mining drill. Slow, but reliable."
-	icon_state = "babydrill"
-	item_state = "babydrill"
+	icon_state = "drill"
+	item_state = "drill"
 	digspeed = 5
 	digspeed_unwielded = 10
 	excavation_amount = 80
@@ -231,7 +231,7 @@
 /obj/item/pickaxe/jackhammer
 	name = "sonic jackhammer"
 	desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
-	icon = 'icons/obj/item/tools/drills.dmi'
+	icon = 'icons/obj/item/drills.dmi'
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
 	contained_sprite = TRUE
@@ -275,7 +275,7 @@
 
 /obj/item/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
 	name = "diamond mining drill"
-	icon = 'icons/obj/item/tools/drills.dmi'
+	icon = 'icons/obj/item/drills.dmi'
 	icon_state = "diamonddrill"
 	item_state = "diamonddrill"
 	contained_sprite = TRUE
@@ -296,7 +296,7 @@
 
 /obj/item/pickaxe/borgdrill
 	name = "cyborg mining drill"
-	icon = 'icons/obj/item/tools/drills.dmi'
+	icon = 'icons/obj/item/drills.dmi'
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
 	contained_sprite = TRUE
@@ -488,13 +488,13 @@
 		qdel(src)
 		return
 	updateOverlays()
-	for(var/dir in GLOB.cardinal)
+	for(var/dir in GLOB.cardinals)
 		var/obj/structure/track/R = locate(/obj/structure/track, get_step(src, dir))
 		if(R)
 			R.updateOverlays()
 
 /obj/structure/track/Destroy()
-	for(var/dir in GLOB.cardinal)
+	for(var/dir in GLOB.cardinals)
 		var/obj/structure/track/R = locate(/obj/structure/track, get_step(src, dir))
 		if(R)
 			R.updateOverlays()
@@ -527,7 +527,7 @@
 
 	var/dir_sum = 0
 
-	for(var/direction in GLOB.cardinal)
+	for(var/direction in GLOB.cardinals)
 		if(locate(/obj/structure/track, get_step(src, direction)))
 			dir_sum += direction
 
@@ -616,7 +616,7 @@
 /obj/item/ore_radar
 	name = "scanner pad"
 	desc = "An antiquated device that can detect ore in a wide radius around the user."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/item/pinpointer.dmi'
 	icon_state = "pinoff"
 	obj_flags = OBJ_FLAG_CONDUCTABLE
 	slot_flags = SLOT_BELT
@@ -807,35 +807,37 @@
 	item_state = icon_state
 	update_held_icon()
 
-/obj/item/lazarus_injector/afterattack(atom/target, mob/user, proximity_flag)
-	if(!loaded)
-		return
-	if(isliving(target) && proximity_flag)
-		if(istype(target, /mob/living/simple_animal))
-			var/mob/living/simple_animal/M = target
-			if(!(M.find_type() & revive_type) || !(M.tameable))
-				to_chat(user, SPAN_INFO("\The [src] does not work on this sort of creature."))
-				return
-			if(M.stat == DEAD)
-				if(emagged)	//if emagged, will set anything revived to the user's faction. convert station pets to the traitor side!
-					M.faction = user.faction
-				if(malfunctioning) //when EMP'd, will set the mob faction to its initial faction, so any taming will be reverted.
-					M.faction = initial(M.faction)
-				M.revive()
-				M.icon_state = M.icon_living
-				M.desc = initial(M.desc)
-				loaded = FALSE
-				user.visible_message(SPAN_NOTICE("\The [user] revives \the [M] by injecting it with \the [src]."))
-				feedback_add_details("lazarus_injector", "[M.type]")
-				playsound(src, 'sound/effects/refill.ogg', 50, TRUE)
-				update_icon()
-				return
-			else
-				to_chat(user, SPAN_INFO("\The [src] is only effective on the dead."))
-				return
-		else
-			to_chat(user, SPAN_INFO("\The [src] is only effective on lesser beings."))
+/obj/item/lazarus_injector/attack(mob/living/target_mob, mob/living/user, target_zone)
+	//If we're not loaded, the target is not a living mob, or we're further from 1 tile away, not our problem
+	if(!loaded || !isliving(target_mob) || get_dist(target_mob, user) > 1)
+		return ..()
+
+	if(istype(target_mob, /mob/living/simple_animal))
+		var/mob/living/simple_animal/M = target_mob
+
+		if(!(M.find_type() & revive_type) || !(M.tameable))
+			to_chat(user, SPAN_INFO("\The [src] does not work on this sort of creature."))
 			return
+
+		if(M.stat == DEAD)
+			if(emagged)	//if emagged, will set anything revived to the user's faction. convert station pets to the traitor side!
+				M.faction = user.faction
+			if(malfunctioning) //when EMP'd, will set the mob faction to its initial faction, so any taming will be reverted.
+				M.faction = initial(M.faction)
+			M.revive()
+			M.icon_state = M.icon_living
+			M.desc = initial(M.desc)
+			loaded = FALSE
+			user.visible_message(SPAN_NOTICE("\The [user] revives \the [M] by injecting it with \the [src]."))
+			feedback_add_details("lazarus_injector", "[M.type]")
+			playsound(src, 'sound/effects/refill.ogg', 50, TRUE)
+			update_icon()
+
+		else
+			to_chat(user, SPAN_INFO("\The [src] is only effective on the dead."))
+
+	else
+		to_chat(user, SPAN_INFO("\The [src] is only effective on lesser beings."))
 
 /obj/item/lazarus_injector/emp_act()
 	. = ..()
@@ -882,7 +884,7 @@
 
 /**********************"Fultons"**********************/
 
-var/list/total_extraction_beacons = list()
+GLOBAL_LIST_INIT_TYPED(total_extraction_beacons, /obj/structure/extraction_point, list())
 
 /obj/item/extraction_pack
 	name = "warp extraction pack"
@@ -902,7 +904,7 @@ var/list/total_extraction_beacons = list()
 
 /obj/item/extraction_pack/attack_self(mob/user)
 	var/list/possible_beacons = list()
-	for(var/B in total_extraction_beacons)
+	for(var/B in GLOB.total_extraction_beacons)
 		var/obj/structure/extraction_point/EP = B
 		if(EP.beacon_network in beacon_networks)
 			possible_beacons += EP
@@ -934,7 +936,7 @@ var/list/total_extraction_beacons = list()
 		if(A.anchored)
 			return
 		var/turf/T = get_turf(A)
-		for(var/found_inhibitor in bluespace_inhibitors)
+		for(var/found_inhibitor in GLOB.bluespace_inhibitors)
 			var/obj/machinery/anti_bluespace/AB = found_inhibitor
 			if(T.z != AB.z || get_dist(T, AB) > 8 || (AB.stat & (NOPOWER | BROKEN)))
 				continue
@@ -961,11 +963,15 @@ var/list/total_extraction_beacons = list()
 
 /obj/item/warp_core
 	name = "warp extraction beacon signaller"
-	desc = "Emits a signal which Warp-Item recovery devices can lock onto. Activate in hand to create a beacon."
-	desc_info = "You can activate this item in-hand to create a static beacon, or you can click on an ore box with it to allow the ore box to be linked to warp packed mining satchels."
+	desc = "Emits a signal which Warp-Item recovery devices can lock onto."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "subspace_amplifier"
 	origin_tech = list(TECH_BLUESPACE = 1, TECH_PHORON = 1, TECH_ENGINEERING = 2)
+
+/obj/item/warp_core/mechanics_hints(mob/user, distance, is_adjacent)
+	. += ..()
+	. += "You can activate this item in-hand to create a static beacon."
+	. += "You can click on an ore box with it to allow the ore box to be linked to warp extraction pack-enabled mining satchels."
 
 /obj/item/warp_core/attack_self(mob/user)
 	to_chat(user, SPAN_NOTICE("You start placing down the beacon..."))
@@ -987,10 +993,10 @@ var/list/total_extraction_beacons = list()
 	. = ..()
 	var/area/area_name = get_area(src)
 	name += " ([rand(100,999)]) ([area_name.name])"
-	total_extraction_beacons += src
+	GLOB.total_extraction_beacons += src
 
 /obj/structure/extraction_point/Destroy()
-	total_extraction_beacons -= src
+	GLOB.total_extraction_beacons -= src
 	return ..()
 
 /**********************Resonator**********************/
@@ -1164,7 +1170,7 @@ var/list/total_extraction_beacons = list()
 /obj/item/autochisel
 	name = "auto-chisel"
 	desc = "With an integrated AI chip and hair-trigger precision, this baby makes sculpting almost automatic!"
-	icon = 'icons/obj/item/tools/drills.dmi'
+	icon = 'icons/obj/item/drills.dmi'
 	icon_state = "chisel"
 	item_state = "jackhammer"
 	contained_sprite = TRUE
@@ -1357,6 +1363,12 @@ var/list/total_extraction_beacons = list()
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	flick("[icon_state]2", src)
 	playsound(get_turf(src), /singleton/sound_category/swing_hit_sound, 25, 1, -1)
+
+/obj/structure/punching_bag/attackby(obj/item/attacking_item, mob/user)
+	if(istype(attacking_item, /obj/item/holo/practicesword))
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		flick("[icon_state]2", src)
+		playsound(get_turf(src), 'sound/weapons/bladeparry.ogg', 25, 1, -1)
 
 /obj/structure/weightlifter
 	name = "weight machine"
