@@ -58,15 +58,22 @@
 	export_types = list(/obj/item/stack/material/cardboard)
 
 /datum/export/stack/sandstone
-	cost = 1
+	cost = 2.5
 	unit_name = "block"
 	message = "of sandstone"
 	export_types = list(/obj/item/stack/material/sandstone)
+
+/datum/export/stack/marble
+	cost = 3
+	unit_name = "block"
+	message = "of marble"
+	export_types = list(/obj/item/stack/material/marble)
 
 /datum/export/stack/cable
 	cost = 0.2
 	unit_name = "cable piece"
 	export_types = list(/obj/item/stack/cable_coil)
+
 
 // Weird Stuff
 

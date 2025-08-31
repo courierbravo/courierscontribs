@@ -18,7 +18,7 @@
 /datum/export/weapon/laser
 	cost = 200
 	unit_name = "laser gun"
-	export_types = list(/obj/item/gun/energy/rifle/laser)
+	export_types = list(/obj/item/gun/energy/rifle/laser, )
 
 /datum/export/weapon/energy_gun
 	cost = 300
@@ -26,23 +26,23 @@
 	export_types = list(/obj/item/gun/energy/gun)
 
 /datum/export/weapon/flashbang
-	cost = 5
+	cost = 25
 	unit_name = "flashbang grenade"
 	export_types = list(/obj/item/grenade/flashbang)
 
 /datum/export/weapon/stinger
-	cost = 5
+	cost = 25
 	unit_name = "stinger grenade"
 	export_types = list(/obj/item/grenade/stinger)
 
 /datum/export/weapon/teargas
-	cost = 5
+	cost = 25
 	unit_name = "tear gas grenade"
 	export_types = list(/obj/item/grenade/chem_grenade/teargas)
 
 
 /datum/export/weapon/flash
-	cost = 5
+	cost = 15
 	unit_name = "handheld flash"
 	export_types = list(/obj/item/device/flash)
 	include_subtypes = TRUE

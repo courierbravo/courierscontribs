@@ -59,7 +59,7 @@
 /datum/export/flashlight
 	cost = 5
 	unit_name = "flashlight"
-	export_types = list(/obj/item/device/flashlight)
+	export_types = list(/obj/item/device/flashlight, /obj/item/device/flashlight/heavy, /obj/item/device/flashlight/pen, /obj/item/device/flashlight/lantern)
 	include_subtypes = FALSE
 
 /datum/export/flashlight/flare
@@ -69,7 +69,7 @@
 
 /datum/export/flashlight/seclite
 	cost = 10
-	unit_name = "seclite"
+	unit_name = "maglight"
 	export_types = list(/obj/item/device/flashlight/maglight)
 
 
@@ -91,7 +91,7 @@
 
 
 /datum/export/rfd_construction
-	cost = 100
+	cost = 500
 	unit_name = "Rapid-Fabrication-Device C-Class"
 	export_types = list(/obj/item/rfd/construction)
 

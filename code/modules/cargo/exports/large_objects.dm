@@ -1,5 +1,5 @@
 /datum/export/large/crate
-	cost = 500
+	cost = 100
 	k_elasticity = 0
 	unit_name = "crate"
 	export_types = list(/obj/structure/closet/crate)
@@ -27,7 +27,7 @@
 	exclude_types = list()
 */
 /datum/export/large/crate/coffin
-	cost = 250//50 wooden crates cost 2000 points, and you can make 10 coffins in seconds with those planks. Each coffin selling for 250 means you can make a net gain of 500 points for wasting your time making coffins.
+	cost = 150
 	unit_name = "coffin"
 	export_types = list(/obj/structure/closet/crate/coffin)
 
@@ -52,10 +52,41 @@
 	unit_name = "fueltank"
 	export_types = list(/obj/structure/reagent_dispensers/fueltank)
 
+/datum/export/large/reagent_dispenser/cookingoil
+	unit_name = "cooking oil tank"
+	contents_cost = 200
+	export_types = list(/obj/structure/reagent_dispensers/cookingoil)
+
+/datum/export/large/reagent_dispenser/
+	unit_name = "keg"
+	contents_cost = 100
+	export_types = list()
+
 /datum/export/large/reagent_dispenser/beer
 	unit_name = "beer keg"
-	contents_cost = 700
-	export_types = list(/obj/structure/reagent_dispensers/keg/beerkeg)
+	contents_cost = 100
+	export_types = list(/obj/structure/reagent_dispensers/keg/beerkeg, /obj/structure/reagent_dispensers/keg/beerkeg/rice)
+
+/datum/export/large/reagent_dispenser/kvass
+	unit_name = "kvass keg"
+	contents_cost = 100
+	export_types = list(/obj/structure/reagent_dispensers/keg/kvass)
+
+/datum/export/large/reagent_dispenser/mead
+	unit_name = "mead keg"
+	contents_cost = 100
+	export_types = list(/obj/structure/reagent_dispensers/keg/mead)
+
+/datum/export/large/reagent_dispenser/sake
+	unit_name = "sake keg"
+	contents_cost = 100
+	export_types = list(/obj/structure/reagent_dispensers/keg/sake)
+
+/datum/export/large/reagent_dispenser/xuizikeg
+	unit_name = "xuizi keg"
+	contents_cost = 100
+	export_types = list(/obj/structure/reagent_dispensers/keg/xuizikeg)
+
 
 
 
